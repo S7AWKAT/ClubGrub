@@ -30,7 +30,7 @@ export const OperatorOutcomes = () => {
   ];
 
   return (
-    <section className="py-24 bg-surface">
+    <section id="outcomes" className="py-24 bg-surface">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

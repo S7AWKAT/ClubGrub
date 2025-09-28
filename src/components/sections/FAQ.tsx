@@ -43,7 +43,7 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 bg-surface">
+    <section id="faq" className="py-24 bg-surface">
       <div className="container mx-auto px-6 max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-16">
