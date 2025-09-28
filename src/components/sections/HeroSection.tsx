@@ -18,8 +18,30 @@ export const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center text-white">
+        {/* Main Headline */}
+        <h1 className="heading-hero text-white mb-6 animate-fade-up">
+          Sell more F&amp;B<br />
+          <span className="text-gradient">Without extra labor</span>
+        </h1>
+
+        {/* Subheadline */}
+        <p className="body-large text-white/90 max-w-3xl mx-auto mb-8 animate-fade-up [animation-delay:200ms]">
+          Elevate hospitality experiences with convenient mobile ordering of food and beverages. Drive revenue while optimizing your team's efficiency.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [animation-delay:600ms]">
+          <Button className="btn-hero group text-lg px-8 py-4">
+            Book a Demo
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button variant="outline" className="btn-outline text-lg px-8 py-4">
+            See it in action
+          </Button>
+        </div>
+
         {/* Awards Row */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-up">
+        <div className="flex flex-wrap justify-center gap-4 mt-12 animate-fade-up [animation-delay:400ms]">
           <Badge variant="outline" className="bg-white/10 border-white/20 text-white px-4 py-2">
             <Award className="w-4 h-4 mr-2" />
             Product of the Year – Boardroom
@@ -36,46 +58,6 @@ export const HeroSection = () => {
             <Users className="w-4 h-4 mr-2" />
             Golf Inc Strategies Summit
           </Badge>
-        </div>
-
-        {/* Main Headline */}
-        <h1 className="heading-hero text-white mb-6 animate-fade-up [animation-delay:200ms]">
-          Sell more F&amp;B<br />
-          <span className="text-gradient">Without extra labor</span>
-        </h1>
-
-        {/* Subheadline */}
-        <p className="body-large text-white/90 max-w-3xl mx-auto mb-12 animate-fade-up [animation-delay:400ms]">
-          Elevate hospitality experiences with convenient mobile ordering of food and beverages. Drive revenue while optimizing your team's efficiency.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [animation-delay:600ms]">
-          <Button className="btn-hero group text-lg px-8 py-4">
-            Book a Demo
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
-          <Button variant="outline" className="btn-outline text-lg px-8 py-4">
-            See it in action
-          </Button>
-        </div>
-
-        {/* Trust Indicators */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mt-16 text-white/80 animate-fade-up [animation-delay:800ms]">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-club-gold">500+</div>
-            <div className="text-sm">Active Clubs</div>
-          </div>
-          <div className="hidden sm:block w-px h-12 bg-white/20" />
-          <div className="text-center">
-            <div className="text-3xl font-bold text-club-gold">98%</div>
-            <div className="text-sm">Member Satisfaction</div>
-          </div>
-          <div className="hidden sm:block w-px h-12 bg-white/20" />
-          <div className="text-center">
-            <div className="text-3xl font-bold text-club-gold">24hrs</div>
-            <div className="text-sm">Avg. Implementation</div>
-          </div>
         </div>
       </div>
 
