@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ClubGrub Premium Design System - Luxury Hospitality Brand */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Sophisticated luxury palette */
+    --background: 0 0% 98%;
+    --foreground: 222 84% 4.9%;
+    
+    /* Premium Club Colors */
+    --club-gold: 45 100% 51%;
+    --club-gold-light: 45 100% 85%;
+    --club-dark: 222 84% 4.9%;
+    --club-charcoal: 220 13% 18%;
+    --club-silver: 220 9% 46%;
+    --club-cream: 48 100% 97%;
+    
+    /* Interactive States */
+    --primary: 45 100% 51%;
+    --primary-foreground: 222 84% 4.9%;
+    --primary-hover: 45 100% 45%;
+    
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-hover: 220 13% 25%;
+    
+    /* Surface Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+    --surface: 0 0% 99%;
+    --surface-elevated: 0 0% 100%;
+    
+    /* Text Hierarchy */
+    --text-primary: 222 84% 4.9%;
+    --text-secondary: 220 9% 46%;
+    --text-muted: 220 13% 69%;
+    --text-inverse: 0 0% 98%;
+    
+    /* Border & Input */
+    --border: 220 13% 91%;
+    --border-muted: 220 13% 95%;
+    --input: 220 13% 91%;
+    --ring: 45 100% 51%;
+    
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--club-gold)), hsl(var(--club-gold-light)));
+    --gradient-cta: linear-gradient(135deg, hsl(var(--club-gold)), hsl(45 100% 45%));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--club-dark) / 0.9), hsl(var(--club-charcoal) / 0.8));
+    --gradient-card: linear-gradient(145deg, hsl(var(--surface)), hsl(var(--surface-elevated)));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(var(--club-dark) / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(var(--club-dark) / 0.1), 0 2px 4px -1px hsl(var(--club-dark) / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(var(--club-dark) / 0.1), 0 4px 6px -2px hsl(var(--club-dark) / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(var(--club-dark) / 0.1), 0 10px 10px -5px hsl(var(--club-dark) / 0.04);
+    --shadow-premium: 0 25px 50px -12px hsl(var(--club-gold) / 0.25);
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  
+  /* Dark mode - Premium hospitality dark theme */
+  .dark {
+    --background: 220 13% 18%;
+    --foreground: 0 0% 98%;
+    --club-gold: 45 100% 51%;
+    --club-gold-light: 45 100% 75%;
+    --text-primary: 0 0% 98%;
+    --text-secondary: 220 13% 69%;
+    --text-muted: 220 9% 46%;
+    --card: 220 13% 15%;
+    --surface: 220 13% 12%;
+    --surface-elevated: 220 13% 18%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Premium Typography Scale */
+  .heading-hero {
+    @apply text-5xl md:text-7xl font-bold tracking-tight;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  
+  .heading-section {
+    @apply text-3xl md:text-5xl font-bold tracking-tight;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  .heading-card {
+    @apply text-xl md:text-2xl font-semibold tracking-tight;
+  }
+  
+  .body-large {
+    @apply text-lg md:text-xl leading-relaxed;
+  }
+  
+  .body-medium {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+}
+
+@layer components {
+  /* Premium Button Variants */
+  .btn-premium {
+    @apply inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold transition-all duration-300;
+    @apply shadow-lg hover:shadow-xl active:scale-95;
+  }
+  
+  .btn-hero {
+    @apply btn-premium bg-gradient-to-r from-club-gold to-club-gold-light text-club-dark;
+    @apply hover:shadow-premium hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply btn-premium bg-club-charcoal text-text-inverse border-2 border-transparent;
+    @apply hover:border-club-gold hover:shadow-premium;
+  }
+  
+  .btn-outline {
+    @apply btn-premium bg-transparent text-club-dark border-2 border-club-gold;
+    @apply hover:bg-club-gold hover:text-club-dark hover:shadow-premium;
+  }
+  
+  /* Premium Card Styles */
+  .card-premium {
+    @apply bg-gradient-to-br from-surface to-surface-elevated;
+    @apply rounded-2xl p-8 shadow-lg border border-border-muted;
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  .card-feature {
+    @apply card-premium hover:shadow-premium;
+  }
+  
+  /* Premium Text Styles */
+  .text-gradient {
+    @apply bg-gradient-to-r from-club-gold to-club-gold-light bg-clip-text text-transparent;
+  }
+  
+  /* Animation Classes */
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.8s ease-out;
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframes */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Premium Gradient Utilities */
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .bg-gradient-cta {
+    background: var(--gradient-cta);
+  }
+  
+  .bg-gradient-overlay {
+    background: var(--gradient-overlay);
+  }
+  
+  /* Shadow Utilities */
+  .shadow-premium {
+    box-shadow: var(--shadow-premium);
+  }
+}
