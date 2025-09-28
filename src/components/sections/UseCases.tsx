@@ -2,7 +2,9 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Home, Waves, Utensils, ArrowRight } from "lucide-react";
 import golfImage from "@/assets/golf-course-ordering.jpg";
+import halfwayHouseImage from "@/assets/halfway-houses.jpg";
 import poolImage from "@/assets/pool-dining.jpg";
+import togoImage from "@/assets/togo.jpg";
 
 export const UseCases = () => {
   const useCases = [
@@ -17,7 +19,7 @@ export const UseCases = () => {
       icon: Home,
       title: "Halfway Houses",
       description: "Transform turn stations into revenue centers with pre-ordering and quick pickup options.",
-      image: null,
+      image: halfwayHouseImage,
       benefits: ["Order-ahead convenience", "Reduced wait times", "Increased throughput", "Premium grab-and-go"]
     },
     {
@@ -31,7 +33,7 @@ export const UseCases = () => {
       icon: Utensils,
       title: "To-Go / Community",
       description: "Extend dining beyond the clubhouse with community events and member takeout services.",
-      image: null,
+      image: togoImage,
       benefits: ["Community events", "Family takeout", "Catering orders", "Special occasions"]
     }
   ];
