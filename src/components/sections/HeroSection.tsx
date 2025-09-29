@@ -13,7 +13,7 @@ export const HeroSection = () => {
           alt="Elegant private club dining room with modern mobile technology"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-overlay" />
+        <div className="absolute inset-0 bg-gradient-overlay opacity-80" />
       </div>
 
       {/* Content */}

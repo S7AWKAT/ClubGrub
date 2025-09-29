@@ -1,11 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, Users, MessageCircle, Tablet, Rocket } from "lucide-react";
+import { CheckCircle, Clock, Users, MessageCircle, Tablet, Rocket, Megaphone } from "lucide-react";
 
 export const LaunchPlaybook = () => {
   const services = [
     {
-      icon: MessageCircle,
+      icon: Tablet,
       title: "Menu Build & Content",
       description: "Our team builds your complete digital menu with photos, descriptions, and pricing",
       timeline: "Day 1"
@@ -17,7 +17,7 @@ export const LaunchPlaybook = () => {
       timeline: "Day 1-2"
     },
     {
-      icon: MessageCircle,
+      icon: Megaphone,
       title: "Member Communication",
       description: "Ready-to-send email templates, signage, and launch announcement materials",
       timeline: "Day 2"
@@ -55,17 +55,6 @@ export const LaunchPlaybook = () => {
           </p>
         </div>
 
-        {/* Quick Launch Promise */}
-        <div className="bg-gradient-to-r from-club-gold to-club-gold-light rounded-3xl p-12 text-center mb-16 text-club-dark">
-          <Rocket className="w-16 h-16 mx-auto mb-6" />
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
-            Go live as soon as tomorrow
-          </h3>
-          <p className="text-xl opacity-90 max-w-2xl mx-auto">
-            Our proven launch process gets you operational faster than any competitor. No lengthy implementations or complex integrations.
-          </p>
-        </div>
-
         {/* Services Timeline */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {services.map((service, index) => (
@@ -91,6 +80,17 @@ export const LaunchPlaybook = () => {
               </p>
             </Card>
           ))}
+        </div>
+
+        {/* Quick Launch Promise */}
+        <div className="bg-gradient-to-r from-club-gold to-club-gold-light rounded-3xl p-12 text-center mb-16 text-club-dark">
+          <Rocket className="w-16 h-16 mx-auto mb-6" />
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            Go live as soon as tomorrow
+          </h3>
+          <p className="text-xl opacity-90 max-w-2xl mx-auto">
+            Our proven launch process gets you operational faster than any competitor. No lengthy implementations or complex integrations.
+          </p>
         </div>
 
         {/* Benefits & Features */}

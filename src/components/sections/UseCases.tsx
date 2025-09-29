@@ -27,14 +27,14 @@ export const UseCases = () => {
       title: "Pool & Racquets",
       description: "Poolside and courtside service that doesn't interrupt relaxation or competitive play.",
       image: poolImage,
-      benefits: ["Cabana delivery", "Courtside service", "Poolside dining", "Event catering"]
+      benefits: ["Cabana delivery", "Courtside service", "Chairside service", "Resort-style amenities"]
     },
     {
       icon: Utensils,
       title: "To-Go / Community",
       description: "Extend dining beyond the clubhouse with community events and member takeout services.",
       image: togoImage,
-      benefits: ["Community events", "Family takeout", "Catering orders", "Special occasions"]
+      benefits: ["Reduce call-in orders", "Family takeout", "Schedule pickup times", "Home delivery available"]
     }
   ];
 

@@ -2,6 +2,10 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Smartphone, Tablet, Truck, CheckCircle, Settings } from "lucide-react";
 
+import step1Image from "@/assets/how-it-works-step-1.jpg";
+import step2Image from "@/assets/how-it-works-step-2.jpg";
+import step3Image from "@/assets/how-it-works-step-3.jpg";
+
 export const HowItWorks = () => {
   const steps = [
     {
@@ -9,21 +13,24 @@ export const HowItWorks = () => {
       icon: Smartphone,
       title: "Members order on mobile device",
       description: "GPS pins remove guesswork. Members select their exact location and browse your full menu with real-time availability.",
-      features: ["GPS location targeting", "Real-time menu updates", "Member billing integration", "Order customization"]
+      features: ["GPS location targeting", "Real-time menu updates", "Member billing integration", "Order customization"],
+      image: step1Image,
     },
     {
       number: "02", 
       icon: Tablet,
       title: "Team manages tickets on ClubGrub iPad",
       description: "Kitchen and beverage teams receive orders instantly. Prep, stage, and dispatch with seamless workflow management.",
-      features: ["Instant order notifications", "Kitchen display integration", "Prep time optimization", "Staff coordination tools"]
+      features: ["Instant order notifications", "2-way text msg communication", "Prep time optimization", "Staff coordination tools"],
+      image: step2Image,
     },
     {
       number: "03",
       icon: Truck,
       title: "Deliver or stage for pickup",
       description: "Real-time order tracking keeps members informed. Flexible delivery options match your operational preferences.",
-      features: ["Live order tracking", "Delivery route optimization", "Pickup notifications", "Member communication"]
+      features: ["Live order tracking", "Delivery route optimization", "Pickup notifications", "Member communication"],
+      image: step3Image,
     }
   ];
 
@@ -84,18 +91,26 @@ export const HowItWorks = () => {
 
               {/* Visual */}
               <div className="lg:w-1/2 animate-slide-in">
-                <Card className="card-premium p-8 relative">
-                  <div className="aspect-video bg-gradient-to-br from-club-gold/10 to-club-gold/5 rounded-xl flex items-center justify-center">
-                    <div className="text-center">
+                <Card className="card-premium p-8 relative overflow-hidden">
+                  <div className="aspect-video rounded-xl flex items-center justify-center relative">
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-club-gold/30 to-club-gold-light/30 rounded-xl" />
+                    <div className="text-center relative z-10">
                       <step.icon className="w-24 h-24 text-club-gold mx-auto mb-4" />
-                      <h4 className="heading-card text-text-primary mb-2">Step {step.number}</h4>
-                      <p className="body-medium text-text-secondary">{step.title}</p>
+                      <h4 className="heading-card text-white mb-2">
+                        Step {step.number}
+                      </h4>
+                      <p className="body-medium text-white/80">{step.title}</p>
                     </div>
                   </div>
 
                   {/* Step Indicator */}
-                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-club-gold rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-bold text-club-dark">{step.number}</span>
+                  <div className="absolute top-4 left-4 w-12 h-12 bg-club-gold rounded-full flex items-center justify-center">
+                    <span className="text-xl font-bold text-club-dark">{step.number}</span>
                   </div>
                 </Card>
               </div>
