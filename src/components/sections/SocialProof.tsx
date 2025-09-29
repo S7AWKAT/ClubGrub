@@ -35,7 +35,6 @@ export const SocialProof = () => {
   ];
 
   const stats = [
-    { number: "500+", label: "Active Clubs" },
     { number: "98%", label: "Member Satisfaction" },
     { number: "35%", label: "Avg Revenue Increase" },
     { number: "24hrs", label: "Implementation Time" }
@@ -58,7 +57,7 @@ export const SocialProof = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-16">
           {stats.map((stat, index) => (
             <Card
               key={stat.label}
