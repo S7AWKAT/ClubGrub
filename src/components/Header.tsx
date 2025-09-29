@@ -2,16 +2,19 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Utensils, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Logo component - you can replace this with your actual logo
+// Premium Logo component matching the luxury hospitality brand
 const Logo = () => (
-  <div className="flex items-center space-x-2">
-    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-sm">F&B</span>
+  <div className="flex items-center space-x-3">
+    <div className="w-10 h-10 bg-gradient-to-br from-club-gold to-club-gold-light rounded-xl flex items-center justify-center shadow-premium">
+      <Crown className="w-6 h-6 text-club-dark" />
     </div>
-    <span className="text-xl font-bold text-gray-900">OrderFlow</span>
+    <div className="flex flex-col">
+      <span className="text-xl font-bold text-club-dark tracking-tight">ClubGrub</span>
+      <span className="text-xs text-club-silver font-medium -mt-1">Premium F&B</span>
+    </div>
   </div>
 );
 
@@ -20,9 +23,18 @@ const navigationItems = [
     title: "Solutions",
     href: "#solutions",
     children: [
-      { title: "Mobile Ordering", href: "#mobile-ordering", description: "Streamline food & beverage ordering" },
+      { title: "Mobile Ordering", href: "#mobile-ordering", description: "Streamline F&B ordering across all venues" },
       { title: "POS Integration", href: "#pos-integration", description: "Seamless point-of-sale connectivity" },
-      { title: "Analytics Dashboard", href: "#analytics", description: "Real-time insights and reporting" },
+      { title: "Analytics Dashboard", href: "#analytics", description: "Real-time insights and member behavior" },
+    ]
+  },
+  {
+    title: "Use Cases",
+    href: "#use-cases",
+    children: [
+      { title: "On-Course Dining", href: "#on-course", description: "Halfway houses and turn stands" },
+      { title: "Poolside Service", href: "#poolside", description: "Premium pool and cabana experiences" },
+      { title: "Clubhouse Dining", href: "#clubhouse", description: "Fine dining and casual restaurant" },
     ]
   },
   {
@@ -38,18 +50,14 @@ const navigationItems = [
     title: "Resources",
     href: "#resources",
     children: [
-      { title: "Case Studies", href: "#case-studies", description: "Success stories from our clients" },
-      { title: "Documentation", href: "#docs", description: "Technical guides and API docs" },
-      { title: "Support", href: "#support", description: "Get help when you need it" },
+      { title: "Case Studies", href: "#case-studies", description: "Success stories from luxury clubs" },
+      { title: "Launch Playbook", href: "#playbook", description: "Implementation guide for operators" },
+      { title: "Support", href: "#support", description: "Premium support for your success" },
     ]
   },
   {
     title: "Pricing",
     href: "#pricing"
-  },
-  {
-    title: "About",
-    href: "#about"
   }
 ];
 
@@ -59,11 +67,13 @@ const ListItem = ({ title, href, description }: { title: string; href: string; d
       <a
         href={href}
         className={cn(
-          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+          "block select-none space-y-2 rounded-xl p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-club-cream/50 hover:shadow-md focus:bg-club-cream/50 focus:shadow-md group"
         )}
       >
-        <div className="text-sm font-medium leading-none">{title}</div>
-        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+        <div className="text-sm font-semibold leading-none text-text-primary group-hover:text-club-gold transition-colors">
+          {title}
+        </div>
+        <p className="line-clamp-2 text-sm leading-snug text-text-secondary">
           {description}
         </p>
       </a>
@@ -75,9 +85,9 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-border-muted bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/60 shadow-lg">
+      <div className="container mx-auto px-6">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center">
@@ -86,15 +96,17 @@ export const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <NavigationMenu className="hidden md:flex">
+          <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
               {navigationItems.map((item) => (
                 <NavigationMenuItem key={item.title}>
                   {item.children ? (
                     <>
-                      <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+                      <NavigationMenuTrigger className="text-text-primary hover:text-club-gold transition-colors font-medium">
+                        {item.title}
+                      </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        <ul className="grid w-[500px] gap-3 p-6 md:w-[600px] md:grid-cols-2 lg:w-[700px]">
                           {item.children.map((child) => (
                             <ListItem
                               key={child.title}
@@ -110,7 +122,7 @@ export const Header = () => {
                     <NavigationMenuLink asChild>
                       <a
                         href={item.href}
-                        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        className="group inline-flex h-10 w-max items-center justify-center rounded-lg px-4 py-2 text-sm font-medium text-text-primary transition-all duration-300 hover:text-club-gold hover:bg-club-cream/50 focus:outline-none focus:ring-2 focus:ring-club-gold/20"
                       >
                         {item.title}
                       </a>
@@ -122,11 +134,18 @@ export const Header = () => {
           </NavigationMenu>
 
           {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm">
+          <div className="hidden md:flex items-center space-x-3">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="text-text-primary hover:text-club-gold hover:bg-club-cream/50 transition-all duration-300"
+            >
               Sign In
             </Button>
-            <Button size="sm" className="group">
+            <Button 
+              size="sm" 
+              className="btn-hero group text-sm px-6 py-2"
+            >
               Book a Demo
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -135,41 +154,46 @@ export const Header = () => {
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="md:hidden">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="lg:hidden text-text-primary hover:text-club-gold hover:bg-club-cream/50"
+              >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <div className="flex flex-col space-y-4 mt-8">
+            <SheetContent side="right" className="w-[320px] sm:w-[400px] bg-surface border-l border-border-muted">
+              <div className="flex flex-col space-y-6 mt-8">
                 <div className="flex items-center justify-between">
                   <Logo />
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsOpen(false)}
+                    className="text-text-primary hover:text-club-gold hover:bg-club-cream/50"
                   >
                     <X className="h-6 w-6" />
                   </Button>
                 </div>
                 
-                <nav className="flex flex-col space-y-4">
+                <nav className="flex flex-col space-y-6">
                   {navigationItems.map((item) => (
                     <div key={item.title}>
                       <a
                         href={item.href}
-                        className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors"
+                        className="text-lg font-semibold text-text-primary hover:text-club-gold transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.title}
                       </a>
                       {item.children && (
-                        <div className="ml-4 mt-2 space-y-2">
+                        <div className="ml-4 mt-3 space-y-3">
                           {item.children.map((child) => (
                             <a
                               key={child.title}
                               href={child.href}
-                              className="block text-sm text-gray-600 hover:text-blue-600 transition-colors"
+                              className="block text-sm text-text-secondary hover:text-club-gold transition-colors"
                               onClick={() => setIsOpen(false)}
                             >
                               {child.title}
@@ -181,11 +205,14 @@ export const Header = () => {
                   ))}
                 </nav>
                 
-                <div className="flex flex-col space-y-2 pt-4 border-t">
-                  <Button variant="ghost" className="justify-start">
+                <div className="flex flex-col space-y-3 pt-6 border-t border-border-muted">
+                  <Button 
+                    variant="ghost" 
+                    className="justify-start text-text-primary hover:text-club-gold hover:bg-club-cream/50"
+                  >
                     Sign In
                   </Button>
-                  <Button className="group">
+                  <Button className="btn-hero group">
                     Book a Demo
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
