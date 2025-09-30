@@ -46,76 +46,46 @@ const Header = () => {
 		document.body.style.overflow = menuOpen ? "hidden" : "";
 	}, [menuOpen]);
 
-	return (
-		<header
-			className={`fixed left-1/2 top-4 z-50 w-[95vw] max-w-4xl -translate-x-1/2 rounded-3xl px-4 py-3 flex items-center justify-between shadow-2xl transition-all duration-500
-			${visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
-			bg-gradient-to-br from-white/60 to-yellow-100/40 text-gray-900
-			backdrop-blur-xl border border-yellow-300/30 animate-floatingIsland
-			`}
-			style={{ boxShadow: "0 8px 32px 0 rgba(0,0,0,0.18)" }}
-		>
-			{/* Logo to the left of ClubGrub, always visible */}
-			<span className="flex items-center gap-2">
-				<img
-					src="/appicon.jpg"
-					alt="Logo"
-					className="w-10 h-10 rounded-full animate-floatIsland"
-					style={{ background: "rgba(255,255,255,0.6)" }}
-				/>
-				<span className="text-2xl md:text-3xl font-extrabold tracking-tight animate-floatIsland group-hover:text-yellow-400 transition drop-shadow-glow select-none">
-					ClubGrub
-				</span>
-			</span>
+       // منطق الشفافية حسب موضع الصفحة
+       const [isAtTop, setIsAtTop] = useState(true);
+       useEffect(() => {
+	       const handleScroll = () => {
+		       setIsAtTop(window.scrollY < 60);
+	       };
+	       window.addEventListener("scroll", handleScroll);
+	       return () => window.removeEventListener("scroll", handleScroll);
+       }, []);
 
-			{/* Desktop Nav */}
-			<nav className="hidden md:flex gap-4">
-				{navLinks.map((link) => (
-					<button
-						key={link.name}
-						onClick={() => scrollToSection(link.target)}
-						className="relative px-3 py-1 font-semibold rounded-xl transition
-						hover:text-yellow-400 hover:drop-shadow-glow
-						before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-yellow-400 before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:origin-left"
-						style={{ textShadow: "0 0 8px #ffe066, 0 0 2px #fff" }}
-					>
-						{link.name}
-					</button>
-				))}
-			</nav>
+       return (
+	       <header
+		       className={`fixed top-0 left-0 w-full z-50 py-2 px-4 flex items-center justify-between transition-all duration-300
+			       ${isAtTop ? "bg-white/10 backdrop-blur-lg border-b border-transparent shadow-none" : "bg-white/90 backdrop-blur border-b border-yellow-100 shadow-sm"}`}
+	       >
+		       {/* شعار واسم الموقع */}
+		       <div className="flex items-center gap-2">
+			       <img src="/appicon.jpg" alt="Logo" className="w-8 h-8 rounded-full border border-yellow-200" />
+			       <span className="text-xl font-bold text-gray-900 select-none">ClubGrub</span>
+		       </div>
 
-			{/* Mobile Dropdown Button */}
-			<button
-				className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 hover:bg-yellow-200 transition shadow-lg"
-				aria-label="Open menu"
-				onClick={() => setMenuOpen((open) => !open)}
-			>
-				{/* Hamburger Icon */}
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<rect y="5" width="24" height="2" rx="1" fill="#FFD600" />
-					<rect y="11" width="24" height="2" rx="1" fill="#FFD600" />
-					<rect y="17" width="24" height="2" rx="1" fill="#FFD600" />
-				</svg>
-			</button>
+		       {/* روابط الأقسام */}
+		       <nav className="hidden md:flex gap-6">
+			       <button onClick={() => scrollToSection("hero")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Home</button>
+			       <button onClick={() => scrollToSection("how-it-works")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">How It Works</button>
+			       <button onClick={() => scrollToSection("hospitality")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Deliver</button>
+			       <button onClick={() => scrollToSection("trusted")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Trusted</button>
+			       <button onClick={() => scrollToSection("faq")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">FAQ</button>
+			       <button onClick={() => scrollToSection("contact")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Contact</button>
+		       </nav>
 
-			{/* Mobile Dropdown Menu */}
-			{menuOpen && (
-				<div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm flex justify-center items-start pt-24 md:hidden" onClick={() => setMenuOpen(false)}>
-					<div className="bg-white rounded-2xl shadow-2xl p-6 w-[90vw] max-w-sm flex flex-col gap-4" onClick={e => e.stopPropagation()}>
-						{navLinks.map((link) => (
-							<button
-								key={link.name}
-								onClick={() => { scrollToSection(link.target); setMenuOpen(false); }}
-								className="w-full text-lg font-semibold py-2 rounded-xl hover:bg-yellow-100 transition"
-							>
-								{link.name}
-							</button>
-						))}
-					</div>
-				</div>
-			)}
-		</header>
-	);
+		       {/* زر رئيسي هادئ */}
+		       <button
+			       onClick={() => scrollToSection("get-started")}
+			       className="px-5 py-2 rounded-xl bg-yellow-100 text-gray-900 font-semibold text-base shadow hover:bg-yellow-200 transition"
+		       >
+			       Get Started
+		       </button>
+	       </header>
+       );
 };
 
 export default Header;
