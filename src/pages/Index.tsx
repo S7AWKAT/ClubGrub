@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { OperatorOutcomes } from "@/components/sections/OperatorOutcomes";
 import { HowItWorks } from "@/components/sections/HowItWorks";
@@ -10,6 +11,9 @@ import { ContactCTA } from "@/components/sections/ContactCTA";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <Header />
+      
       {/* Hero Section */}
       <HeroSection />
       
