@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header";
+import Header from "@/Header";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { OperatorOutcomes } from "@/components/sections/OperatorOutcomes";
 import { HowItWorks } from "@/components/sections/HowItWorks";

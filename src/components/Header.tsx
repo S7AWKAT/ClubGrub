@@ -1,80 +1,94 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-// Simple section navigation items
-const navigationItems = [
-  { title: "Solutions", href: "#solutions" },
-  { title: "Use Cases", href: "#use-cases" },
-  { title: "Industries", href: "#industries" },
-  { title: "Resources", href: "#resources" },
-  { title: "Pricing", href: "#pricing" }
+const navLinks = [
+	{ name: "Home", target: "hero" },
+	{ name: "How It Works", target: "how-it-works" },
+	{ name: "Deliver", target: "hospitality" },
+	{ name: "Trusted", target: "trusted" },
+	{ name: "FAQ", target: "faq" },
+	{ name: "Contact", target: "contact" },
 ];
 
-export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full">
-      <div className="container mx-auto px-6">
-        <div className="flex h-16 items-center justify-center">
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigationItems.map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                className="text-sm font-medium text-white/90 hover:text-club-gold transition-colors duration-300 hover:scale-105"
-              >
-                {item.title}
-              </a>
-            ))}
-          </nav>
-
-          {/* Mobile Menu */}
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="md:hidden text-white/90 hover:text-club-gold hover:bg-white/10"
-              >
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] bg-club-dark/95 backdrop-blur border-l border-club-gold/20">
-              <div className="flex flex-col space-y-6 mt-8">
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold text-club-gold">Menu</span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsOpen(false)}
-                    className="text-white/90 hover:text-club-gold hover:bg-white/10"
-                  >
-                    <X className="h-5 w-5" />
-                  </Button>
-                </div>
-                
-                <nav className="flex flex-col space-y-4">
-                  {navigationItems.map((item) => (
-                    <a
-                      key={item.title}
-                      href={item.href}
-                      className="text-lg font-medium text-white/90 hover:text-club-gold transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.title}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-    </header>
-  );
+const scrollToSection = (id: string) => {
+	const el = document.getElementById(id);
+	if (el) {
+		el.scrollIntoView({ behavior: "smooth" });
+	}
 };
+
+const Header = () => {
+	const [visible, setVisible] = useState(true);
+	const [lastScroll, setLastScroll] = useState(0);
+	const [menuOpen, setMenuOpen] = useState(false);
+	const location = useLocation();
+
+	// Hide header on scroll down, show on scroll up
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScroll = window.scrollY;
+			setVisible(currentScroll < lastScroll || currentScroll < 10);
+			setLastScroll(currentScroll);
+			setMenuOpen(false); // close menu on scroll
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [lastScroll]);
+
+	// Reset scroll on route change
+	useEffect(() => {
+		setVisible(true);
+		setLastScroll(0);
+	}, [location.pathname]);
+
+	// Mobile: lock scroll when menu open
+	useEffect(() => {
+		document.body.style.overflow = menuOpen ? "hidden" : "";
+	}, [menuOpen]);
+
+	return (
+		<header
+			className={`fixed left-1/2 top-4 z-50 w-[95vw] max-w-4xl -translate-x-1/2 rounded-3xl px-4 py-3 flex items-center justify-between shadow-2xl transition-all duration-500
+      ${visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
+      bg-gradient-to-br from-white/60 to-yellow-100/40 text-gray-900
+      backdrop-blur-xl border border-yellow-300/30 animate-floatingIsland
+    `}
+			style={{
+				boxShadow: "0 8px 32px 0 rgba(0,0,0,0.18)",
+			}}
+		>
+			{/* Logo to the left of ClubGrub, always visible */}
+			<span className="flex items-center gap-2">
+				<img
+					src="/appicon.jpg" // <-- Update with your logo path if needed
+					alt="Logo"
+					className="w-10 h-10 rounded-full animate-floatIsland"
+					style={{ background: "rgba(255,255,255,0.6)" }}
+				/>
+				<span className="text-2xl md:text-3xl font-extrabold tracking-tight animate-floatIsland group-hover:text-yellow-400 transition drop-shadow-glow select-none">
+					ClubGrub
+				</span>
+			</span>
+
+			{/* Desktop Nav */}
+			<nav className="hidden md:flex gap-4">
+				{navLinks.map((link) => (
+					<button
+						key={link.name}
+						onClick={() => scrollToSection(link.target)}
+						className="relative px-3 py-1 font-semibold rounded-xl transition
+            hover:text-yellow-400 hover:drop-shadow-glow
+            before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-yellow-400 before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:origin-left"
+						style={{
+							textShadow: "0 0 8px #ffe066, 0 0 2px #fff",
+						}}
+					>
+						{link.name}
+					</button>
+				))}
+			</nav>
+		</header>
+	);
+};
+
+export default Header;
