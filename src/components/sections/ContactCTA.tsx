@@ -3,7 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock, CheckCircle, ArrowRight, Calendar, Mail, MapPin } from "lucide-react";
+import { Clock, CheckCircle, ArrowRight } from "lucide-react";
+import { scrollToSection } from "@/lib/utils";
 
 export const ContactCTA = () => {
   return (
@@ -163,45 +164,25 @@ export const ContactCTA = () => {
           </div>
         </div>
 
-        {/* Alternative Contact Methods */}
-        <div className="grid md:grid-cols-3 gap-8 mt-16">
-          <div className="text-center text-white">
-            <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Calendar className="w-8 h-8 text-club-gold" />
+        {/* Footer Section */}
+        <div className="mt-24 pt-12 border-t border-white/20">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            {/* Logo and Copyright */}
+            <div className="text-center md:text-left">
+              <span className="text-xl font-bold text-white">ClubGrub</span>
+              <p className="text-sm text-white/70 mt-1">
+                © {new Date().getFullYear()} ClubGrub. All rights reserved.
+              </p>
             </div>
-            <h4 className="font-semibold mb-2">Schedule a Call</h4>
-            <p className="text-white/80 text-sm mb-4">
-              Book a convenient time for a personalized demo
-            </p>
-            <button className="text-club-gold font-medium hover:underline">
-              View Calendar →
-            </button>
-          </div>
 
-          <div className="text-center text-white">
-            <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Mail className="w-8 h-8 text-club-gold" />
-            </div>
-            <h4 className="font-semibold mb-2">Email Us</h4>
-            <p className="text-white/80 text-sm mb-4">
-              Get answers to specific questions
-            </p>
-            <a href="mailto:sales@clubgrub.com" className="text-club-gold font-medium hover:underline">
-              sales@clubgrub.com →
-            </a>
-          </div>
-
-          <div className="text-center text-white">
-            <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <MapPin className="w-8 h-8 text-club-gold" />
-            </div>
-            <h4 className="font-semibold mb-2">Visit Our Showroom</h4>
-            <p className="text-white/80 text-sm mb-4">
-              Experience ClubGrub in our hospitality lab
-            </p>
-            <button className="text-club-gold font-medium hover:underline">
-              Schedule Visit →
-            </button>
+            {/* Footer Menu */}
+            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              <button onClick={() => scrollToSection("outcomes")} className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">Operators</button>
+              <button onClick={() => scrollToSection("trusted")} className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">About</button>
+              <button onClick={() => scrollToSection("how-it-works")} className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">Trends</button>
+              <button onClick={() => scrollToSection("hospitality")} className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">Golfers</button>
+              <button onClick={() => scrollToSection("contact")} className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">Blog</button>
+            </nav>
           </div>
         </div>
       </div>

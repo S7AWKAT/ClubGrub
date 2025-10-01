@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { scrollToSection } from "@/lib/utils"; // Corrected import path
 
 const navLinks = [
 	{ name: "Home", target: "hero" },
@@ -9,13 +10,6 @@ const navLinks = [
 	{ name: "FAQ", target: "faq" },
 	{ name: "Contact", target: "contact" },
 ];
-
-const scrollToSection = (id: string) => {
-	const el = document.getElementById(id);
-	if (el) {
-		el.scrollIntoView({ behavior: "smooth" });
-	}
-};
 
 const Header = () => {
 	const [visible, setVisible] = useState(true);
