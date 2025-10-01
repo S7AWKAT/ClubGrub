@@ -40,25 +40,6 @@ export const HeroSection = () => {
           </Button>
         </div>
 
-        {/* Awards Row */}
-        <div className="flex flex-wrap justify-center gap-4 mt-12 animate-fade-up [animation-delay:400ms]">
-          <Badge variant="outline" className="bg-white/10 border-white/20 text-white px-4 py-2">
-            <Award className="w-4 h-4 mr-2" />
-            Product of the Year – Boardroom
-          </Badge>
-          <Badge variant="outline" className="bg-white/10 border-white/20 text-white px-4 py-2">
-            <Star className="w-4 h-4 mr-2" />
-            Featured in Forbes
-          </Badge>
-          <Badge variant="outline" className="bg-white/10 border-white/20 text-white px-4 py-2">
-            <TrendingUp className="w-4 h-4 mr-2" />
-            Golf Digest Featured
-          </Badge>
-          <Badge variant="outline" className="bg-white/10 border-white/20 text-white px-4 py-2">
-            <Users className="w-4 h-4 mr-2" />
-            Golf Inc Strategies Summit
-          </Badge>
-        </div>
       </div>
 
       {/* Scroll Indicator */}

@@ -8,25 +8,25 @@ export const LaunchPlaybook = () => {
       icon: Tablet,
       title: "Menu Build & Content",
       description: "Our team builds your complete digital menu with photos, descriptions, and pricing",
-      timeline: "Day 1"
+      timeline: "30 min"
     },
     {
       icon: Users,
       title: "Staff Training",
       description: "Comprehensive training for kitchen, service, and management teams",
-      timeline: "Day 1-2"
+      timeline: "20 min"
     },
     {
       icon: Megaphone,
       title: "Member Communication",
       description: "Ready-to-send email templates, signage, and launch announcement materials",
-      timeline: "Day 2"
+      timeline: "15 min"
     },
     {
       icon: Rocket,
       title: "Go Live",
       description: "Accept your first orders with our team providing real-time support during launch week.",
-      timeline: "Day 2-3"
+      timeline: "Instant"
     }
   ];
 

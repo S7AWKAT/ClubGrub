@@ -29,7 +29,7 @@ export const HowItWorks = () => {
       icon: Truck,
       title: "Deliver or stage for pickup",
       description: "Real-time order tracking keeps members informed. Flexible delivery options match your operational preferences.",
-      features: ["Live order tracking", "Delivery route optimization", "Pickup notifications", "Member communication"],
+      features: ["Live order tracking", "No beverage cart required", "Pickup notifications", "Member communication"],
       image: step3Image,
     }
   ];
@@ -98,13 +98,12 @@ export const HowItWorks = () => {
                       alt={step.title}
                       className="absolute inset-0 w-full h-full object-cover rounded-xl"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-club-gold/30 to-club-gold-light/30 rounded-xl" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-club-dark/60 to-club-charcoal/40 rounded-xl" />
                     <div className="text-center relative z-10">
                       <step.icon className="w-24 h-24 text-club-gold mx-auto mb-4" />
                       <h4 className="heading-card text-white mb-2">
                         Step {step.number}
                       </h4>
-                      <p className="body-medium text-white/80">{step.title}</p>
                     </div>
                   </div>
 
@@ -139,7 +138,7 @@ export const HowItWorks = () => {
             Keep your existing setup and accept member billing or card payments.
           </p>
           <button className="btn-hero px-8 py-4">
-            Check Compatibility
+            Start Elevating Your Operation
           </button>
         </div>
       </div>
