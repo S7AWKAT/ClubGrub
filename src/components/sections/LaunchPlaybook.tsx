@@ -67,7 +67,7 @@ export const LaunchPlaybook = () => {
                 <service.icon className="w-8 h-8 text-white" />
               </div>
 
-              <Badge className="bg-club-gold-light text-white font-semibold px-3 py-0.5 rounded-full mb-4">
+              <Badge className="bg-club-gold-light/20 text-club-gold border-club-gold-light/30 font-bold px-3 py-1 mb-4">
                 {service.timeline}
               </Badge>
 
