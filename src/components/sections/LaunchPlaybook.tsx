@@ -102,9 +102,13 @@ export const LaunchPlaybook = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 mb-12 max-w-5xl mx-auto">
             {benefits.map((benefit) => (
               <div key={benefit} className="flex items-start gap-4">
-                  <CheckCircle className="w-6 h-6 text-white flex-shrink-0 mt-0.5 bg-club-gold-light/20 rounded-full p-1" />
-                  <span className="body-medium text-text-secondary">{benefit}</span>
-                </div>
+                <span className="flex-shrink-0 mt-0.5">
+                    <span className="w-8 h-8 bg-club-gold-light text-white rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4" />
+                  </span>
+                </span>
+                <span className="body-medium text-text-secondary">{benefit}</span>
+              </div>
             ))}
           </div>
 
