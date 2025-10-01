@@ -64,10 +64,10 @@ export const LaunchPlaybook = () => {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <service.icon className="w-8 h-8 text-club-dark" />
+                <service.icon className="w-8 h-8 text-white" />
               </div>
 
-              <Badge className="bg-club-gold/10 text-club-gold border-club-gold/20 mb-4">
+              <Badge className="bg-transparent text-club-gold font-semibold px-3 py-0.5 rounded-full border border-club-gold/20 mb-4">
                 {service.timeline}
               </Badge>
 
@@ -102,9 +102,9 @@ export const LaunchPlaybook = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 mb-12 max-w-5xl mx-auto">
             {benefits.map((benefit) => (
               <div key={benefit} className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-club-gold flex-shrink-0 mt-0.5" />
-                <span className="body-medium text-text-secondary">{benefit}</span>
-              </div>
+                  <CheckCircle className="w-6 h-6 text-white flex-shrink-0 mt-0.5 bg-club-gold-light/20 rounded-full p-1" />
+                  <span className="body-medium text-text-secondary">{benefit}</span>
+                </div>
             ))}
           </div>
 

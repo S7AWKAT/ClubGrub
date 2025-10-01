@@ -168,13 +168,16 @@
   
   /* Premium Card Styles */
   .card-premium {
-    @apply bg-gradient-to-br from-surface to-surface-elevated;
+    /* subtle tint towards the brand's lighter green for lower cards */
+    @apply bg-gradient-to-br from-club-gold-light/5 to-surface-elevated;
     @apply rounded-2xl p-8 shadow-lg border border-border-muted;
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
   
   .card-feature {
     @apply card-premium hover:shadow-premium;
+    /* make card-feature slightly highlighted with a faint green overlay */
+    background-image: linear-gradient(145deg, hsl(var(--club-gold-light) / 0.03), transparent);
   }
   
   /* Premium Text Styles */
