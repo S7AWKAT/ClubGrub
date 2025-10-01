@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react"; // Import icons
 
-const navLinks = [
-	{ name: "Home", target: "hero" },
+const navLinks: { name: string; target: string }[] = [
+	{ name: "Features", target: "outcomes" }, // Assuming 'Features' links to 'OperatorOutcomes' section
 	{ name: "How It Works", target: "how-it-works" },
-	{ name: "Deliver", target: "hospitality" },
-	{ name: "Trusted", target: "trusted" },
+	{ name: "Locations", target: "hospitality" }, // Assuming 'Locations' links to 'UseCases' section
+	{ name: "Launch", target: "launch-playbook" }, // Assuming 'Launch' links to 'LaunchPlaybook' section
 	{ name: "FAQ", target: "faq" },
 	{ name: "Contact", target: "contact" },
 ];
@@ -18,35 +18,14 @@ const scrollToSection = (id: string) => {
 };
 
 const Header = () => {
-	const [visible, setVisible] = useState(true);
-	const [lastScroll, setLastScroll] = useState(0);
-	const [menuOpen, setMenuOpen] = useState(false);
-	const location = useLocation();
-
-	// Hide header on scroll down, show on scroll up
-	useEffect(() => {
-		const handleScroll = () => {
-			const currentScroll = window.scrollY;
-			setVisible(currentScroll < lastScroll || currentScroll < 10);
-			setLastScroll(currentScroll);
-			setMenuOpen(false); // close menu on scroll
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastScroll]);
-
-	// Reset scroll on route change
-	useEffect(() => {
-		setVisible(true);
-		setLastScroll(0);
-	}, [location.pathname]);
+	const [menuOpen, setMenuOpen] = useState(false); // State to control mobile menu visibility
 
 	// Mobile: lock scroll when menu open
 	useEffect(() => {
 		document.body.style.overflow = menuOpen ? "hidden" : "";
 	}, [menuOpen]);
 
-       // منطق الشفافية حسب موضع الصفحة
+       // Transparency logic based on page position
        const [isAtTop, setIsAtTop] = useState(true);
        useEffect(() => {
 	       const handleScroll = () => {
@@ -58,31 +37,34 @@ const Header = () => {
 
        return (
 	       <header
-		       className={`fixed top-0 left-0 w-full z-50 py-2 px-4 flex items-center justify-between transition-all duration-300
-			       ${isAtTop ? "bg-white/10 backdrop-blur-lg border-b border-transparent shadow-none" : "bg-white/90 backdrop-blur border-b border-yellow-100 shadow-sm"}`}
+		       className={`fixed top-0 left-0 w-full z-50 py-3 px-6 flex items-center justify-between transition-all duration-300
+			       ${isAtTop ? "bg-transparent" : "bg-white/90 backdrop-blur-lg border-b border-gray-200/80 shadow-sm"}`}
 	       >
 		       {/* شعار واسم الموقع */}
 		       <div className="flex items-center gap-2">
-			       <img src="/appicon.jpg" alt="Logo" className="w-8 h-8 rounded-full border border-yellow-200" />
-			       <span className="text-xl font-bold text-gray-900 select-none">ClubGrub</span>
+			       <img src="/appicon.jpg" alt="Logo" className="w-10 h-10 rounded-full border-2 border-white/20" />
+			       <span className={`text-xl font-bold select-none transition-colors ${isAtTop ? 'text-white' : 'text-text-primary'}`}>ClubGrub</span>
 		       </div>
 
 		       {/* روابط الأقسام */}
 		       <nav className="hidden md:flex gap-6">
-			       <button onClick={() => scrollToSection("hero")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Home</button>
-			       <button onClick={() => scrollToSection("how-it-works")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">How It Works</button>
-			       <button onClick={() => scrollToSection("hospitality")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Deliver</button>
-			       <button onClick={() => scrollToSection("trusted")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Trusted</button>
-			       <button onClick={() => scrollToSection("faq")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">FAQ</button>
-			       <button onClick={() => scrollToSection("contact")} className="text-base font-medium text-gray-700 hover:text-yellow-500 transition">Contact</button>
+					{navLinks.map((link) => (
+						<button 
+							key={link.name}
+							onClick={() => scrollToSection(link.target)} 
+							className={`text-base font-medium transition-colors ${isAtTop ? 'text-white hover:text-club-gold' : 'text-text-secondary hover:text-club-gold'}`}
+						>
+							{link.name}
+						</button>
+					))}
 		       </nav>
 
-		       {/* زر رئيسي هادئ */}
+		       {/* CTA Button */}
 		       <button
-			       onClick={() => scrollToSection("get-started")}
-			       className="px-5 py-2 rounded-xl bg-yellow-100 text-gray-900 font-semibold text-base shadow hover:bg-yellow-200 transition"
+			       onClick={() => scrollToSection("contact")}
+			       className={`${isAtTop ? 'btn-secondary' : 'btn-primary'} px-5 py-2`}
 		       >
-			       Get Started
+			       Book a Demo
 		       </button>
 	       </header>
        );
