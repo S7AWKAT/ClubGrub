@@ -63,7 +63,7 @@ export const HowItWorks = () => {
               <div className="lg:w-1/2 animate-fade-up">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center">
-                    <step.icon className="w-8 h-8 text-club-dark" />
+                    <step.icon className="w-8 h-8 text-club-gold-light" />
                   </div>
                   <div className="text-6xl font-bold text-club-gold/20">
                     {step.number}
@@ -109,7 +109,7 @@ export const HowItWorks = () => {
 
                   {/* Step Indicator */}
                   <div className="absolute top-4 left-4 w-12 h-12 bg-club-gold rounded-full flex items-center justify-center">
-                    <span className="text-xl font-bold text-club-dark">{step.number}</span>
+                    <span className="text-xl font-bold text-club-gold-light">{step.number}</span>
                   </div>
                 </Card>
               </div>

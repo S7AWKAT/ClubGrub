@@ -54,7 +54,7 @@ export const OperatorOutcomes = () => {
               <div className="relative z-10">
                 {/* Icon */}
                 <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <outcome.icon className="w-8 h-8 text-club-dark" />
+                  <outcome.icon className="w-8 h-8 text-club-gold-light" />
                 </div>
 
                 {/* Content */}

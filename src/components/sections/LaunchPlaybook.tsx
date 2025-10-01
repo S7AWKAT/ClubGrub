@@ -83,9 +83,9 @@ export const LaunchPlaybook = () => {
         </div>
 
         {/* Quick Launch Promise */}
-        <div className="bg-gradient-to-r from-club-gold to-club-gold-light rounded-3xl p-12 text-center mb-16 text-club-dark">
-          <Rocket className="w-16 h-16 mx-auto mb-6" />
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="bg-gradient-to-r from-club-gold-light to-club-gold rounded-3xl p-12 text-center mb-16 text-white">
+          <Rocket className="w-16 h-16 mx-auto mb-6 text-club-gold-light" />
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Go live as soon as tomorrow
           </h3>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
