@@ -84,7 +84,7 @@ export const SocialProof = () => {
               {/* Stars */}
               <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-club-gold fill-current" />
+                  <Star key={i} className="w-5 h-5 text-[hsl(var(--club-star))] fill-current" />
                 ))}
               </div>
 
@@ -112,7 +112,7 @@ export const SocialProof = () => {
           <div className="grid md:grid-cols-4 gap-6">
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
+                <Star className="w-8 h-8 text-[hsl(var(--club-star))]" />
               </div>
               <div className="font-semibold text-text-primary text-sm">Product of the Year</div>
               <div className="text-text-secondary text-xs">Boardroom Magazine</div>
@@ -120,7 +120,7 @@ export const SocialProof = () => {
             
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
+                <Star className="w-8 h-8 text-[hsl(var(--club-star))]" />
               </div>
               <div className="font-semibold text-text-primary text-sm">Innovation Award</div>
               <div className="text-text-secondary text-xs">Golf Inc Magazine</div>
@@ -128,7 +128,7 @@ export const SocialProof = () => {
             
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
+                <Star className="w-8 h-8 text-[hsl(var(--club-star))]" />
               </div>
               <div className="font-semibold text-text-primary text-sm">Featured Article</div>
               <div className="text-text-secondary text-xs">Forbes</div>
@@ -136,7 +136,7 @@ export const SocialProof = () => {
             
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
+                <Star className="w-8 h-8 text-[hsl(var(--club-star))]" />
               </div>
               <div className="font-semibold text-text-primary text-sm">Technology Leader</div>
               <div className="text-text-secondary text-xs">Golf Digest</div>

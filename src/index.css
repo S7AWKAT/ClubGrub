@@ -19,6 +19,8 @@
   --club-charcoal: 142 10% 16%;    /* dark muted green */
   --club-silver: 142 8% 46%;       /* desaturated mid tone */
   --club-cream: 95 80% 96%;        /* very light warm tint for surfaces */
+  /* Accent gold token kept for stars and awards */
+  --club-star: 45 100% 51%;        /* classic gold for star icons */
     
     /* Interactive States */
   /* Use lighter green as the primary accent to give the UI a fresher feel */
