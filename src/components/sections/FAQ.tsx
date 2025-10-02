@@ -5,41 +5,42 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 
 export const FAQ = () => {
   const faqs = [
     {
       question: "How quickly can we implement ClubGrub?",
-      answer: "Most clubs are accepting orders within 24 hours. Our typical implementation includes menu setup, staff training, and technology configuration all completed in 1-2 days. We handle everything so you can focus on serving members."
+      answer: "Most clubs are accepting orders within 24 hours. Our typical implementation includes menu setup, staff training, and technology configuration all completed in 1-2 hours. We handle everything so you can focus on serving members."
     },
     {
       question: "What are the costs and pricing structure?",
-      answer: "ClubGrub pricing is based on transaction volume with no setup fees or long-term contracts. We include complimentary iPad hardware, POS integration, staff training, and ongoing support. Contact us for a customized quote based on your club's size and needs."
+      answer: "ClubGrub offers flat-fee licensing with no setup fees or long-term contracts. We include complimentary hardware, staff training, and ongoing support. Contact us for a customized quote based on your club's operational needs."
     },
     {
       question: "Does ClubGrub work with our existing POS system?",
-      answer: "Yes, ClubGrub integrates with virtually any POS system including Micros, Toast, Square, Clover, and many others. Our universal integration approach means no expensive system replacements or operational disruptions."
+      answer: "Yes, ClubGrub can be used with any POS system. No expensive system replacements or operational disruptions."
     },
     {
       question: "How do members pay for orders?",
-      answer: "Members can pay using their existing club billing account, credit cards, or any payment method already configured in your POS system. ClubGrub seamlessly processes payments through your current setup."
-    },
-    {
-      question: "What kind of training and support do you provide?",
-      answer: "We provide comprehensive training for all staff levels, from kitchen teams to management. This includes on-site training, digital resources, and ongoing support. Our success team is available 24/7 with average response times under 2 minutes."
+      answer: "Members can pay using their existing club billing account, credit cards, or any payment method already configured in your POS system. Contact us to discuss options for your club."
     },
     {
       question: "How does GPS delivery work on the golf course?",
-      answer: "Members select their location on an interactive course map when ordering. Our GPS system provides precise coordinates to your delivery team, eliminating guesswork and ensuring accurate, timely delivery anywhere on your property."
+      answer: "Our GPS system provides precise real-time coordinates to your delivery team, eliminating guesswork and ensuring accurate, timely delivery anywhere on your property."
     },
     {
       question: "Can we customize the menu and pricing?",
       answer: "Absolutely. ClubGrub adapts to your existing menu, pricing, and service style. We build custom digital menus with your branding, photos, and descriptions. You maintain full control over pricing, availability, and menu modifications."
     },
     {
+      question: "What kind of training and support do you provide?",
+      answer: "We provide comprehensive training for all staff levels, from kitchen teams to management. This includes on-site training, digital resources, and ongoing support. Our success team is available 24/7 with average response times under 2 minutes."
+    },
+    {
       question: "What happens if we need technical support?",
       answer: "Our support team is available 24/7 via phone, chat, or email. Most issues are resolved remotely within minutes. We also provide proactive monitoring and regular system updates to prevent problems before they occur."
-    }
+    },
   ];
 
   return (
@@ -92,27 +93,14 @@ export const FAQ = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-hero px-8 py-4">
+            <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
               Schedule a Call
             </button>
-            <button className="btn-outline px-8 py-4">
+            <button onClick={() => scrollToSection("contact")} className="btn-outline px-8 py-4">
               Email Our Team
             </button>
           </div>
 
-          {/* Contact Info */}
-          <div className="grid md:grid-cols-2 gap-8 mt-12 pt-8 border-t border-border-muted">
-            <div className="text-center">
-              <h4 className="font-semibold text-text-primary mb-2">Sales Team</h4>
-              <p className="text-text-secondary">sales@clubgrub.com</p>
-              <p className="text-text-secondary">(555) 123-4567</p>
-            </div>
-            <div className="text-center">
-              <h4 className="font-semibold text-text-primary mb-2">Support Team</h4>
-              <p className="text-text-secondary">support@clubgrub.com</p>
-              <p className="text-text-secondary">24/7 Available</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

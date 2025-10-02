@@ -1,41 +1,38 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { Star, Quote } from "lucide-react";
 
 export const SocialProof = () => {
   const testimonials = [
     {
-      quote: "ClubGrub transformed our F&B operations overnight. Revenue is up 40% and our members absolutely love the convenience.",
-      author: "Sarah Mitchell",
+      quote: "ClubGrub streamlines the whole ordering process. Members can order without having to get on their phones, call the clubhouse, and get connected to the bar. Club members of all ages are using it, with high satisfaction from everyone. We’re very happy with the software.",
+      author: "Michael Pacella",
       title: "General Manager",
-      club: "Pinehurst Country Club",
+      club: "Rockland Country Club",
       rating: 5
     },
     {
-      quote: "The implementation was seamless. We were taking orders within hours, not weeks like other systems promised.",
-      author: "Michael Chen",
+      quote: "ClubGrub has solved an age-old problem in golf – satisfying one’s hunger or thirst while out in the middle of the course, far away from the halfway house and the drink cart nowhere in sight.",
+      author: "Hank Gola",
       title: "Food & Beverage Director", 
-      club: "Oakwood Golf & Tennis",
+      club: "MetGolfer Magazine",
       rating: 5
     },
     {
-      quote: "Our staff efficiency improved dramatically. Less time taking phone orders means more time creating memorable experiences.",
-      author: "Jennifer Rodriguez",
-      title: "Club Operations Manager",
-      club: "Riverside Athletic Club",
+      quote: "On-course golf menus are ripe for expansion. Less time taking phone orders means more time creating memorable experiences.",
+      club: "Forbes",
       rating: 5
     },
     {
-      quote: "The GPS delivery feature is a game-changer. Golfers can order from anywhere on the course and we find them instantly.",
-      author: "David Thompson", 
-      title: "Head Professional",
-      club: "Championship Links Golf Club",
+      quote: "Golfers are increasingly opting for fresher, more upscale options.",
+      club: "Golf Digest",
       rating: 5
     }
   ];
 
   const stats = [
-    { number: "98%", label: "Member Satisfaction" },
+    { number: "100%", label: "Member Satisfaction" },
     { number: "35%", label: "Avg Revenue Increase" },
     { number: "24hrs", label: "Implementation Time" }
   ];
@@ -49,7 +46,7 @@ export const SocialProof = () => {
             Trusted by Elite Clubs
           </Badge>
           <h2 className="heading-section text-text-primary mb-6">
-            Trusted by <span className="text-gradient">leading clubs nationwide</span>
+            Trusted by <span className="text-gradient">industry leaders</span>
           </h2>
           <p className="body-large text-text-secondary max-w-3xl mx-auto">
             Join hundreds of premier clubs that have transformed their hospitality operations with ClubGrub.
@@ -84,7 +81,7 @@ export const SocialProof = () => {
               {/* Stars */}
               <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-club-gold fill-current" />
+                  <Star key={i} className="w-5 h-5 text-[hsl(var(--club-star))] fill-current" />
                 ))}
               </div>
 
@@ -103,53 +100,13 @@ export const SocialProof = () => {
           ))}
         </div>
 
-        {/* Trust Badges */}
-        <div className="bg-gradient-to-r from-club-cream to-surface rounded-3xl p-12 text-center">
-          <h3 className="heading-card text-text-primary mb-6">
-            Industry Recognition & Awards
-          </h3>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
-              </div>
-              <div className="font-semibold text-text-primary text-sm">Product of the Year</div>
-              <div className="text-text-secondary text-xs">Boardroom Magazine</div>
-            </div>
-            
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
-              </div>
-              <div className="font-semibold text-text-primary text-sm">Innovation Award</div>
-              <div className="text-text-secondary text-xs">Golf Inc Magazine</div>
-            </div>
-            
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
-              </div>
-              <div className="font-semibold text-text-primary text-sm">Featured Article</div>
-              <div className="text-text-secondary text-xs">Forbes</div>
-            </div>
-            
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-club-gold/10 rounded-2xl flex items-center justify-center mb-4">
-                <Star className="w-8 h-8 text-club-gold" />
-              </div>
-              <div className="font-semibold text-text-primary text-sm">Technology Leader</div>
-              <div className="text-text-secondary text-xs">Golf Digest</div>
-            </div>
-          </div>
-        </div>
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <p className="body-large text-text-secondary mb-6">
             Join the clubs setting the standard for premium hospitality
           </p>
-          <button className="btn-hero px-8 py-4">
+          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
             Schedule Your Demo
           </button>
         </div>

@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { Smartphone, Tablet, Truck, CheckCircle, Settings } from "lucide-react";
 
 import step1Image from "@/assets/how-it-works-step-1.jpg";
@@ -12,7 +13,7 @@ export const HowItWorks = () => {
       number: "01",
       icon: Smartphone,
       title: "Members order on mobile device",
-      description: "GPS pins remove guesswork. Members select their exact location and browse your full menu with real-time availability.",
+      description: "Members browse your menu, select their favorite food or beverages and choose their desired location.",
       features: ["GPS location targeting", "Real-time menu updates", "Member billing integration", "Order customization"],
       image: step1Image,
     },
@@ -60,10 +61,10 @@ export const HowItWorks = () => {
               }`}
             >
               {/* Content */}
-              <div className="lg:w-1/2 animate-fade-up">
+              <div className="lg:w-1/2 animate-fade-up w-full">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center">
-                    <step.icon className="w-8 h-8 text-club-dark" />
+                    <step.icon className="w-8 h-8 text-club-gold-light" />
                   </div>
                   <div className="text-6xl font-bold text-club-gold/20">
                     {step.number}
@@ -87,10 +88,24 @@ export const HowItWorks = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* Image for mobile view */}
+                <div className="lg:hidden mt-8 rounded-2xl overflow-hidden shadow-lg relative flex items-center justify-center">
+                  <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="aspect-[16/10] w-full" /> {/* This div maintains the aspect ratio */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-club-dark/60 to-club-charcoal/40" />
+                  {/* Step Indicator for mobile */}
+                  <div className="absolute top-4 left-4 w-10 h-10 bg-club-gold rounded-full flex items-center justify-center">
+                    <span className="text-lg font-bold text-club-gold-light">{step.number}</span>
+                  </div>
+                  <div className="relative z-10 text-center">
+                    <step.icon className="w-16 h-16 text-club-gold mx-auto" />
+                  </div>
+                </div>
               </div>
 
               {/* Visual */}
-              <div className="lg:w-1/2 animate-slide-in">
+              <div className="lg:w-1/2 animate-slide-in hidden lg:block">
                 <Card className="card-premium p-8 relative overflow-hidden">
                   <div className="aspect-video rounded-xl flex items-center justify-center relative">
                     <img
@@ -101,7 +116,7 @@ export const HowItWorks = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-club-dark/60 to-club-charcoal/40 rounded-xl" />
                     <div className="text-center relative z-10">
                       <step.icon className="w-24 h-24 text-club-gold mx-auto mb-4" />
-                      <h4 className="heading-card text-white mb-2">
+                      <h4 className="heading-card text-white">
                         Step {step.number}
                       </h4>
                     </div>
@@ -109,7 +124,7 @@ export const HowItWorks = () => {
 
                   {/* Step Indicator */}
                   <div className="absolute top-4 left-4 w-12 h-12 bg-club-gold rounded-full flex items-center justify-center">
-                    <span className="text-xl font-bold text-club-dark">{step.number}</span>
+                    <span className="text-xl font-bold text-club-gold-light">{step.number}</span>
                   </div>
                 </Card>
               </div>
@@ -137,7 +152,7 @@ export const HowItWorks = () => {
           <p className="body-large text-text-secondary mb-8 max-w-2xl mx-auto">
             Keep your existing setup and accept member billing or card payments.
           </p>
-          <button className="btn-hero px-8 py-4">
+          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
             Start Elevating Your Operation
           </button>
         </div>

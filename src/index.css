@@ -10,18 +10,23 @@
     --background: 0 0% 98%;
     --foreground: 222 84% 4.9%;
     
-    /* Premium Club Colors */
-    --club-gold: 45 100% 51%;
-    --club-gold-light: 45 100% 85%;
-    --club-dark: 222 84% 4.9%;
-    --club-charcoal: 220 13% 18%;
-    --club-silver: 220 9% 46%;
-    --club-cream: 48 100% 97%;
+  /* Premium Club Colors (GREEN theme) */
+  /* Primary green hues chosen for a premium but warm look */
+  /* Emphasize the lighter green shade (used prominently in gradients and CTAs) */
+  --club-gold: 142 60% 36%;        /* primary mid green */
+  --club-gold-light: 142 65% 72%;  /* lighter, more prominent green */
+  --club-dark: 142 18% 10%;        /* dark muted green for accents/shadows */
+  --club-charcoal: 142 10% 16%;    /* dark muted green */
+  --club-silver: 142 8% 46%;       /* desaturated mid tone */
+  --club-cream: 95 80% 96%;        /* very light warm tint for surfaces */
+  /* Accent gold token kept for stars and awards */
+  --club-star: 45 100% 51%;        /* classic gold for star icons */
     
     /* Interactive States */
-    --primary: 45 100% 51%;
-    --primary-foreground: 222 84% 4.9%;
-    --primary-hover: 45 100% 45%;
+  /* Use lighter green as the primary accent to give the UI a fresher feel */
+  --primary: 142 65% 72%;
+  --primary-foreground: 0 0% 98%; /* white text on primary accent */
+  --primary-hover: 142 60% 60%;
     
     --secondary: 220 13% 18%;
     --secondary-foreground: 0 0% 98%;
@@ -43,7 +48,7 @@
     --border: 220 13% 91%;
     --border-muted: 220 13% 95%;
     --input: 220 13% 91%;
-    --ring: 45 100% 51%;
+  --ring: 142 65% 34%;
     
     /* Status Colors */
     --success: 142 76% 36%;
@@ -54,8 +59,9 @@
     --destructive-foreground: 0 0% 98%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--club-gold)), hsl(var(--club-gold-light)));
-    --gradient-cta: linear-gradient(135deg, hsl(var(--club-gold)), hsl(45 100% 45%));
+  /* Prefer lighter green first to emphasize it visually */
+  --gradient-hero: linear-gradient(135deg, hsl(var(--club-gold-light)), hsl(var(--club-gold)));
+  --gradient-cta: linear-gradient(135deg, hsl(var(--club-gold-light)), hsl(142 60% 36%));
     --gradient-overlay: linear-gradient(135deg, hsl(var(--club-dark) / 0.9), hsl(var(--club-charcoal) / 0.8));
     --gradient-card: linear-gradient(145deg, hsl(var(--surface)), hsl(var(--surface-elevated)));
     
@@ -64,7 +70,7 @@
     --shadow-md: 0 4px 6px -1px hsl(var(--club-dark) / 0.1), 0 2px 4px -1px hsl(var(--club-dark) / 0.06);
     --shadow-lg: 0 10px 15px -3px hsl(var(--club-dark) / 0.1), 0 4px 6px -2px hsl(var(--club-dark) / 0.05);
     --shadow-xl: 0 20px 25px -5px hsl(var(--club-dark) / 0.1), 0 10px 10px -5px hsl(var(--club-dark) / 0.04);
-    --shadow-premium: 0 25px 50px -12px hsl(var(--club-gold) / 0.25);
+  --shadow-premium: 0 25px 50px -12px hsl(var(--club-gold) / 0.25);
     
     /* Animation Variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -148,7 +154,7 @@
   }
   
   .btn-hero {
-    @apply btn-premium bg-gradient-to-r from-club-gold to-club-gold-light text-club-dark;
+    @apply btn-premium bg-gradient-to-r from-club-gold-light to-club-gold text-white;
     @apply hover:shadow-premium hover:-translate-y-0.5;
   }
   
@@ -164,13 +170,16 @@
   
   /* Premium Card Styles */
   .card-premium {
-    @apply bg-gradient-to-br from-surface to-surface-elevated;
+    /* subtle tint towards the brand's lighter green for lower cards */
+    @apply bg-gradient-to-br from-club-gold-light/5 to-surface-elevated;
     @apply rounded-2xl p-8 shadow-lg border border-border-muted;
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
   
   .card-feature {
     @apply card-premium hover:shadow-premium;
+    /* make card-feature slightly highlighted with a faint green overlay */
+    background-image: linear-gradient(145deg, hsl(var(--club-gold-light) / 0.03), transparent);
   }
   
   /* Premium Text Styles */

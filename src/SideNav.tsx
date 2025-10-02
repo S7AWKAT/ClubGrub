@@ -50,8 +50,8 @@ const Header = () => {
     <header
       className={`fixed left-1/2 top-4 z-50 w-[95vw] max-w-4xl -translate-x-1/2 rounded-3xl px-4 py-3 flex items-center justify-between shadow-2xl transition-all duration-500
         ${visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
-        bg-gradient-to-br from-white/60 to-yellow-100/40 text-gray-900
-        backdrop-blur-xl border border-yellow-300/30 animate-floatingIsland
+        bg-gradient-to-br from-white/60 to-club-gold-light/40 text-gray-900
+        backdrop-blur-xl border border-club-gold/30 animate-floatingIsland
       `}
       style={{
         boxShadow: "0 8px 32px 0 rgba(0,0,0,0.18)",
@@ -59,7 +59,7 @@ const Header = () => {
     >
       {/* Logo and ClubGrub */}
       <span className="flex items-center gap-2">
-        <span className="text-2xl md:text-3xl font-extrabold tracking-tight animate-floatIsland group-hover:text-yellow-400 transition drop-shadow-glow select-none">
+        <span className="text-2xl md:text-3xl font-extrabold tracking-tight animate-floatIsland group-hover:text-club-gold transition drop-shadow-glow select-none">
           🍔 ClubGrub
         </span>
         {/* Mobile logo next to ClubGrub */}
@@ -78,10 +78,10 @@ const Header = () => {
             key={link.name}
             onClick={() => scrollToSection(link.target)}
             className="relative px-3 py-1 font-semibold rounded-xl transition
-              hover:text-yellow-400 hover:drop-shadow-glow
-              before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-yellow-400 before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:origin-left"
+              hover:text-club-gold hover:drop-shadow-glow
+              before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-club-gold before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:origin-left"
             style={{
-              textShadow: "0 0 8px #ffe066, 0 0 2px #fff",
+              textShadow: "0 0 8px rgba(114,179,100,0.8), 0 0 2px #fff",
             }}
           >
             {link.name}
