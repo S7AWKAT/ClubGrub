@@ -166,12 +166,11 @@ export const ContactCTA = () => {
  
                   <div>
                     <label htmlFor="role" className="block text-sm font-medium text-text-primary mb-2">
-                      Your Role *
+                      Your Role
                     </label>
                     <Input
                       id="role" name="role" value={formData.role} onChange={handleChange}
                       placeholder="General Manager, F&B Director, etc."
-                      required
                       className="border-border-muted focus:border-club-gold focus:ring-club-gold/20"
                     />
                   </div>
