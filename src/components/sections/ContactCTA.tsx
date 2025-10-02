@@ -22,6 +22,9 @@ export const ContactCTA = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div className="text-white animate-fade-up">
+            <Badge className="bg-white/10 border-white/20 text-white mb-6">
+              Limited Onboarding Slots Available
+            </Badge>
             
             <h2 className="heading-section text-white mb-6">
               Ready to elevate<br />
@@ -46,6 +49,17 @@ export const ContactCTA = () => {
                 <CheckCircle className="w-6 h-6 text-club-gold flex-shrink-0" />
                 <span className="text-white/90">Dedicated success manager assigned</span>
               </div>
+            </div>
+
+            {/* Urgency */}
+            <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm border border-white/20">
+              <div className="flex items-center gap-3 mb-3">
+                <Clock className="w-6 h-6 text-club-gold" />
+                <span className="font-semibold text-white">Limited Availability</span>
+              </div>
+              <p className="text-white/80 text-sm">
+                We limit onboarding to ensure premium service quality. Only <strong>8 slots remaining</strong> for this quarter.
+              </p>
             </div>
           </div>
 
