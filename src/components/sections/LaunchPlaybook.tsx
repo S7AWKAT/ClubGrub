@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { CheckCircle, Clock, Users, MessageCircle, Tablet, Rocket, Megaphone } from "lucide-react";
 
 export const LaunchPlaybook = () => {
@@ -19,13 +20,13 @@ export const LaunchPlaybook = () => {
     {
       icon: Megaphone,
       title: "Member Communication",
-      description: "Ready-to-send email templates, signage, and launch announcement materials",
+      description: "Ready-to-send email templates, QR codes, and launch announcement materials",
       timeline: "15 min"
     },
     {
       icon: Rocket,
       title: "Go Live",
-      description: "Accept your first orders with our team providing real-time support during launch week.",
+      description: "Accept your first order within minutes and receive unlimited tech support.",
       timeline: "Instant"
     }
   ];
@@ -34,8 +35,9 @@ export const LaunchPlaybook = () => {
     "Complimentary iPad included (ready to accept orders in minutes)",
     "Dedicated launch specialist assigned to your club",
     "Member onboarding materials and communication templates",
-    "Real-time support during first week of operation",
-    "Performance analytics and optimization recommendations"
+    "Real-time tech support anytime you need it",
+    "Performance analytics and optimization recommendations",
+    "Prep printer available"
   ];
 
   return (
@@ -64,10 +66,10 @@ export const LaunchPlaybook = () => {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <service.icon className="w-8 h-8 text-club-dark" />
+                <service.icon className="w-8 h-8 text-white" />
               </div>
 
-              <Badge className="bg-club-gold/10 text-club-gold border-club-gold/20 mb-4">
+              <Badge className="bg-club-gold-light/20 text-club-gold border-club-gold-light/30 font-bold px-3 py-1 mb-4">
                 {service.timeline}
               </Badge>
 
@@ -83,13 +85,13 @@ export const LaunchPlaybook = () => {
         </div>
 
         {/* Quick Launch Promise */}
-        <div className="bg-gradient-to-r from-club-gold to-club-gold-light rounded-3xl p-12 text-center mb-16 text-club-dark">
-          <Rocket className="w-16 h-16 mx-auto mb-6" />
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="bg-gradient-to-r from-club-gold-light to-club-gold rounded-3xl p-12 text-center mb-16 text-white">
+          <Rocket className="w-16 h-16 mx-auto mb-6 text-club-gold-light" />
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Go live as soon as tomorrow
           </h3>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
-            Our proven launch process gets you operational faster than any competitor. No lengthy implementations or complex integrations.
+            Our proven launch process gets you operational faster than any other technology. No lengthy implementations or complex integrations.
           </p>
         </div>
 
@@ -102,14 +104,18 @@ export const LaunchPlaybook = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 mb-12 max-w-5xl mx-auto">
             {benefits.map((benefit) => (
               <div key={benefit} className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-club-gold flex-shrink-0 mt-0.5" />
+                <span className="flex-shrink-0 mt-0.5">
+                    <span className="w-8 h-8 bg-club-gold-light text-white rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4" />
+                  </span>
+                </span>
                 <span className="body-medium text-text-secondary">{benefit}</span>
               </div>
             ))}
           </div>
 
           <div className="text-center">
-            <button className="btn-hero px-8 py-4">
+            <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
               Start Your Launch Process
             </button>
           </div>

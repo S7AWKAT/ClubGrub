@@ -1,12 +1,13 @@
 import { Card } from "@/components/ui/card";
 import { TrendingUp, Users, Zap, Clock } from "lucide-react";
+import { scrollToSection } from "@/lib/utils";
 
 export const OperatorOutcomes = () => {
   const outcomes = [
     {
       icon: TrendingUp,
       title: "Increase Revenue",
-      description: "On course, poolside, halfway houses, community dining. Capture sales opportunities everywhere members gather.",
+      description: "On-course, poolside, halfway houses, community dining. Capture F&B opportunities everywhere members gather.",
       highlight: "35% avg revenue increase"
     },
     {
@@ -19,7 +20,7 @@ export const OperatorOutcomes = () => {
       icon: Zap,
       title: "Elevate Experiences",
       description: "Frictionless ordering meets premium hospitality. Exceed member expectations with seamless service.",
-      highlight: "98% member satisfaction"
+      highlight: "100% member satisfaction"
     },
     {
       icon: Clock,
@@ -39,7 +40,7 @@ export const OperatorOutcomes = () => {
             <span className="text-gradient">bottom line and member satisfaction</span>
           </h2>
           <p className="body-large text-text-secondary max-w-3xl mx-auto">
-            ClubGrub delivers quantifiable outcomes that matter to club operators and board members.
+            ClubGrub delivers quantifiable outcomes that matter to club operators and members.
           </p>
         </div>
 
@@ -54,7 +55,7 @@ export const OperatorOutcomes = () => {
               <div className="relative z-10">
                 {/* Icon */}
                 <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <outcome.icon className="w-8 h-8 text-club-dark" />
+                  <outcome.icon className="w-8 h-8 text-club-gold-light" />
                 </div>
 
                 {/* Content */}
@@ -85,7 +86,7 @@ export const OperatorOutcomes = () => {
           <p className="body-medium text-text-secondary mb-6">
             Ready to see these results at your club?
           </p>
-          <button className="btn-hero inline-flex items-center px-8 py-4">
+          <button onClick={() => scrollToSection("contact")} className="btn-hero inline-flex items-center px-8 py-4">
             Schedule Your Demo
           </button>
         </div>

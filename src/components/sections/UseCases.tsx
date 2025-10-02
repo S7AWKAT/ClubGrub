@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { MapPin, Home, Waves, Utensils, ArrowRight } from "lucide-react";
 import golfImage from "@/assets/golf-course-ordering.jpg";
 import halfwayHouseImage from "@/assets/halfway-houses.jpg";
@@ -13,7 +14,7 @@ export const UseCases = () => {
       title: "On-Course Delivery",
       description: "GPS-enabled ordering ensures food and beverages reach golfers exactly where they are on the course.",
       image: golfImage,
-      benefits: ["GPS precision targeting", "Cart-side delivery", "No interruption to play", "Weather-resistant service"]
+      benefits: ["GPS precision targeting", "Cart-side delivery", "No interruption to play", "Deliver anywhere."]
     },
     {
       icon: Home,
@@ -34,7 +35,7 @@ export const UseCases = () => {
       title: "To-Go / Community",
       description: "Extend dining beyond the clubhouse with community events and member takeout services.",
       image: togoImage,
-      benefits: ["Reduce call-in orders", "Family takeout", "Schedule pickup times", "Home delivery available"]
+      benefits: ["Reduce call-in orders", "Scheduled dine-in times", "Schedule pickup times", "Home delivery available"]
     }
   ];
 
@@ -105,7 +106,7 @@ export const UseCases = () => {
                 </div>
 
                 {/* Learn More Link */}
-                <button className="inline-flex items-center text-club-gold font-medium hover:gap-3 transition-all group-hover:translate-x-1">
+                <button onClick={() => scrollToSection("contact")} className="inline-flex items-center text-club-gold font-medium hover:gap-3 transition-all group-hover:translate-x-1">
                   Learn more
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
@@ -116,8 +117,8 @@ export const UseCases = () => {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <button className="btn-hero px-8 py-4">
-            Calculate Your Revenue Potential
+          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
+            Grow Your F&B Operation
           </button>
         </div>
       </div>
