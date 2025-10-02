@@ -36,7 +36,7 @@ export const SocialProof = () => {
   ];
 
   const stats = [
-    { number: "98%", label: "Member Satisfaction" },
+    { number: "100%", label: "Member Satisfaction" },
     { number: "35%", label: "Avg Revenue Increase" },
     { number: "24hrs", label: "Implementation Time" }
   ];
@@ -50,7 +50,7 @@ export const SocialProof = () => {
             Trusted by Elite Clubs
           </Badge>
           <h2 className="heading-section text-text-primary mb-6">
-            Trusted by <span className="text-gradient">leading clubs nationwide</span>
+            Trusted by <span className="text-gradient">industry leaders</span>
           </h2>
           <p className="body-large text-text-secondary max-w-3xl mx-auto">
             Join hundreds of premier clubs that have transformed their hospitality operations with ClubGrub.
