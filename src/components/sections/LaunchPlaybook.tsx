@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { CheckCircle, Clock, Users, MessageCircle, Tablet, Rocket, Megaphone } from "lucide-react";
 
 export const LaunchPlaybook = () => {
@@ -113,7 +114,7 @@ export const LaunchPlaybook = () => {
           </div>
 
           <div className="text-center">
-            <button className="btn-hero px-8 py-4">
+            <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
               Start Your Launch Process
             </button>
           </div>

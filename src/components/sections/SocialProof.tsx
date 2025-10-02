@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { Star, Quote } from "lucide-react";
 
 export const SocialProof = () => {
@@ -149,7 +150,7 @@ export const SocialProof = () => {
           <p className="body-large text-text-secondary mb-6">
             Join the clubs setting the standard for premium hospitality
           </p>
-          <button className="btn-hero px-8 py-4">
+          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
             Schedule Your Demo
           </button>
         </div>

@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { MapPin, Home, Waves, Utensils, ArrowRight } from "lucide-react";
 import golfImage from "@/assets/golf-course-ordering.jpg";
 import halfwayHouseImage from "@/assets/halfway-houses.jpg";
@@ -116,7 +117,7 @@ export const UseCases = () => {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <button className="btn-hero px-8 py-4">
+          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
             Calculate Your Revenue Potential
           </button>
         </div>

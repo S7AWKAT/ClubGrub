@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 
 export const FAQ = () => {
   const faqs = [
@@ -92,27 +93,14 @@ export const FAQ = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-hero px-8 py-4">
+            <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
               Schedule a Call
             </button>
-            <button className="btn-outline px-8 py-4">
+            <button onClick={() => scrollToSection("contact")} className="btn-outline px-8 py-4">
               Email Our Team
             </button>
           </div>
 
-          {/* Contact Info */}
-          <div className="grid md:grid-cols-2 gap-8 mt-12 pt-8 border-t border-border-muted">
-            <div className="text-center">
-              <h4 className="font-semibold text-text-primary mb-2">Sales Team</h4>
-              <p className="text-text-secondary">sales@clubgrub.com</p>
-              <p className="text-text-secondary">(555) 123-4567</p>
-            </div>
-            <div className="text-center">
-              <h4 className="font-semibold text-text-primary mb-2">Support Team</h4>
-              <p className="text-text-secondary">support@clubgrub.com</p>
-              <p className="text-text-secondary">24/7 Available</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

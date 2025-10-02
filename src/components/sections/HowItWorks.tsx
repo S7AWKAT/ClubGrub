@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { scrollToSection } from "@/lib/utils";
 import { Smartphone, Tablet, Truck, CheckCircle, Settings } from "lucide-react";
 
 import step1Image from "@/assets/how-it-works-step-1.jpg";
@@ -151,7 +152,7 @@ export const HowItWorks = () => {
           <p className="body-large text-text-secondary mb-8 max-w-2xl mx-auto">
             Keep your existing setup and accept member billing or card payments.
           </p>
-          <button className="btn-hero px-8 py-4">
+          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
             Start Elevating Your Operation
           </button>
         </div>

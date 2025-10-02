@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { TrendingUp, Users, Zap, Clock } from "lucide-react";
+import { scrollToSection } from "@/lib/utils";
 
 export const OperatorOutcomes = () => {
   const outcomes = [
@@ -85,7 +86,7 @@ export const OperatorOutcomes = () => {
           <p className="body-medium text-text-secondary mb-6">
             Ready to see these results at your club?
           </p>
-          <button className="btn-hero inline-flex items-center px-8 py-4">
+          <button onClick={() => scrollToSection("contact")} className="btn-hero inline-flex items-center px-8 py-4">
             Schedule Your Demo
           </button>
         </div>
