@@ -32,7 +32,15 @@ export const FAQ = () => {
     {
       question: "Can we customize the menu and pricing?",
       answer: "Absolutely. ClubGrub adapts to your existing menu, pricing, and service style. We build custom digital menus with your branding, photos, and descriptions. You maintain full control over pricing, availability, and menu modifications."
-    }
+    },
+    {
+      question: "What kind of training and support do you provide?",
+      answer: "We provide comprehensive training for all staff levels, from kitchen teams to management. This includes on-site training, digital resources, and ongoing support. Our success team is available 24/7 with average response times under 2 minutes."
+    },
+    {
+      question: "What happens if we need technical support?",
+      answer: "Our support team is available 24/7 via phone, chat, or email. Most issues are resolved remotely within minutes. We also provide proactive monitoring and regular system updates to prevent problems before they occur."
+    },
   ];
 
   return (
