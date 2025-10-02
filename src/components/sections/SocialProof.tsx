@@ -21,15 +21,11 @@ export const SocialProof = () => {
     },
     {
       quote: "On-course golf menus are ripe for expansion. Less time taking phone orders means more time creating memorable experiences.",
-      author: "Forbes",
-      title: "Club Operations Manager",
-      club: "Riverside Athletic Club",
+      club: "Forbes",
       rating: 5
     },
     {
       quote: "Golfers are increasingly opting for fresher, more upscale options.",
-      author: "David Thompson", 
-      title: "Head Professional",
       club: "Golf Digest",
       rating: 5
     }
