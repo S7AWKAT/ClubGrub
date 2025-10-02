@@ -90,7 +90,7 @@ export const ContactCTA = () => {
                 <span className="font-semibold text-white">It's time to innovate.</span>
               </div>
               <p className="text-white/80 text-sm">
-                Future proof your club for the new generation. Only <strong>8 slots remaining</strong> for this quarter.
+                Future proof your club for the new generation.
               </p>
             </div>
           </div>
