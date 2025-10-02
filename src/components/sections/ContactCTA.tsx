@@ -55,7 +55,7 @@ export const ContactCTA = () => {
           {/* Content */}
           <div className="text-white animate-fade-up">
             <Badge className="bg-white/10 border-white/20 text-white mb-6">
-              Modernize in Minutes — Limited Onboarding Slots Available
+              Modernize in Minutes
             </Badge>
             
             <h2 className="heading-section text-white mb-6">
