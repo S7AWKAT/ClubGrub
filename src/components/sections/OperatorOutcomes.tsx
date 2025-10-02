@@ -7,7 +7,7 @@ export const OperatorOutcomes = () => {
     {
       icon: TrendingUp,
       title: "Increase Revenue",
-      description: "On course, poolside, halfway houses, community dining. Capture sales opportunities everywhere members gather.",
+      description: "On-course, poolside, halfway houses, community dining. Capture F&B opportunities everywhere members gather.",
       highlight: "35% avg revenue increase"
     },
     {
@@ -20,7 +20,7 @@ export const OperatorOutcomes = () => {
       icon: Zap,
       title: "Elevate Experiences",
       description: "Frictionless ordering meets premium hospitality. Exceed member expectations with seamless service.",
-      highlight: "98% member satisfaction"
+      highlight: "100% member satisfaction"
     },
     {
       icon: Clock,
@@ -40,7 +40,7 @@ export const OperatorOutcomes = () => {
             <span className="text-gradient">bottom line and member satisfaction</span>
           </h2>
           <p className="body-large text-text-secondary max-w-3xl mx-auto">
-            ClubGrub delivers quantifiable outcomes that matter to club operators and board members.
+            ClubGrub delivers quantifiable outcomes that matter to club operators and members.
           </p>
         </div>
 

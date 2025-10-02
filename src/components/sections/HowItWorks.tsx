@@ -13,7 +13,7 @@ export const HowItWorks = () => {
       number: "01",
       icon: Smartphone,
       title: "Members order on mobile device",
-      description: "GPS pins remove guesswork. Members select their exact location and browse your full menu with real-time availability.",
+      description: "Members browse your menu, select their favorite food or beverages and choose their desired location.",
       features: ["GPS location targeting", "Real-time menu updates", "Member billing integration", "Order customization"],
       image: step1Image,
     },

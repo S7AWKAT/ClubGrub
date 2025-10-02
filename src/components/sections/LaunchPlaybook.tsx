@@ -20,13 +20,13 @@ export const LaunchPlaybook = () => {
     {
       icon: Megaphone,
       title: "Member Communication",
-      description: "Ready-to-send email templates, signage, and launch announcement materials",
+      description: "Ready-to-send email templates, QR codes, and launch announcement materials",
       timeline: "15 min"
     },
     {
       icon: Rocket,
       title: "Go Live",
-      description: "Accept your first orders with our team providing real-time support during launch week.",
+      description: "Accept your first order within minutes and receive unlimited tech support.",
       timeline: "Instant"
     }
   ];
@@ -35,8 +35,9 @@ export const LaunchPlaybook = () => {
     "Complimentary iPad included (ready to accept orders in minutes)",
     "Dedicated launch specialist assigned to your club",
     "Member onboarding materials and communication templates",
-    "Real-time support during first week of operation",
-    "Performance analytics and optimization recommendations"
+    "Real-time tech support anytime you need it",
+    "Performance analytics and optimization recommendations",
+    "Prep printer available"
   ];
 
   return (
@@ -90,7 +91,7 @@ export const LaunchPlaybook = () => {
             Go live as soon as tomorrow
           </h3>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
-            Our proven launch process gets you operational faster than any competitor. No lengthy implementations or complex integrations.
+            Our proven launch process gets you operational faster than any other technology. No lengthy implementations or complex integrations.
           </p>
         </div>
 
