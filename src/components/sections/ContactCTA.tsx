@@ -246,6 +246,11 @@ export const ContactCTA = () => {
               <a href="https://clubgrubapp.com/blog" target="_blank" rel="noopener noreferrer" className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">
                 Blog
               </a>
+              {false && (
+                <a href="/admin" className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">
+                  Admin
+                </a>
+              )}
             </nav>
           </div>
         </div>

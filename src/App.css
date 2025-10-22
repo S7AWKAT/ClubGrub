@@ -2,3 +2,265 @@
 
 /* Custom styles specific to ClubGrub app components can be added here */
 /* All design tokens and utilities are defined in index.css */
+
+.honeycomb {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .honeycomb-cell {
+    flex: 0 0 150px;
+    height: 173.2px;
+    margin: 86.6px 0;
+    position: relative;
+    width: 150px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  
+  .honeycomb-cell__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .rotate-y-15 {
+    transform: rotateY(15deg);
+  }
+  
+  .hover\:rotate-y-0:hover {
+    transform: rotateY(0deg);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  .glitch {
+    position: relative;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    overflow: hidden;
+  }
+
+  .glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  }
+
+  .glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim-1 {
+    0% { clip-path: inset(5% 0 90% 0); }
+    100% { clip-path: inset(75% 0 5% 0); }
+  }
+
+  @keyframes glitch-anim-2 {
+    0% { clip-path: inset(95% 0 2% 0); }
+    100% { clip-path: inset(40% 0 30% 0); }
+  }
+
+  .scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      rgba(255, 255, 255, 0.05) 0.5px,
+      transparent 1px
+    );
+    animation: scanlines-anim 5s linear infinite;
+  }
+
+  @keyframes scanlines-anim {
+    from { background-position: 0 0; }
+    to { background-position: 0 100px; }
+  }
+
+  .folded-corner {
+    position: relative;
+  }
+
+  .folded-corner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 20px 20px 0;
+    border-style: solid;
+    border-color: transparent #f1f1f1 #f1f1f1 transparent;
+    box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .shadow-clay {
+    box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+  }
+
+  .holographic-card {
+    position: relative;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+    background-size: 400% 400%;
+    animation: holographic-anim 10s ease infinite;
+  }
+
+  .holographic-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.2));
+    opacity: 0.5;
+  }
+
+  @keyframes holographic-anim {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .vhs-noise::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: vhs-noise-anim 0.1s linear infinite;
+  }
+
+  @keyframes vhs-noise-anim {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(10px); }
+  }
+
+  .filter-infrared {
+    filter: grayscale(100%) contrast(200%) brightness(1.5) hue-rotate(280deg);
+  }
+
+  .art-deco-frame {
+    border: 10px solid #D4AF37;
+    border-image: linear-gradient(to bottom, #D4AF37, #F0E68C, #D4AF37) 1 100%;
+  }
+
+  .hud-element {
+    position: relative;
+  }
+
+  .hud-element::before, .hud-element::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: #00ffff;
+    border-style: solid;
+  }
+
+  .hud-element::before {
+    top: 0;
+    left: 0;
+    border-width: 2px 0 0 2px;
+  }
+
+  .hud-element::after {
+    bottom: 0;
+    right: 0;
+    border-width: 0 2px 2px 0;
+  }
+
+  .letterpress {
+    text-shadow: 0 1px 0 #fff, 0 -1px 0 #000;
+  }
+
+  @font-face {
+    font-family: 'Chalk';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/chalk.woff') format('woff');
+  }
+
+  .font-chalk {
+    font-family: 'Chalk', sans-serif;
+  }
+
+  .frosted-glass {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .film-perforations {
+    background-image: radial-gradient(circle at 3px 3px, #333 1px, transparent 0);
+    background-size: 6px 6px;
+  }
+
+  .stamp {
+    border: 2px dashed #333;
+    background-image: repeating-linear-gradient(-45deg, #ccc, #ccc 1px, #fff 1px, #fff 5px);
+  }
+
+  .neon-sign p {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 55px #ff00ff, 0 0 75px #ff00ff;
+  }
+
+  @font-face {
+    font-family: 'Graffiti';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/graffiti.woff') format('woff');
+  }
+
+  .font-graffiti {
+    font-family: 'Graffiti', sans-serif;
+  }
+
+  .blueprint {
+    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }

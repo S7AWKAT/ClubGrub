@@ -1,9 +1,19 @@
 import { Card } from "@/components/ui/card";
 import { TrendingUp, Users, Zap, Clock } from "lucide-react";
 import { scrollToSection } from "@/lib/utils";
+import { usePageContent } from "@/hooks/usePageContent";
+
+const iconMap: Record<string, any> = {
+  TrendingUp,
+  Users,
+  Zap,
+  Clock
+};
 
 export const OperatorOutcomes = () => {
-  const outcomes = [
+  const { content, loading } = usePageContent("outcomes");
+
+  const defaultOutcomes = [
     {
       icon: TrendingUp,
       title: "Increase Revenue",
@@ -30,23 +40,34 @@ export const OperatorOutcomes = () => {
     }
   ];
 
+  const data = content || {
+    title: "Measurable results that impact your",
+    titleHighlight: "bottom line and member satisfaction",
+    description: "ClubGrub delivers quantifiable outcomes that matter to club operators and members.",
+    outcomes: defaultOutcomes
+  };
+
+  if (loading) return null;
+
   return (
     <section id="outcomes" className="py-24 bg-surface">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-section text-text-primary mb-6">
-            Measurable results that impact your<br />
-            <span className="text-gradient">bottom line and member satisfaction</span>
+            {data.title}<br />
+            <span className="text-gradient">{data.titleHighlight}</span>
           </h2>
           <p className="body-large text-text-secondary max-w-3xl mx-auto">
-            ClubGrub delivers quantifiable outcomes that matter to club operators and members.
+            {data.description}
           </p>
         </div>
 
         {/* Outcomes Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {outcomes.map((outcome, index) => (
+          {data.outcomes.map((outcome: any, index: number) => {
+            const IconComponent = iconMap[outcome.icon] || TrendingUp;
+            return (
             <Card
               key={outcome.title}
               className="card-feature group relative overflow-hidden animate-fade-up"
@@ -55,7 +76,7 @@ export const OperatorOutcomes = () => {
               <div className="relative z-10">
                 {/* Icon */}
                 <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <outcome.icon className="w-8 h-8 text-club-gold-light" />
+                  <IconComponent className="w-8 h-8 text-club-gold-light" />
                 </div>
 
                 {/* Content */}
@@ -78,7 +99,8 @@ export const OperatorOutcomes = () => {
               {/* Hover Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-club-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Card>
-          ))}
+          );
+          })}
         </div>
 
         {/* Bottom CTA */}
