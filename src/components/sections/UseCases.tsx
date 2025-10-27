@@ -3,9 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { MapPin, Home, Waves, Utensils, ArrowRight } from "lucide-react";
 import golfImage from "@/assets/golf-course-ordering.jpg";
-import halfwayHouseImage from "@/assets/halfway-houses.jpg";
-import poolImage from "@/assets/pool-dining.jpg";
-import togoImage from "@/assets/togo.jpg";
+import halfwayHouseImage from "@/assets/halfway-houses.webp";
+import poolImage from "@/assets/pool-dining.webp";
+import togoImage from "@/assets/togo.webp";
 
 export const UseCases = () => {
   const useCases = [

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { ArrowRight, Award, Star, TrendingUp, Users } from "lucide-react";
-import heroImage from "@/assets/hero-clubhouse.jpg";
+import heroImage from "@/assets/hero-clubhouse.webp";
 import { usePageContent } from "@/hooks/usePageContent";
 
 export const HeroSection = () => {

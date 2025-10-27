@@ -3,9 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { Smartphone, Tablet, Truck, CheckCircle, Settings } from "lucide-react";
 
-import step1Image from "@/assets/how-it-works-step-1.jpg";
-import step2Image from "@/assets/how-it-works-step-2.jpg";
-import step3Image from "@/assets/how-it-works-step-3.jpg";
+import step1Image from "@/assets/how-it-works-step-1.webp";
+import step2Image from "@/assets/how-it-works-step-2.webp";
+import step3Image from "@/assets/how-it-works-step-3.webp";
 
 export const HowItWorks = () => {
   const steps = [
