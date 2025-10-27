@@ -3,13 +3,13 @@ import { Card } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 
 const brandPartners = [
-  { name: "CMAA", logo: "cmaa-logo.png" },
+  { name: "CMAA", logo: "cmaa-logo.webp" },
   { name: "Concert Golf Partners", logo: "Concert_Golf_Partners_Logo.webp" },
-  { name: "Forbes", logo: "Forbes-small.avif" },
-  { name: "Golf Digest", logo: "Golf-Digest-small.avif" },
-  { name: "Golf Inc.", logo: "golfIncLogo-small.avif" },
-  { name: "LSU Athletics", logo: "LSU_Athletics_logo.avif" },
-  { name: "TPC", logo: "TPC-JasnaPolana-V-RGB-pos-222x300.avif" },
+  { name: "Forbes", logo: "Forbes-small.webp" },
+  { name: "Golf Digest", logo: "Golf-Digest-small.webp" },
+  { name: "Golf Inc.", logo: "golfIncLogo-small.webp" },
+  { name: "LSU Athletics", logo: "LSU_Athletics_logo.webp" },
+  { name: "TPC", logo: "TPC-JasnaPolana-V-RGB-pos-222x300.webp" },
 ];
 
 export const Design4 = () => {
