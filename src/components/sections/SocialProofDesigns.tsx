@@ -2,14 +2,22 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 
+import cmaaLogo from "@/assets/BrandLogos/cmaa-logo.webp";
+import concertLogo from "@/assets/BrandLogos/Concert_Golf_Partners_Logo.webp";
+import forbesLogo from "@/assets/BrandLogos/Forbes-small.webp";
+import golfDigestLogo from "@/assets/BrandLogos/Golf-Digest-small.webp";
+import golfIncLogo from "@/assets/BrandLogos/golfIncLogo-small.webp";
+import lsuLogo from "@/assets/BrandLogos/LSU_Athletics_logo.webp";
+import tpcLogo from "@/assets/BrandLogos/TPC-JasnaPolana-V-RGB-pos-222x300.webp";
+
 const brandPartners = [
-  { name: "CMAA", logo: "cmaa-logo.webp" },
-  { name: "Concert Golf Partners", logo: "Concert_Golf_Partners_Logo.webp" },
-  { name: "Forbes", logo: "Forbes-small.webp" },
-  { name: "Golf Digest", logo: "Golf-Digest-small.webp" },
-  { name: "Golf Inc.", logo: "golfIncLogo-small.webp" },
-  { name: "LSU Athletics", logo: "LSU_Athletics_logo.webp" },
-  { name: "TPC", logo: "TPC-JasnaPolana-V-RGB-pos-222x300.webp" },
+  { name: "CMAA", logo: cmaaLogo },
+  { name: "Concert Golf Partners", logo: concertLogo },
+  { name: "Forbes", logo: forbesLogo },
+  { name: "Golf Digest", logo: golfDigestLogo },
+  { name: "Golf Inc.", logo: golfIncLogo },
+  { name: "LSU Athletics", logo: lsuLogo },
+  { name: "TPC", logo: tpcLogo },
 ];
 
 export const Design4 = () => {
@@ -52,7 +60,7 @@ export const Design4 = () => {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <img
-                    src={new URL(`/src/assets/BrandLogos/${partner.logo}`, import.meta.url).href}
+                    src={partner.logo}
                     alt={partner.name}
                     className={`object-contain ${partner.name === 'Golf Digest' ? 'mt-5' : ''} ${partner.name === 'TPC' ? 'h-20' : 'h-12'}`}
                   />
