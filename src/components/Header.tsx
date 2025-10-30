@@ -54,7 +54,7 @@ const Header = () => {
 			{/* Logo to the left of ClubGrub, always visible */}
 			<span className="flex items-center gap-2" onClick={() => scrollToSection('hero')}>
 				<img
-					src="/appicon.webp"
+					src="/appicon.jpg"
 					alt="Logo"
 					className="w-10 h-10 rounded-full animate-floatIsland"
 					style={{ background: "rgba(255,255,255,0.6)" }}
