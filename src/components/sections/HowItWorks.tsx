@@ -3,9 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { Smartphone, Tablet, Truck, CheckCircle, Settings } from "lucide-react";
 
-import step1Image from "@/assets/how-it-works-step-1.webp";
-import step2Image from "@/assets/how-it-works-step-2.webp";
-import step3Image from "@/assets/how-it-works-step-3.webp";
+import step1Image from "@/assets/how-it-works-step-1.jpg";
+import step2Image from "@/assets/how-it-works-step-2.jpg";
+import step3Image from "@/assets/how-it-works-step-3.jpg";
 
 export const HowItWorks = () => {
   const steps = [
@@ -91,7 +91,7 @@ export const HowItWorks = () => {
 
                 {/* Image for mobile view */}
                 <div className="lg:hidden mt-8 rounded-2xl overflow-hidden shadow-lg relative flex items-center justify-center">
-                  <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover" />
+                  <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={637} height={425} />
                   <div className="aspect-[16/10] w-full" /> {/* This div maintains the aspect ratio */}
                   <div className="absolute inset-0 bg-gradient-to-br from-club-dark/60 to-club-charcoal/40" />
                   {/* Step Indicator for mobile */}
@@ -112,6 +112,9 @@ export const HowItWorks = () => {
                       src={step.image}
                       alt={step.title}
                       className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                      loading="lazy"
+                      width={637}
+                      height={414}
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-club-dark/60 to-club-charcoal/40 rounded-xl" />
                     <div className="text-center relative z-10">

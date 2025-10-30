@@ -72,6 +72,9 @@ export const UseCases = () => {
                     src={useCase.image}
                     alt={useCase.title}
                     className="w-full h-full object-cover"
+                    width={522}
+                    height={348}
+                    loading="lazy"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">

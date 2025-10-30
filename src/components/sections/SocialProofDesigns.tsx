@@ -24,18 +24,18 @@ export const Design4 = () => {
   const [duration, setDuration] = useState(15); // Default duration
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) { // Example breakpoint for mobile
-        setDuration(35); // Faster duration for mobile
-      } else {
-        setDuration(370); // Slower duration for desktop
-      }
-    };
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
 
-    handleResize(); // Set initial duration
-    window.addEventListener("resize", handleResize);
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setDuration(e.matches ? 35 : 370);
+    }
 
-    return () => window.removeEventListener("resize", handleResize);
+    // Set initial duration
+    setDuration(mediaQuery.matches ? 35 : 370);
+
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => mediaQuery.removeEventListener("change", handleMediaChange);
   }, []);
 
   return (
@@ -62,6 +62,8 @@ export const Design4 = () => {
                   <img
                     src={partner.logo}
                     alt={partner.name}
+                    width={partner.name === 'TPC' ? 80 : 120} // Example widths
+                    height={partner.name === 'TPC' ? 80 : 48} // Corresponds to h-20 and h-12
                     className={`object-contain ${partner.name === 'Golf Digest' ? 'mt-5' : ''} ${partner.name === 'TPC' ? 'h-20' : 'h-12'}`}
                   />
                 </motion.div>
