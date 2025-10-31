@@ -81,7 +81,10 @@ export const AppAnatomy = () => {
                     ) : null}
                 </AnimatePresence>
 
-                <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-4xl font-bold text-center mb-12">#1 Mobile Ordering Technology for Clubs</motion.h2>
+        <h2 className="heading-section text-text-primary mb-6 text-center">
+            <span className="text-gradient">#1 Mobile Ordering</span> <br />
+            Technology for Clubs
+        </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full max-w-6xl mx-auto">
                     <div className="hidden md:flex flex-col gap-4">
