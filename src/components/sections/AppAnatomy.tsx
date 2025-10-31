@@ -1,7 +1,8 @@
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent, useMotionValue } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const features = [
     { title: "Your Mobile Order", description: "Stunning images that drive orders!", image: "/assets/DemoApp/Your mobile order app.PNG" },
@@ -18,9 +19,12 @@ const features = [
 
 export const AppAnatomy = () => {
 
+    const navigate = useNavigate();
     const [showIntro, setShowIntro] = useState(true);
     const [isScrollActive, setIsScrollActive] = useState(false);
     const [hasBeenInView, setHasBeenInView] = useState(false);
+    const [manualIndex, setManualIndex] = useState(0); // New state for manual control
+    const [isManualControl, setIsManualControl] = useState(false); // New state to indicate manual control
     const targetRef = useRef(null);
     const isInView = useInView(targetRef, { once: true });
 
@@ -31,14 +35,40 @@ export const AppAnatomy = () => {
     const featureIndex = useTransform(scrollYProgress, [0, 1], isScrollActive ? [0, features.length - 1] : [0, 0]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const currentFeatureMotionIndex = useMotionValue(0); // New MotionValue for controlling the displayed feature
 
     const activeIndex = useTransform(featureIndex, (latest) => Math.round(latest));
 
     useMotionValueEvent(activeIndex, "change", (latest) => {
+        if (!isManualControl) {
+            currentFeatureMotionIndex.set(latest);
+        }
+    });
+
+    useMotionValueEvent(currentFeatureMotionIndex, "change", (latest) => {
         setCurrentIndex(latest);
     });
 
-    const x = useTransform(activeIndex, (latest) => `-${latest * 100}%`);
+    useEffect(() => {
+        let scrollTimeout;
+        const handleScroll = () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (isManualControl) {
+                    setIsManualControl(false);
+                }
+            }, 100); // Debounce to avoid immediate re-enabling during programmatic scroll
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            clearTimeout(scrollTimeout);
+        };
+    }, [isManualControl]);
+
+    const x = useTransform(currentFeatureMotionIndex, (latest) => `-${latest * 100}%`);
 
     useEffect(() => {
         if (isInView) {
@@ -56,16 +86,14 @@ export const AppAnatomy = () => {
 
 
     const handleFeatureClick = (index) => {
-        const scrollProgress = index / (features.length - 1);
-        const scrollY = scrollProgress * (targetRef.current.scrollHeight - window.innerHeight);
-        window.scrollTo({ top: targetRef.current.offsetTop + scrollY, behavior: "smooth" });
+        setIsManualControl(true);
+        currentFeatureMotionIndex.set(index);
     };
 
     const handleSkip = () => {
-        const nextSection = document.getElementById("next-section");
-        if (nextSection) {
-            nextSection.scrollIntoView({ behavior: "smooth" });
-        }
+        // Assuming the user wants to skip to the home page. 
+        // If a different route is desired, please specify.
+        navigate("/");
     };
 
     return (
