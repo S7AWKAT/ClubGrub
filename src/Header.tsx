@@ -10,14 +10,11 @@ const navLinks: { name: string; target: string }[] = [
 	{ name: "Contact", target: "contact" },
 ];
 
-const scrollToSection = (id: string) => {
-	const el = document.getElementById(id);
-	if (el) {
-		el.scrollIntoView({ behavior: "smooth" });
-	}
-};
+interface HeaderProps {
+    onScrollToSection: (id: string) => void;
+}
 
-const Header = () => {
+const Header = ({ onScrollToSection }: HeaderProps) => {
 	const [menuOpen, setMenuOpen] = useState(false); // State to control mobile menu visibility
 
 	// Mobile: lock scroll when menu open
@@ -51,7 +48,7 @@ const Header = () => {
 					{navLinks.map((link) => (
 						<button 
 							key={link.name}
-							onClick={() => scrollToSection(link.target)} 
+							onClick={() => onScrollToSection(link.target)} 
 							className={`text-base font-medium transition-colors ${isAtTop ? 'text-white hover:text-club-gold' : 'text-text-secondary hover:text-club-gold'}`}
 						>
 							{link.name}
@@ -61,7 +58,7 @@ const Header = () => {
 
 		       {/* CTA Button */}
 		       <button
-			       onClick={() => scrollToSection("contact")}
+			       onClick={() => onScrollToSection("contact")}
 			       className={`${isAtTop ? 'btn-secondary' : 'btn-primary'} px-5 py-2`}
 		       >
 			       Book a Demo

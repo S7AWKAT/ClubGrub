@@ -17,7 +17,7 @@ const features = [
     { title: "Push notifications", description: "Push notifications notify members.", image: "/assets/DemoApp/Your mobile order app.PNG" },
 ];
 
-export const AppAnatomy = () => {
+export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; isExternalScrolling?: boolean }) => {
 
     const navigate = useNavigate();
     const [showIntro, setShowIntro] = useState(true);
@@ -48,7 +48,7 @@ export const AppAnatomy = () => {
     const activeIndex = useTransform(featureIndex, (latest) => Math.round(latest));
 
     useMotionValueEvent(activeIndex, "change", (latest) => {
-        if (!isManualControl) {
+        if (!isManualControl && !isExternalScrolling) {
             currentFeatureMotionIndex.set(latest);
         }
     });

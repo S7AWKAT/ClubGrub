@@ -8,12 +8,50 @@ import { LaunchPlaybook } from "@/components/sections/LaunchPlaybook";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { FAQ } from "@/components/sections/FAQ";
 import { ContactCTA } from "@/components/sections/ContactCTA";
+import { useState } from "react";
 
 const Index = () => {
+  const [isProgrammaticScrollActive, setIsProgrammaticScrollActive] = useState(false);
+
+  const handleHeaderScroll = (id: string) => {
+    setIsProgrammaticScrollActive(true);
+
+    const APP_ANATOMY_ID = "app-anatomy";
+    const SECTION_AFTER_APP_ANATOMY_ID = "launch-playbook";
+
+    const appAnatomyElement = document.getElementById(APP_ANATOMY_ID);
+    const targetElement = document.getElementById(id);
+
+    if (appAnatomyElement && targetElement) {
+        const appAnatomyTop = appAnatomyElement.offsetTop;
+        const appAnatomyBottom = appAnatomyTop + appAnatomyElement.offsetHeight;
+        const currentScrollY = window.scrollY;
+
+        const isCurrentlyInAppAnatomy = currentScrollY >= appAnatomyTop && currentScrollY < appAnatomyBottom;
+        const isTargetBeforeAppAnatomy = targetElement.offsetTop < appAnatomyTop;
+
+        let finalTargetElement = targetElement;
+
+        if (isCurrentlyInAppAnatomy && isTargetBeforeAppAnatomy) {
+            finalTargetElement = document.getElementById(SECTION_AFTER_APP_ANATOMY_ID);
+        }
+
+        if (finalTargetElement) {
+            finalTargetElement.scrollIntoView({ behavior: "smooth" });
+        }
+    } else if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+
+    setTimeout(() => {
+      setIsProgrammaticScrollActive(false);
+    }, 1000); // Adjust delay as needed for smooth scroll duration
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <Header />
+      <Header onScrollToSection={handleHeaderScroll} />
       
       {/* Hero Section */}
       <HeroSection />
@@ -28,7 +66,7 @@ const Index = () => {
       <UseCases />
 
       {/* App Anatomy */}
-      <AppAnatomy />
+      <AppAnatomy id="app-anatomy" isExternalScrolling={isProgrammaticScrollActive} />
       
       {/* Launch Playbook */}
       <div id="next-section">
