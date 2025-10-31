@@ -31,7 +31,9 @@ const Index = () => {
       <AppAnatomy />
       
       {/* Launch Playbook */}
-      <LaunchPlaybook />
+      <div id="next-section">
+        <LaunchPlaybook />
+      </div>
       
       {/* Social Proof */}
       <SocialProof />
