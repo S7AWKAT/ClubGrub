@@ -91,9 +91,10 @@ export const AppAnatomy = () => {
     };
 
     const handleSkip = () => {
-        // Assuming the user wants to skip to the home page. 
-        // If a different route is desired, please specify.
-        navigate("/");
+        const launchPlaybookSection = document.getElementById("launch-playbook");
+        if (launchPlaybookSection) {
+            launchPlaybookSection.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
