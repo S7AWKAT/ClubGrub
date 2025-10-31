@@ -25,6 +25,14 @@ export const AppAnatomy = () => {
     const [hasBeenInView, setHasBeenInView] = useState(false);
     const [manualIndex, setManualIndex] = useState(0); // New state for manual control
     const [isManualControl, setIsManualControl] = useState(false); // New state to indicate manual control
+    const [activeSection, setActiveSection] = useState<string | null>(null);
+    const [isProgrammaticScrolling, setIsProgrammaticScrolling] = useState(false);
+
+    const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+    const isManualControlRef = useRef(isManualControl);
+    useEffect(() => {
+        isManualControlRef.current = isManualControl;
+    }, [isManualControl]);
     const targetRef = useRef(null);
     const isInView = useInView(targetRef, { once: true });
 
@@ -54,10 +62,10 @@ export const AppAnatomy = () => {
         const handleScroll = () => {
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
-                if (isManualControl) {
+                if (isManualControlRef.current) {
                     setIsManualControl(false);
                 }
-            }, 100); // Debounce to avoid immediate re-enabling during programmatic scroll
+            }, 300); // Increased debounce to 300ms
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -66,7 +74,7 @@ export const AppAnatomy = () => {
             window.removeEventListener("scroll", handleScroll);
             clearTimeout(scrollTimeout);
         };
-    }, [isManualControl]);
+    }, []); // Removed isManualControl from dependency array
 
     const x = useTransform(currentFeatureMotionIndex, (latest) => `-${latest * 100}%`);
 
@@ -88,6 +96,28 @@ export const AppAnatomy = () => {
     const handleFeatureClick = (index) => {
         setIsManualControl(true);
         currentFeatureMotionIndex.set(index);
+
+        if (targetRef.current) {
+            const sectionOffsetTop = targetRef.current.offsetTop;
+            const sectionHeight = targetRef.current.offsetHeight;
+            const viewportHeight = window.innerHeight;
+
+            // Calculate the total scrollable height within the targetRef
+            // This is the range over which scrollYProgress goes from 0 to 1
+            const scrollableHeight = sectionHeight - viewportHeight;
+
+            // Calculate the target scrollYProgress for the given index
+            // Ensure features.length - 1 is not zero to avoid division by zero
+            const targetScrollYProgress = features.length > 1 ? index / (features.length - 1) : 0;
+
+            // Calculate the absolute scroll position
+            const targetScrollPosition = sectionOffsetTop + (targetScrollYProgress * scrollableHeight);
+
+            window.scrollTo({
+                top: targetScrollPosition,
+                behavior: 'smooth',
+            });
+        }
     };
 
     const handleSkip = () => {
