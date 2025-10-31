@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 const features = [
@@ -16,31 +16,44 @@ const features = [
     { title: "Push notifications", description: "Push notifications notify members.", image: "/assets/DemoApp/Your mobile order app.PNG" },
 ];
 
-export default function AppAnatomy() {
-    const [selectedFeatureIndex, setSelectedFeatureIndex] = useState(0);
+export const AppAnatomy = () => {
+
     const [showIntro, setShowIntro] = useState(true);
+    const [isScrollActive, setIsScrollActive] = useState(false);
     const [hasBeenInView, setHasBeenInView] = useState(false);
     const targetRef = useRef(null);
     const isInView = useInView(targetRef, { once: true });
 
-    const { scrollYProgress } = useScroll({ target: targetRef });
+    const { scrollYProgress } = useScroll({ 
+        target: targetRef
+    });
 
-    const featureIndex = useTransform(scrollYProgress, [0.3, 0.7], [0, features.length - 1]);
+    const featureIndex = useTransform(scrollYProgress, [0, 1], isScrollActive ? [0, features.length - 1] : [0, 0]);
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const activeIndex = useTransform(featureIndex, (latest) => Math.round(latest));
+
+    useMotionValueEvent(activeIndex, "change", (latest) => {
+        setCurrentIndex(latest);
+    });
+
+    const x = useTransform(activeIndex, (latest) => `-${latest * 100}%`);
 
     useEffect(() => {
         if (isInView) {
             setHasBeenInView(true);
-            const timer = setTimeout(() => setShowIntro(false), 1000);
+            const timer = setTimeout(() => {
+                setShowIntro(false);
+                setIsScrollActive(true);
+            }, 1000);
             return () => clearTimeout(timer);
         }
     }, [isInView]);
 
-    useEffect(() => {
-        const unsubscribe = featureIndex.onChange((latest) => {
-            setSelectedFeatureIndex(Math.round(latest));
-        });
-        return () => unsubscribe();
-    }, [featureIndex]);
+
+
+
 
     const handleFeatureClick = (index) => {
         const scrollProgress = (index / (features.length - 1)) * 0.4 + 0.3;
@@ -73,13 +86,13 @@ export default function AppAnatomy() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full max-w-6xl mx-auto">
                     <div className="flex flex-col gap-4">
                         {features.slice(0, 5).map((feature, index) => (
-                            <FeatureButton key={index} title={feature.title} description={feature.description} isActive={selectedFeatureIndex === index} onClick={() => handleFeatureClick(index)} />
+                            <FeatureButton key={index} title={feature.title} description={feature.description} isActive={currentIndex === index} onClick={() => handleFeatureClick(index)} />
                         ))}
                     </div>
 
                     <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-8 border-gray-800 rounded-3xl overflow-hidden shadow-2xl">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-800 rounded-b-lg z-10"></div>
-                        <motion.div className="w-full h-full flex" animate={{ x: `-${selectedFeatureIndex * 100}%` }} transition={{ duration: 0.5, ease: "easeInOut" }}>
+                        <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
                             {features.map((feature, index) => (
                                 <img key={index} src={feature.image} alt={feature.title} className="w-full h-full object-cover flex-shrink-0" />
                             ))}
@@ -89,7 +102,7 @@ export default function AppAnatomy() {
 
                     <div className="flex flex-col gap-4">
                         {features.slice(5).map((feature, index) => (
-                            <FeatureButton key={index + 5} title={feature.title} description={feature.description} isActive={selectedFeatureIndex === index + 5} onClick={() => handleFeatureClick(index + 5)} />
+                            <FeatureButton key={index + 5} title={feature.title} description={feature.description} isActive={currentIndex === index + 5} onClick={() => handleFeatureClick(index + 5)} />
                         ))}
                     </div>
                 </div>

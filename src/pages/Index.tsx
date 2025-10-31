@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { OperatorOutcomes } from "@/components/sections/OperatorOutcomes";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { UseCases } from "@/components/sections/UseCases";
-import AppAnatomy from "@/components/sections/AppAnatomy";
+import { AppAnatomy } from "@/components/sections/AppAnatomy";
 import { LaunchPlaybook } from "@/components/sections/LaunchPlaybook";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { FAQ } from "@/components/sections/FAQ";
