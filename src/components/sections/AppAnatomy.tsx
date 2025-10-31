@@ -1,67 +1,57 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-    ChatMessaging,
-    MapDelivery,
-    MultipleOutlets,
-    OrderTracking,
-    SavesFavorites,
-    SchedulePickup,
-    UseClubGrubAnywhere,
-    YourMenu,
-    YourMobileOrderApp,
-} from "@/assets/DemoApp/images";
 
 const features = [
     {
         title: "Your Mobile Order",
         description: "Stunning images that drive orders!",
-        image: YourMobileOrderApp,
+        image: "/assets/DemoApp/Your mobile order app.PNG",
     },
     {
         title: "Your Menu",
         description: "Showcase your culinary offerings.",
-        image: YourMenu,
+        image: "/assets/DemoApp/your menu.PNG",
     },
     {
         title: "Use ClubGrub anywhere",
         description: "Members can order from anywhere.",
-        image: UseClubGrubAnywhere,
+        image: "/assets/DemoApp/use clubgrub anywhere.PNG",
     },
     {
         title: "Schedule Pickup",
         description: "When available, you can allow members to schedule their pickup.",
-        image: SchedulePickup,
+        image: "/assets/DemoApp/schedule pickup.PNG",
     },
     {
         title: "Saves Favorites",
         description: "Your app saves favorites items with their modifications for fast re-ordering.",
-        image: SavesFavorites,
+        image: "/assets/DemoApp/saves favorites.PNG",
     },
     {
         title: "Order Tracking",
         description: "Real-time order tracking for members.",
-        image: OrderTracking,
+        image: "/assets/DemoApp/order tracking.PNG",
     },
     {
         title: "Multiple Outlets",
         description: "When needed, create more than 1 restaurant in your app with different menus.",
-        image: MultipleOutlets,
+        image: "/assets/DemoApp/multiple outlets.PNG",
     },
     {
         title: "Map-based Delivery",
         description: "Pinpoint delivery locations on a map.",
-        image: MapDelivery,
+        image: "/assets/DemoApp/Map Delivery Screen.jpg",
     },
     {
         title: "Chat Messaging",
         description: "Communicate with members in real-time without picking up the phone.",
-        image: ChatMessaging,
+        image: "/assets/DemoApp/chat messaging.PNG",
     },
     {
         title: "Push notifications",
         description: "Push notifications notify members.",
-        image: YourMobileOrderApp, // Placeholder image
+        image: "/assets/DemoApp/Your mobile order app.PNG", // Placeholder image
     },
 ];
 
