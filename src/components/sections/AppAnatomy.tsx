@@ -56,7 +56,7 @@ export const AppAnatomy = () => {
 
 
     const handleFeatureClick = (index) => {
-        const scrollProgress = (index / (features.length - 1)) * 0.4 + 0.3;
+        const scrollProgress = index / (features.length - 1);
         const scrollY = scrollProgress * (targetRef.current.scrollHeight - window.innerHeight);
         window.scrollTo({ top: targetRef.current.offsetTop + scrollY, behavior: "smooth" });
     };
