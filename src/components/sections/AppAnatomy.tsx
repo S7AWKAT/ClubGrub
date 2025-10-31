@@ -84,7 +84,7 @@ export const AppAnatomy = () => {
                 <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-4xl font-bold text-center mb-12">#1 Mobile Ordering Technology for Clubs</motion.h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full max-w-6xl mx-auto">
-                    <div className="flex flex-col gap-4">
+                    <div className="hidden md:flex flex-col gap-4">
                         {features.slice(0, 5).map((feature, index) => (
                             <FeatureButton key={index} title={feature.title} description={feature.description} isActive={currentIndex === index} onClick={() => handleFeatureClick(index)} />
                         ))}
@@ -100,7 +100,7 @@ export const AppAnatomy = () => {
                         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-10"></div>
                     </motion.div>
 
-                    <div className="flex flex-col gap-4">
+                    <div className="hidden md:flex flex-col gap-4">
                         {features.slice(5).map((feature, index) => (
                             <FeatureButton key={index + 5} title={feature.title} description={feature.description} isActive={currentIndex === index + 5} onClick={() => handleFeatureClick(index + 5)} />
                         ))}
