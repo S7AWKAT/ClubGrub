@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
-import { ArrowRight, Award, Star, TrendingUp, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-clubhouse.webp";
 import { usePageContent } from "@/hooks/usePageContent";
 
@@ -45,7 +44,7 @@ export const HeroSection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [animation-delay:600ms]">
-          <Button onClick={() => scrollToSection("contact")} className="btn-hero group text-lg px-8 py-4">
+          <Button onClick={() => scrollToSection("contact")} className="btn-hero group text-lg px-8 py-4 text-white hover:text-white">
             {data.ctaPrimary}
             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>

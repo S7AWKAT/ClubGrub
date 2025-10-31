@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { MapPin, Home, Waves, Utensils, ArrowRight } from "lucide-react";
-import golfImage from "@/assets/golf-course-ordering.jpg";
+import golfImage from "@/assets/golf-course-orderingnew.jpg";
 import halfwayHouseImage from "@/assets/halfway-houses.webp";
 import poolImage from "@/assets/pool-dining.webp";
 import togoImage from "@/assets/togo.webp";
@@ -74,7 +74,7 @@ export const UseCases = () => {
                     className="w-full h-full object-cover"
                     width={522}
                     height={348}
-                    loading="lazy"
+                    loading={index === 0 ? "eager" : "lazy"}
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">

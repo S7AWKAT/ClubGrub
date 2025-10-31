@@ -42,7 +42,7 @@ const Header = () => {
 	       >
 		       {/* شعار واسم الموقع */}
 		       <div className="flex items-center gap-2">
-			       <img src="/appicon.jpg" alt="Logo" className="w-10 h-10 rounded-full border-2 border-white/20" />
+			       <img src="/ClubGrubIcon.webp" alt="Logo" className="w-10 h-10 rounded-full border-2 border-white/20" />
 			       <span className={`text-xl font-bold select-none transition-colors ${isAtTop ? 'text-white' : 'text-text-primary'}`}>ClubGrub</span>
 		       </div>
 
