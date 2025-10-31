@@ -15,7 +15,7 @@ import {
 const features = [
     {
         title: "Your Mobile Order",
-        description: "Stunning images that drive orders! (or add your",
+        description: "Stunning images that drive orders!",
         image: YourMobileOrderApp,
     },
     {
@@ -24,18 +24,18 @@ const features = [
         image: YourMenu,
     },
     {
-        title: "Use Anywhere",
+        title: "Use ClubGrub anywhere",
         description: "Members can order from anywhere.",
         image: UseClubGrubAnywhere,
     },
     {
         title: "Schedule Pickup",
-        description: "Conveniently schedule order pickups.",
+        description: "When available, you can allow members to schedule their pickup.",
         image: SchedulePickup,
     },
     {
         title: "Saves Favorites",
-        description: "Your app saves favorites items with their modifications for fast re-ord",
+        description: "Your app saves favorites items with their modifications for fast re-ordering.",
         image: SavesFavorites,
     },
     {
@@ -45,7 +45,7 @@ const features = [
     },
     {
         title: "Multiple Outlets",
-        description: "Manage orders from multiple outlets.",
+        description: "When needed, create more than 1 restaurant in your app with different menus.",
         image: MultipleOutlets,
     },
     {
@@ -55,8 +55,13 @@ const features = [
     },
     {
         title: "Chat Messaging",
-        description: "Communicate with members via chat.",
+        description: "Communicate with members in real-time without picking up the phone.",
         image: ChatMessaging,
+    },
+    {
+        title: "Push notifications",
+        description: "Push notifications notify members.",
+        image: YourMobileOrderApp, // Placeholder image
     },
 ];
 
