@@ -84,7 +84,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
             const timer = setTimeout(() => {
                 setShowIntro(false);
                 setIsScrollActive(true);
-            }, 1000);
+            }, 2000);
             return () => clearTimeout(timer);
         }
     }, [isInView]);
@@ -147,43 +147,45 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                     ) : null}
                 </AnimatePresence>
 
-        <h2 className="heading-section text-text-primary mb-6 text-center">
-            <span className="text-gradient">#1 Mobile Ordering</span> <br />
-            Technology for Clubs
-        </h2>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: showIntro ? 0 : 1 }} transition={{ duration: 0.5 }}>
+                    <h2 className="heading-section text-text-primary mb-6 text-center">
+                        <span className="text-gradient">#1 Mobile Ordering</span> <br />
+                        Technology for Clubs
+                    </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full max-w-6xl mx-auto">
-                    <div className="hidden md:flex flex-col gap-4">
-                        {features.slice(0, 5).map((feature, index) => (
-                            <FeatureButton key={index} title={feature.title} description={feature.description} isActive={currentIndex === index} onClick={() => handleFeatureClick(index)} />
-                        ))}
-                    </div>
-
-                    {/* iPhone-like Frame for Scroller */}
-                    <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-[10px] border-gray-800 rounded-[40px] overflow-hidden shadow-2xl">
-                        {/* Dynamic Island */}
-                        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20"></div>
-                        {/* Screen Content */}
-                        <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
-                            {features.map((feature, index) => (
-                                <img key={index} src={feature.image} alt={feature.title} className="w-full h-full object-cover flex-shrink-0" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full max-w-6xl mx-auto">
+                        <div className="hidden md:flex flex-col gap-4">
+                            {features.slice(0, 5).map((feature, index) => (
+                                <FeatureButton key={index} title={feature.title} description={feature.description} isActive={currentIndex === index} onClick={() => handleFeatureClick(index)} />
                             ))}
-                        </motion.div>
-                        {/* Home Bar */}
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-20"></div>
-                    </motion.div>
+                        </div>
 
-                    <div className="hidden md:flex flex-col gap-4">
-                        {features.slice(5).map((feature, index) => (
-                            <FeatureButton key={index + 5} title={feature.title} description={feature.description} isActive={currentIndex === index + 5} onClick={() => handleFeatureClick(index + 5)} />
-                        ))}
+                        {/* iPhone-like Frame for Scroller */}
+                        <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-[10px] border-gray-800 rounded-[40px] overflow-hidden shadow-2xl">
+                            {/* Dynamic Island */}
+                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20"></div>
+                            {/* Screen Content */}
+                            <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
+                                {features.map((feature, index) => (
+                                    <img key={index} src={feature.image} alt={feature.title} className="w-full h-full object-cover flex-shrink-0" />
+                                ))}
+                            </motion.div>
+                            {/* Home Bar */}
+                            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-20"></div>
+                        </motion.div>
+
+                        <div className="hidden md:flex flex-col gap-4">
+                            {features.slice(5).map((feature, index) => (
+                                <FeatureButton key={index + 5} title={feature.title} description={feature.description} isActive={currentIndex === index + 5} onClick={() => handleFeatureClick(index + 5)} />
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className="absolute bottom-8 group">
-                    <button onClick={handleSkip} className="flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors">
-                        <ChevronDown className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </button>
-                </div>
+                    <div className="absolute bottom-8 group">
+                        <button onClick={handleSkip} className="flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors">
+                            <ChevronDown className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </button>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
