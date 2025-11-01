@@ -140,7 +140,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                     initial={{ width: "5.5rem", height: "1.65rem" }}
                                     animate={{ width: ["4.5rem", "3rem", "4.5rem"], height: ["1.65rem", "1.65rem", "1.65rem"] }}
                                     transition={{ duration: 2, delay: 1.5, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-                                    className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20 flex items-center justify-end pr-4">
+                                    className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20 flex items-center justify-end pr-3">
                                     <div className="flex items-center gap-1.5">
                                         <div className="w-1 h-1 bg-green-500 rounded-full"></div>
                                         <div className="relative w-2.5 h-2.5 bg-[#110f26] rounded-full overflow-hidden">
@@ -171,19 +171,14 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                         {/* iPhone-like Frame for Scroller */}
                         <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-[10px] border-gray-800 rounded-[40px] overflow-hidden shadow-2xl">
                             {/* Dynamic Island */}
-                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[5.5rem] h-[1.65rem] bg-black rounded-full z-20 flex items-center justify-end pr-4">
-                                <motion.div
-                                    key={currentIndex}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: [0, 1, 0, 1] }}
-                                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                                    className="flex items-center gap-1.5">
+                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[5.5rem] h-[1.65rem] bg-black rounded-full z-20 flex items-center justify-end pr-3">
+                                <div className="flex items-center gap-1.5">
                                     <div className="w-1 h-1 bg-green-500 rounded-full"></div>
                                     <div className="relative w-2.5 h-2.5 bg-[#110f26] rounded-full overflow-hidden">
                                         <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/10 rounded-full blur-sm"></div>
                                         <div className="absolute top-[1px] right-[1px] w-0.5 h-0.5 bg-white/50 rounded-full"></div>
                                     </div>
-                                </motion.div>
+                                </div>
                             </div>
                             {/* Screen Content */}
                             <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
