@@ -144,7 +144,8 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                     <div className="flex items-center gap-1.5">
                                         <div className="w-1 h-1 bg-green-500 rounded-full"></div>
                                         <div className="relative w-2.5 h-2.5 bg-[#110f26] rounded-full overflow-hidden">
-                                            <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/20 rounded-full blur-sm"></div>
+                                            <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/10 rounded-full blur-sm"></div>
+                                            <div className="absolute top-[1px] right-[1px] w-0.5 h-0.5 bg-white/50 rounded-full"></div>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -179,7 +180,8 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                     className="flex items-center gap-1.5">
                                     <div className="w-1 h-1 bg-green-500 rounded-full"></div>
                                     <div className="relative w-2.5 h-2.5 bg-[#110f26] rounded-full overflow-hidden">
-                                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/20 rounded-full blur-sm"></div>
+                                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/10 rounded-full blur-sm"></div>
+                                        <div className="absolute top-[1px] right-[1px] w-0.5 h-0.5 bg-white/50 rounded-full"></div>
                                     </div>
                                 </motion.div>
                             </div>
