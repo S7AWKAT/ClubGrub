@@ -138,8 +138,6 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                 {/* Dynamic Island - now with motion */}
                                 <motion.div
                                     initial={{ width: "5.5rem", height: "1.65rem" }}
-                                    animate={{ width: ["4.5rem", "3rem", "4.5rem"], height: ["1.65rem", "1.65rem", "1.65rem"] }}
-                                    transition={{ duration: 2, delay: 1.5, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
                                     className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20 flex items-center justify-end pr-3">
                                     <div className="flex items-center gap-1.5">
                                         <div className="w-1 h-1 bg-green-500 rounded-full"></div>
