@@ -140,7 +140,9 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                     initial={{ width: "6rem", height: "1.5rem" }} // w-24, h-6
                                     animate={{ width: ["5rem", "3rem", "5rem"], height: ["1.5rem", "1.5rem", "1.5rem"] }}
                                     transition={{ duration: 2, delay: 1.5, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-                                    className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20"></motion.div>
+                                    className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20 flex items-center justify-end">
+                                    <div className="w-1 h-1 bg-green-500 rounded-full mr-8"></div>
+                                </motion.div>
                                 <motion.img src="/ClubGrubIcon.webp" alt="ClubGrub Logo" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }} className="absolute inset-0 m-auto w-24 h-24" />
                             </motion.div>
                         </motion.div>
@@ -163,7 +165,14 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                         {/* iPhone-like Frame for Scroller */}
                         <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-[10px] border-gray-800 rounded-[40px] overflow-hidden shadow-2xl">
                             {/* Dynamic Island */}
-                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20"></div>
+                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20 flex items-center justify-end">
+                                <motion.div
+                                    key={currentIndex}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: [0, 1, 0, 1] }}
+                                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    className="w-1 h-1 bg-green-500 rounded-full mr-8" />
+                            </div>
                             {/* Screen Content */}
                             <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
                                 {features.map((feature, index) => (
