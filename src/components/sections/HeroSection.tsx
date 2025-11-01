@@ -44,11 +44,11 @@ export const HeroSection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [animation-delay:600ms]">
-          <Button onClick={() => scrollToSection("contact")} className="btn-hero group text-lg px-8 py-4 text-white hover:text-white">
+          <Button onClick={() => scrollToSection("contact")} className="btn-hero group text-lg px-8 py-4 text-white hover:text-white w-48 justify-center">
             {data.ctaPrimary}
             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button onClick={() => scrollToSection("contact")} variant="outline" className="btn-outline text-lg px-8 py-4">
+          <Button onClick={() => scrollToSection("contact")} variant="outline" className="btn-outline text-lg px-8 py-4 w-48 justify-center">
             {data.ctaSecondary}
           </Button>
         </div>
