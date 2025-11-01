@@ -132,8 +132,15 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
                 <AnimatePresence>
                     {hasBeenInView && showIntro ? (
-                        <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute z-20 w-full h-full flex items-center justify-center bg-background">
-                            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[80vh] w-[40vh] mx-auto bg-black border-8 border-gray-800 rounded-3xl overflow-hidden shadow-2xl">
+                        <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute z-20 w-full h-full flex items-center justify-center bg-background pointer-events-none">
+                            {/* iPhone-like Frame for Intro */}
+                            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[80vh] w-[40vh] mx-auto bg-black border-[10px] border-gray-800 rounded-[60px] overflow-hidden shadow-2xl">
+                                {/* Dynamic Island - now with motion */}
+                                <motion.div
+                                    initial={{ width: "7rem", height: "1.5rem" }} // w-28, h-6
+                                    animate={{ width: ["7rem", "3.5rem", "7rem"], height: ["1.5rem", "1.5rem", "1.5rem"] }}
+                                    transition={{ duration: 2, delay: 1.5, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+                                    className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20"></motion.div>
                                 <motion.img src="/ClubGrubIcon.webp" alt="ClubGrub Logo" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }} className="absolute inset-0 m-auto w-24 h-24" />
                             </motion.div>
                         </motion.div>
@@ -152,14 +159,18 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                         ))}
                     </div>
 
-                    <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-8 border-gray-800 rounded-3xl overflow-hidden shadow-2xl">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-800 rounded-b-lg z-10"></div>
+                    {/* iPhone-like Frame for Scroller */}
+                    <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-[10px] border-gray-800 rounded-[40px] overflow-hidden shadow-2xl">
+                        {/* Dynamic Island */}
+                        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-20"></div>
+                        {/* Screen Content */}
                         <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
                             {features.map((feature, index) => (
                                 <img key={index} src={feature.image} alt={feature.title} className="w-full h-full object-cover flex-shrink-0" />
                             ))}
                         </motion.div>
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-10"></div>
+                        {/* Home Bar */}
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-20"></div>
                     </motion.div>
 
                     <div className="hidden md:flex flex-col gap-4">
