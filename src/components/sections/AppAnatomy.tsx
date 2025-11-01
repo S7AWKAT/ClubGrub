@@ -65,7 +65,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                 if (isManualControlRef.current) {
                     setIsManualControl(false); // Re-enable scroll-driven updates
                 }
-            }, 150); // Reduced debounce for faster response
+            }, 100); // Further reduced debounce for even faster response
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -108,16 +108,15 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
             // Stop any existing scroll animation
             animate(window.scrollY, targetScrollPosition, {
                 type: "tween", // Changed to tween for more direct control
-                duration: 0.6, // Faster animation duration
+                duration: 0.4, // Made animation even faster
                 ease: "easeOut",
                 onUpdate: (value) => {
                     window.scrollTo(0, value);
                 },
                 onComplete: () => {
                     // After the animation completes, we can allow scroll-based updates again.
-                    setTimeout(() => {
-                        setIsManualControl(false);
-                    }, 50); // Reduced delay for quicker state update
+                    // A small delay helps prevent immediate scroll events from interfering.
+                    setIsManualControl(false);
                 }
             });
         }
