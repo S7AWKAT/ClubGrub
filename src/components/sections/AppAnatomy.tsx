@@ -1,6 +1,6 @@
 
-import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent, useMotionValue } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent, useMotionValue, animate } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -93,7 +93,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
 
 
 
-    const handleFeatureClick = (index) => {
+    const handleFeatureClick = useCallback((index) => {
         setIsManualControl(true);
         currentFeatureMotionIndex.set(index);
 
@@ -101,24 +101,28 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
             const sectionOffsetTop = targetRef.current.offsetTop;
             const sectionHeight = targetRef.current.offsetHeight;
             const viewportHeight = window.innerHeight;
-
-            // Calculate the total scrollable height within the targetRef
-            // This is the range over which scrollYProgress goes from 0 to 1
             const scrollableHeight = sectionHeight - viewportHeight;
-
-            // Calculate the target scrollYProgress for the given index
-            // Ensure features.length - 1 is not zero to avoid division by zero
             const targetScrollYProgress = features.length > 1 ? index / (features.length - 1) : 0;
-
-            // Calculate the absolute scroll position
             const targetScrollPosition = sectionOffsetTop + (targetScrollYProgress * scrollableHeight);
 
-            window.scrollTo({
-                top: targetScrollPosition,
-                behavior: 'smooth',
+            // Stop any existing scroll animation
+            animate(window.scrollY, targetScrollPosition, {
+                type: "spring",
+                damping: 30,
+                stiffness: 200,
+                onUpdate: (value) => {
+                    window.scrollTo(0, value);
+                },
+                onComplete: () => {
+                    // After the animation completes, we can allow scroll-based updates again.
+                    // A small delay helps prevent immediate scroll events from interfering.
+                    setTimeout(() => {
+                        setIsManualControl(false);
+                    }, 100);
+                }
             });
         }
-    };
+    }, [currentFeatureMotionIndex]);
 
     const handleSkip = () => {
         const launchPlaybookSection = document.getElementById("launch-playbook");
