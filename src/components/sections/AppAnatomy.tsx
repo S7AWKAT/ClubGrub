@@ -138,7 +138,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                 {/* Dynamic Island - now with motion */}
                                 <motion.div
                                     initial={{ width: "6rem", height: "1.5rem" }} // w-24, h-6
-                                    animate={{ width: ["6rem", "3rem", "6rem"], height: ["1.5rem", "1.5rem", "1.5rem"] }}
+                                    animate={{ width: ["5rem", "3rem", "5rem"], height: ["1.5rem", "1.5rem", "1.5rem"] }}
                                     transition={{ duration: 2, delay: 1.5, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
                                     className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20"></motion.div>
                                 <motion.img src="/ClubGrubIcon.webp" alt="ClubGrub Logo" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }} className="absolute inset-0 m-auto w-24 h-24" />
