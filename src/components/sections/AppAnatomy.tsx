@@ -131,7 +131,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
 
     return (
         <section id={id} ref={targetRef} className="relative h-[500vh] bg-background text-text-primary">
-            <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24">
+            <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
                 <AnimatePresence>
                     {hasBeenInView && showIntro ? (
                         <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute z-20 w-full h-full flex items-center justify-center bg-background pointer-events-none">
@@ -154,7 +154,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                     ) : null}
                 </AnimatePresence>
 
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: showIntro ? 0 : 1 }} transition={{ duration: 0.5 }}>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: showIntro ? 0 : 1 }} transition={{ duration: 0.5 }} className="pt-16 md:pt-0">
                     <h2 className="heading-section text-text-primary mb-6 text-center">
                         <span className="text-gradient">#1 Mobile Ordering</span> <br />
                         Technology for Clubs

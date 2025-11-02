@@ -40,7 +40,10 @@ const Index = () => {
             const headerElement = document.querySelector('header');
             if (headerElement) {
                 const headerHeight = headerElement.offsetHeight;
-                const targetPosition = finalTargetElement.offsetTop - headerHeight;
+                let targetPosition = finalTargetElement.offsetTop - headerHeight;
+                if (id === 'app-anatomy') {
+                    targetPosition += 50;
+                }
 
                 window.scrollTo({
                     top: targetPosition,
@@ -52,7 +55,10 @@ const Index = () => {
         const headerElement = document.querySelector('header');
         if (headerElement) {
             const headerHeight = headerElement.offsetHeight;
-            const targetPosition = targetElement.offsetTop - headerHeight;
+            let targetPosition = targetElement.offsetTop - headerHeight;
+            if (id === 'app-anatomy') {
+                targetPosition += 50;
+            }
 
             window.scrollTo({
                 top: targetPosition,
