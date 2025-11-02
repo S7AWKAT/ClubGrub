@@ -1,14 +1,31 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react"; // Import icons
+import {
+	Menu,
+	TrendingUp,
+	Workflow,
+	MapPin,
+	Smartphone,
+	Rocket,
+	HelpCircle,
+	Mail,
+	Calendar,
+} from "lucide-react";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const navLinks: { name: string; target: string }[] = [
-	{ name: "Features", target: "outcomes" }, // Assuming 'Features' links to 'OperatorOutcomes' section
-	{ name: "How It Works", target: "how-it-works" },
-	{ name: "Locations", target: "hospitality" }, // Assuming 'Locations' links to 'UseCases' section
-	{ name: "Demo", target: "app-anatomy" }, // New link for App Anatomy
-	{ name: "Launch", target: "launch-playbook" }, // Assuming 'Launch' links to 'LaunchPlaybook' section
-	{ name: "FAQ", target: "faq" },
-	{ name: "Contact", target: "contact" },
+const navLinks = [
+	{ name: "Features", target: "outcomes", icon: TrendingUp },
+	{ name: "How It Works", target: "how-it-works", icon: Workflow },
+	{ name: "Locations", target: "hospitality", icon: MapPin },
+	{ name: "Demo", target: "app-anatomy", icon: Smartphone },
+	{ name: "Launch", target: "launch-playbook", icon: Rocket },
+	{ name: "FAQ", target: "faq", icon: HelpCircle },
+	{ name: "Contact", target: "contact", icon: Mail },
 ];
 
 interface HeaderProps {
@@ -16,13 +33,6 @@ interface HeaderProps {
 }
 
 const Header = ({ onScrollToSection }: HeaderProps) => {
-	const [menuOpen, setMenuOpen] = useState(false); // State to control mobile menu visibility
-
-	// Mobile: lock scroll when menu open
-	useEffect(() => {
-		document.body.style.overflow = menuOpen ? "hidden" : "";
-	}, [menuOpen]);
-
        // Transparency logic based on page position
        const [isAtTop, setIsAtTop] = useState(true);
        useEffect(() => {
@@ -39,8 +49,8 @@ const Header = ({ onScrollToSection }: HeaderProps) => {
 			       ${isAtTop ? "bg-transparent" : "bg-white/90 backdrop-blur-lg border-b border-gray-200/80 shadow-sm"}`}
 	       >
 		       {/* شعار واسم الموقع */}
-		       <div className="flex items-center gap-2">
-			       <img src="/ClubGrubIcon.webp" alt="Logo" className="w-10 h-10 rounded-full border-2 border-white/20" />
+		       <div className="flex items-center gap-2 cursor-pointer" onClick={() => onScrollToSection('hero')}>
+			       <img src="/appicon.webp" alt="Logo" className="w-10 h-10 rounded-full border-2 border-white/20" />
 			       <span className={`text-xl font-bold select-none transition-colors ${isAtTop ? 'text-white' : 'text-text-primary'}`}>ClubGrub</span>
 		       </div>
 
@@ -59,11 +69,47 @@ const Header = ({ onScrollToSection }: HeaderProps) => {
 
 		       {/* CTA Button */}
 		       <button
-			       onClick={() => onScrollToSection("contact")}
-			       className={`${isAtTop ? 'btn-secondary' : 'btn-primary'} px-5 py-2`}
+					onClick={() => onScrollToSection("contact")}
+					className={`hidden md:block ${isAtTop ? 'btn-secondary' : 'btn-primary'} px-5 py-2`}
 		       >
 			       Book a Demo
 		       </button>
+
+				{/* Mobile Dropdown Menu */}
+				<div className="md:hidden">
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<button
+								className={`z-50 transition-colors ${!isAtTop ? 'text-text-primary' : 'text-white'}`}
+								aria-label="Toggle menu"
+							>
+								<Menu size={28} />
+							</button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent 
+							align="end"
+							sideOffset={20}
+							alignOffset={-23}
+							className="w-[50vw] border-border/20 bg-background/95 backdrop-blur-lg shadow-xl animate-in slide-in-from-top-4 fade-in-25"
+						>
+							{navLinks.map((link) => (
+								<DropdownMenuItem key={link.name} onClick={() => onScrollToSection(link.target)} className="text-base py-2.5 focus:bg-white/10">
+									<link.icon className="w-4 h-4 mr-3 text-muted-foreground" />
+									<span>{link.name}</span>
+								</DropdownMenuItem>
+							))}
+							<DropdownMenuSeparator />
+							<DropdownMenuItem
+                                onClick={() => onScrollToSection("contact")}
+                                className="text-base font-semibold text-club-gold focus:text-club-gold focus:bg-club-gold/10 py-3 rounded-md transition-all
+                                           hover:shadow-lg hover:shadow-club-gold/20 hover:-translate-y-0.5"
+                            >
+								<Calendar className="w-4 h-4 mr-3" />
+								<span>Book a Demo</span>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+				</div>
 	       </header>
        );
 };
