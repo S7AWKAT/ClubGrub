@@ -31,7 +31,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
 
     const targetRef = useRef(null);
     const stickyRef = useRef(null);
-    const isInView = useInView(stickyRef, { once: true, amount: 'all' });
+    const isInView = useInView(stickyRef, { once: true, amount: 0.8 });
 
     const { scrollYProgress } = useScroll({ 
         target: targetRef
