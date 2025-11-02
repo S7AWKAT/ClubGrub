@@ -14,44 +14,9 @@ const Index = () => {
   const [isProgrammaticScrollActive, setIsProgrammaticScrollActive] = useState(false);
 
   const handleHeaderScroll = (id: string) => {
-    setIsProgrammaticScrollActive(true);
-
-    const APP_ANATOMY_ID = "app-anatomy";
-    const SECTION_AFTER_APP_ANATOMY_ID = "launch-playbook";
-
-    const appAnatomyElement = document.getElementById(APP_ANATOMY_ID);
     const targetElement = document.getElementById(id);
 
-    if (appAnatomyElement && targetElement) {
-        const appAnatomyTop = appAnatomyElement.offsetTop;
-        const appAnatomyBottom = appAnatomyTop + appAnatomyElement.offsetHeight;
-        const currentScrollY = window.scrollY;
-
-        const isCurrentlyInAppAnatomy = currentScrollY >= appAnatomyTop && currentScrollY < appAnatomyBottom;
-        const isTargetBeforeAppAnatomy = targetElement.offsetTop < appAnatomyTop;
-
-        let finalTargetElement = targetElement;
-
-        if (isCurrentlyInAppAnatomy && isTargetBeforeAppAnatomy) {
-            finalTargetElement = document.getElementById(SECTION_AFTER_APP_ANATOMY_ID);
-        }
-
-        if (finalTargetElement) {
-            const headerElement = document.querySelector('header');
-            if (headerElement) {
-                const headerHeight = headerElement.offsetHeight;
-                let targetPosition = finalTargetElement.offsetTop - headerHeight;
-                if (id === 'app-anatomy') {
-                    targetPosition += 50;
-                }
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    } else if (targetElement) {
+    if (targetElement) {
         const headerElement = document.querySelector('header');
         if (headerElement) {
             const headerHeight = headerElement.offsetHeight;
@@ -66,10 +31,6 @@ const Index = () => {
             });
         }
     }
-
-    setTimeout(() => {
-      setIsProgrammaticScrollActive(false);
-    }, 1000); // Adjust delay as needed for smooth scroll duration
   };
 
   return (
