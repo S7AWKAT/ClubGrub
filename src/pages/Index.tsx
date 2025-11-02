@@ -58,6 +58,9 @@ const Index = () => {
       
       {/* Operator Outcomes */}
       <OperatorOutcomes />
+
+      {/* Social Proof */}
+      <SocialProof />
       
       {/* How It Works */}
       <HowItWorks />
@@ -72,9 +75,6 @@ const Index = () => {
       <div id="next-section">
         <LaunchPlaybook />
       </div>
-      
-      {/* Social Proof */}
-      <SocialProof />
       
       {/* FAQ */}
       <FAQ />
