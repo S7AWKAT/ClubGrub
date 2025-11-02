@@ -145,7 +145,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                 <AnimatePresence>
                     {hasBeenInView && showIntro ? (
                         <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute z-20 w-full h-full flex items-center justify-center bg-background pointer-events-none">
-                            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[60vh] w-[30vh] sm:h-[80vh] sm:w-[40vh] mx-auto bg-black border-[10px] border-black rounded-[70px] overflow-hidden shadow-2xl">
+                            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[60vh] w-[30vh] sm:h-[80vh] sm:w-[40vh] mx-auto bg-black border-[10px] border-black rounded-[70px] overflow-hidden sm:shadow-2xl transform-gpu">
                                 {/* Dynamic Island - now with motion */}
                                 <motion.div
                                     initial={{ width: "5.5rem", height: "1.65rem" }}

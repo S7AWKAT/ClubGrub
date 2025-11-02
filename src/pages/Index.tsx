@@ -14,6 +14,8 @@ const Index = () => {
   const [isProgrammaticScrollActive, setIsProgrammaticScrollActive] = useState(false);
 
   const handleHeaderScroll = (id: string) => {
+    setIsProgrammaticScrollActive(true);
+
     const targetElement = document.getElementById(id);
 
     if (targetElement) {
@@ -31,6 +33,10 @@ const Index = () => {
             });
         }
     }
+
+    setTimeout(() => {
+      setIsProgrammaticScrollActive(false);
+    }, 1000); // Adjust delay as needed for smooth scroll duration
   };
 
   return (
