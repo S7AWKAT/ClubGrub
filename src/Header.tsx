@@ -29,10 +29,21 @@ const navLinks = [
 ];
 
 interface HeaderProps {
-    onScrollToSection: (id: string) => void;
+	onScrollToSection: (id: string) => void;
 }
 
 const Header = ({ onScrollToSection }: HeaderProps) => {
+	const handleScrollWithOffset = (id: string) => {
+		const element = document.getElementById(id);
+		if (element) {
+			const headerHeight = 80; // Approximate height of the sticky header
+			const additionalOffset = -50; // The extra space below the header
+			const elementPosition = element.getBoundingClientRect().top;
+			const offsetPosition = elementPosition + window.pageYOffset - headerHeight - additionalOffset;
+
+			window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+		}
+	};
        // Transparency logic based on page position
        const [isAtTop, setIsAtTop] = useState(true);
        useEffect(() => {
@@ -58,8 +69,7 @@ const Header = ({ onScrollToSection }: HeaderProps) => {
 		       <nav className="hidden md:flex gap-6">
 					{navLinks.map((link) => (
 						<button 
-							key={link.name}
-							onClick={() => onScrollToSection(link.target)} 
+							key={link.name} onClick={() => handleScrollWithOffset(link.target)}
 							className={`text-base font-medium transition-colors ${isAtTop ? 'text-white hover:text-club-gold' : 'text-text-secondary hover:text-club-gold'}`}
 						>
 							{link.name}
@@ -69,7 +79,7 @@ const Header = ({ onScrollToSection }: HeaderProps) => {
 
 		       {/* CTA Button */}
 		       <button
-					onClick={() => onScrollToSection("contact")}
+					onClick={() => handleScrollWithOffset("contact")}
 					className={`hidden md:block ${isAtTop ? 'btn-secondary' : 'btn-primary'} px-5 py-2`}
 		       >
 			       Book a Demo
@@ -93,14 +103,14 @@ const Header = ({ onScrollToSection }: HeaderProps) => {
 							className="w-[50vw] border-border/20 bg-background/95 backdrop-blur-lg shadow-xl animate-in slide-in-from-top-4 fade-in-25"
 						>
 							{navLinks.map((link) => (
-								<DropdownMenuItem key={link.name} onClick={() => onScrollToSection(link.target)} className="text-base py-2.5 focus:bg-white/10">
+								<DropdownMenuItem key={link.name} onClick={() => handleScrollWithOffset(link.target)} className="text-base py-2.5 focus:bg-white/10">
 									<link.icon className="w-4 h-4 mr-3 text-muted-foreground" />
 									<span>{link.name}</span>
 								</DropdownMenuItem>
 							))}
 							<DropdownMenuSeparator />
 							<DropdownMenuItem
-                                onClick={() => onScrollToSection("contact")}
+                                onClick={() => handleScrollWithOffset("contact")}
                                 className="text-base font-semibold text-club-gold focus:text-club-gold focus:bg-club-gold/10 py-3 rounded-md transition-all
                                            hover:shadow-lg hover:shadow-club-gold/20 hover:-translate-y-0.5"
                             >
