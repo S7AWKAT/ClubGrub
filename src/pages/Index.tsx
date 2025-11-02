@@ -37,10 +37,28 @@ const Index = () => {
         }
 
         if (finalTargetElement) {
-            finalTargetElement.scrollIntoView({ behavior: "smooth" });
+            const headerElement = document.querySelector('header');
+            if (headerElement) {
+                const headerHeight = headerElement.offsetHeight;
+                const targetPosition = finalTargetElement.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
     } else if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
+        const headerElement = document.querySelector('header');
+        if (headerElement) {
+            const headerHeight = headerElement.offsetHeight;
+            const targetPosition = targetElement.offsetTop - headerHeight;
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
     }
 
     setTimeout(() => {
