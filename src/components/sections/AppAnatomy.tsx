@@ -131,7 +131,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
 
     return (
         <section id={id} ref={targetRef} className="relative h-[500vh] bg-background text-text-primary">
-            <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
+            <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-24">
                 <AnimatePresence>
                     {hasBeenInView && showIntro ? (
                         <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute z-20 w-full h-full flex items-center justify-center bg-background pointer-events-none">
@@ -167,7 +167,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                             ))}
                         </div>
 
-                        <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[600px] w-[300px] mx-auto bg-black border-[10px] border-black rounded-[50px] overflow-hidden shadow-2xl">
+                        <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[450px] w-[225px] md:h-[600px] md:w-[300px] mx-auto bg-black border-[10px] border-black rounded-[50px] overflow-hidden shadow-2xl">
                             {/* Dynamic Island */}
                             <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[5.5rem] h-[1.65rem] bg-black rounded-full z-20 flex items-center justify-end pr-3">
                                 <div className="flex items-center gap-1.5">
