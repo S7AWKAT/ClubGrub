@@ -17,35 +17,37 @@ const features = [
     { title: "Push notifications", description: "Push notifications notify members.", image: "/assets/DemoApp/Your mobile order app.png" },
 ];
 
-export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; isExternalScrolling?: boolean }) => {
+import { useIsMobile } from "@/hooks/use-mobile";
 
+
+
+export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; isExternalScrolling?: boolean }) => {
+    const isMobile = useIsMobile();
     const navigate = useNavigate();
     const [showIntro, setShowIntro] = useState(true);
     const [isScrollActive, setIsScrollActive] = useState(false);
     const [hasBeenInView, setHasBeenInView] = useState(false);
-    const [manualIndex, setManualIndex] = useState(0); // New state for manual control
-    const [isManualControl, setIsManualControl] = useState(false); // New state to indicate manual control
-    const [activeSection, setActiveSection] = useState<string | null>(null);
-    const [isProgrammaticScrolling, setIsProgrammaticScrolling] = useState(false);
+    const [isManualControl, setIsManualControl] = useState(false);
 
-    const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-    const isManualControlRef = useRef(isManualControl);
-    useEffect(() => {
-        isManualControlRef.current = isManualControl;
-    }, [isManualControl]);
     const targetRef = useRef(null);
-    const isInView = useInView(targetRef, { once: true });
+    const stickyRef = useRef(null);
+    const isInView = useInView(stickyRef, { once: true, amount: 'all' });
 
     const { scrollYProgress } = useScroll({ 
         target: targetRef
     });
 
-    const featureIndex = useTransform(scrollYProgress, [0, 1], isScrollActive ? [0, features.length - 1] : [0, 0]);
+    const featureIndex = useTransform(scrollYProgress, [0, 1], [0, features.length - 1]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const currentFeatureMotionIndex = useMotionValue(0); // New MotionValue for controlling the displayed feature
+    const currentFeatureMotionIndex = useMotionValue(0);
 
-    const activeIndex = useTransform(featureIndex, (latest) => Math.round(latest));
+    const activeIndex = useTransform(featureIndex, (latest) => {
+        if (isScrollActive) {
+            return Math.round(latest);
+        }
+        return 0;
+    });
 
     useMotionValueEvent(activeIndex, "change", (latest) => {
         if (!isManualControl && !isExternalScrolling) {
@@ -58,40 +60,29 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
     });
 
     useEffect(() => {
-        let scrollTimeout;
-        const handleScroll = () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                if (isManualControlRef.current) {
-                    setIsManualControl(false); // Re-enable scroll-driven updates
-                }
-            }, 100); // Further reduced debounce for even faster response
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            clearTimeout(scrollTimeout);
-        };
-    }, []); // Removed isManualControl from dependency array
-
-    const x = useTransform(currentFeatureMotionIndex, (latest) => `-${latest * 100}%`);
-
-    useEffect(() => {
         if (isInView) {
             setHasBeenInView(true);
+            if (!isMobile) {
+                document.body.style.overflow = 'hidden';
+            }
             const timer = setTimeout(() => {
                 setShowIntro(false);
                 setIsScrollActive(true);
+                currentFeatureMotionIndex.set(0);
+                if (!isMobile) {
+                    document.body.style.overflow = '';
+                }
             }, 2000);
-            return () => clearTimeout(timer);
+            return () => {
+                clearTimeout(timer);
+                if (!isMobile) {
+                    document.body.style.overflow = '';
+                }
+            };
         }
-    }, [isInView]);
+    }, [isInView, currentFeatureMotionIndex, isMobile]);
 
-
-
-
+    const x = useTransform(currentFeatureMotionIndex, (latest) => `-${latest * 100}%`);
 
     const handleFeatureClick = useCallback((index) => {
         setIsManualControl(true);
@@ -105,17 +96,14 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
             const targetScrollYProgress = features.length > 1 ? index / (features.length - 1) : 0;
             const targetScrollPosition = sectionOffsetTop + (targetScrollYProgress * scrollableHeight);
 
-            // Stop any existing scroll animation
             animate(window.scrollY, targetScrollPosition, {
-                type: "tween", // Changed to tween for more direct control
-                duration: 0.4, // Made animation even faster
+                type: "tween",
+                duration: 0.4,
                 ease: "easeOut",
                 onUpdate: (value) => {
                     window.scrollTo(0, value);
                 },
                 onComplete: () => {
-                    // After the animation completes, we can allow scroll-based updates again.
-                    // A small delay helps prevent immediate scroll events from interfering.
                     setIsManualControl(false);
                 }
             });
@@ -141,12 +129,11 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
 
     return (
         <section id={id} ref={targetRef} className="relative h-[500vh] bg-background text-text-primary">
-            <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
+            <div ref={stickyRef} className="sticky top-0 h-screen flex flex-col items-center justify-center">
                 <AnimatePresence>
                     {hasBeenInView && showIntro ? (
                         <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute z-20 w-full h-full flex items-center justify-center bg-background pointer-events-none">
-                            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[60vh] w-[30vh] sm:h-[80vh] sm:w-[40vh] mx-auto bg-black border-[10px] border-black rounded-[70px] overflow-hidden sm:shadow-2xl transform-gpu">
-                                {/* Dynamic Island - now with motion */}
+                            <motion.div initial={!isMobile ? { scale: 0.8, opacity: 0 } : {}} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[60vh] w-[30vh] sm:h-[80vh] sm:w-[40vh] mx-auto bg-black border-[10px] border-black rounded-[70px] overflow-hidden sm:shadow-2xl transform-gpu">
                                 <motion.div
                                     initial={{ width: "5.5rem", height: "1.65rem" }}
                                     className="absolute top-4 left-1/2 -translate-x-1/2 bg-black rounded-full z-20 flex items-center justify-end pr-3">
@@ -158,13 +145,13 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                         </div>
                                     </div>
                                 </motion.div>
-                                <motion.img src="/ClubGrubIcon.webp" alt="ClubGrub Logo" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }} className="absolute inset-0 m-auto w-24 h-24" />
+                                <motion.img src="/ClubGrubIcon.webp" alt="ClubGrub Logo" initial={!isMobile ? { scale: 0.5, opacity: 0 } : {}} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }} className="absolute inset-0 m-auto w-24 h-24" />
                             </motion.div>
                         </motion.div>
                     ) : null}
                 </AnimatePresence>
 
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: showIntro ? 0 : 1 }} transition={{ duration: 0.5 }} className="pt-8 md:pt-0">
+                <motion.div initial={!isMobile ? { opacity: 0 } : {}} animate={{ opacity: showIntro ? 0 : 1 }} transition={{ duration: 0.5 }} className="pt-8 md:pt-0">
                     <h2 className="heading-section text-text-primary mb-6 text-center">
                         <span className="text-gradient">#1 Mobile Ordering</span> <br />
                         Technology for Clubs
@@ -179,8 +166,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
 
                         <div className="flex items-center justify-center gap-2">
                             <button onClick={handlePrev} className="p-2 rounded-full bg-muted hover:bg-muted/80 md:hidden"><ChevronLeft className="w-6 h-6" /></button>
-                            <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[450px] w-[225px] md:h-[600px] md:w-[300px] mx-auto bg-black border-[10px] border-black rounded-[50px] overflow-hidden shadow-2xl">
-                                {/* Dynamic Island */}
+                            <motion.div initial={!isMobile ? { scale: 0.8, y: 100, opacity: 0 } : {}} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[450px] w-[225px] md:h-[600px] md:w-[300px] mx-auto bg-black border-[10px] border-black rounded-[50px] overflow-hidden shadow-2xl">
                                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[5.5rem] h-[1.65rem] bg-black rounded-full z-20 flex items-center justify-end pr-3">
                                     <div className="flex items-center gap-1.5">
                                         <div className="w-1 h-1 bg-green-500 rounded-full"></div>
@@ -190,13 +176,11 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                                         </div>
                                     </div>
                                 </div>
-                                {/* Screen Content */}
                                 <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
                                     {features.map((feature, index) => (
                                         <img key={index} src={feature.image} alt={feature.title} className="w-full h-full object-cover flex-shrink-0" />
                                     ))}
                                 </motion.div>
-                                {/* Home Bar */}
                                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-20"></div>
                             </motion.div>
                             <button onClick={handleNext} className="p-2 rounded-full bg-muted hover:bg-muted/80 md:hidden"><ChevronRight className="w-6 h-6" /></button>
