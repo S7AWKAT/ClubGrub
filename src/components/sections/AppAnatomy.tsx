@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent, useMotionValue, animate } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const features = [
@@ -129,13 +129,23 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
         }
     };
 
+    const handlePrev = () => {
+        const newIndex = Math.max(0, currentIndex - 1);
+        handleFeatureClick(newIndex);
+    };
+
+    const handleNext = () => {
+        const newIndex = Math.min(features.length - 1, currentIndex + 1);
+        handleFeatureClick(newIndex);
+    };
+
     return (
         <section id={id} ref={targetRef} className="relative h-[500vh] bg-background text-text-primary">
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
                 <AnimatePresence>
                     {hasBeenInView && showIntro ? (
                         <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute z-20 w-full h-full flex items-center justify-center bg-background pointer-events-none">
-                            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[80vh] w-[40vh] mx-auto bg-black border-[10px] border-black rounded-[70px] overflow-hidden shadow-2xl">
+                            <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} className="relative h-[60vh] w-[30vh] sm:h-[80vh] sm:w-[40vh] mx-auto bg-black border-[10px] border-black rounded-[70px] overflow-hidden shadow-2xl">
                                 {/* Dynamic Island - now with motion */}
                                 <motion.div
                                     initial={{ width: "5.5rem", height: "1.65rem" }}
@@ -154,7 +164,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                     ) : null}
                 </AnimatePresence>
 
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: showIntro ? 0 : 1 }} transition={{ duration: 0.5 }} className="pt-16 md:pt-0">
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: showIntro ? 0 : 1 }} transition={{ duration: 0.5 }} className="pt-8 md:pt-0">
                     <h2 className="heading-section text-text-primary mb-6 text-center">
                         <span className="text-gradient">#1 Mobile Ordering</span> <br />
                         Technology for Clubs
@@ -167,26 +177,30 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
                             ))}
                         </div>
 
-                        <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[450px] w-[225px] md:h-[600px] md:w-[300px] mx-auto bg-black border-[10px] border-black rounded-[50px] overflow-hidden shadow-2xl">
-                            {/* Dynamic Island */}
-                            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[5.5rem] h-[1.65rem] bg-black rounded-full z-20 flex items-center justify-end pr-3">
-                                <div className="flex items-center gap-1.5">
-                                    <div className="w-1 h-1 bg-green-500 rounded-full"></div>
-                                    <div className="relative w-2.5 h-2.5 bg-[#110f26] rounded-full overflow-hidden">
-                                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/10 rounded-full blur-sm"></div>
-                                        <div className="absolute top-[1px] right-[1px] w-0.5 h-0.5 bg-white/50 rounded-full"></div>
+                        <div className="flex items-center justify-center gap-2">
+                            <button onClick={handlePrev} className="p-2 rounded-full bg-muted hover:bg-muted/80 md:hidden"><ChevronLeft className="w-6 h-6" /></button>
+                            <motion.div initial={{ scale: 0.8, y: 100, opacity: 0 }} animate={{ scale: 1, y: 0, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative h-[450px] w-[225px] md:h-[600px] md:w-[300px] mx-auto bg-black border-[10px] border-black rounded-[50px] overflow-hidden shadow-2xl">
+                                {/* Dynamic Island */}
+                                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[5.5rem] h-[1.65rem] bg-black rounded-full z-20 flex items-center justify-end pr-3">
+                                    <div className="flex items-center gap-1.5">
+                                        <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                                        <div className="relative w-2.5 h-2.5 bg-[#110f26] rounded-full overflow-hidden">
+                                            <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/10 rounded-full blur-sm"></div>
+                                            <div className="absolute top-[1px] right-[1px] w-0.5 h-0.5 bg-white/50 rounded-full"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {/* Screen Content */}
-                            <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
-                                {features.map((feature, index) => (
-                                    <img key={index} src={feature.image} alt={feature.title} className="w-full h-full object-cover flex-shrink-0" />
-                                ))}
+                                {/* Screen Content */}
+                                <motion.div className="w-full h-full flex" style={{ x }} transition={{ ease: "easeOut", duration: 0.5 }}>
+                                    {features.map((feature, index) => (
+                                        <img key={index} src={feature.image} alt={feature.title} className="w-full h-full object-cover flex-shrink-0" />
+                                    ))}
+                                </motion.div>
+                                {/* Home Bar */}
+                                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-20"></div>
                             </motion.div>
-                            {/* Home Bar */}
-                            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-400 rounded-full z-20"></div>
-                        </motion.div>
+                            <button onClick={handleNext} className="p-2 rounded-full bg-muted hover:bg-muted/80 md:hidden"><ChevronRight className="w-6 h-6" /></button>
+                        </div>
 
                         <div className="hidden md:flex flex-col gap-4">
                             {features.slice(5).map((feature, index) => (
