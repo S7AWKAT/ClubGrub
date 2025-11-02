@@ -12,7 +12,7 @@ const features = [
     { title: "Multiple Outlets", description: "When needed, create more than 1 restaurant in your app with different menus.", image: "/assets/DemoApp/multiple outlets.png" },
     { title: "Map-based Delivery", description: "Pinpoint delivery locations on a map.", image: "/assets/DemoApp/Map Delivery Screen.jpg" },
     { title: "Chat Messaging", description: "Communicate with members in real-time without picking up the phone.", image: "/assets/DemoApp/chat messaging.png" },
-    { title: "Push notifications", description: "Push notifications notify members.", image: "/assets/DemoApp/Your mobile order app.png" },
+    { title: "Popular Menu Items", description: "Feature club favorites or weekly specials.", image: "/assets/DemoApp/Popular Menu Items.png" },
 ];
 
 export const AppAnatomy = () => {
