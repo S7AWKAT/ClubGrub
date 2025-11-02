@@ -37,7 +37,7 @@ const Header = ({ onScrollToSection }: HeaderProps) => {
 		const element = document.getElementById(id);
 		if (element) {
 			const headerHeight = 80; // Approximate height of the sticky header
-			const additionalOffset = -50; // The extra space below the header
+			const additionalOffset = -80; // The extra space below the header
 			const elementPosition = element.getBoundingClientRect().top;
 			const offsetPosition = elementPosition + window.pageYOffset - headerHeight - additionalOffset;
 
