@@ -130,7 +130,7 @@ export const AppAnatomy = ({ id, isExternalScrolling = false }: { id?: string; i
     };
 
     return (
-        <section ref={targetRef} className="relative h-[500vh] bg-background text-text-primary">
+        <section id={id} ref={targetRef} className="relative h-[500vh] bg-background text-text-primary">
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
                 <AnimatePresence>
                     {hasBeenInView && showIntro ? (

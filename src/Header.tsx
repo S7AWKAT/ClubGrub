@@ -5,6 +5,7 @@ const navLinks: { name: string; target: string }[] = [
 	{ name: "Features", target: "outcomes" }, // Assuming 'Features' links to 'OperatorOutcomes' section
 	{ name: "How It Works", target: "how-it-works" },
 	{ name: "Locations", target: "hospitality" }, // Assuming 'Locations' links to 'UseCases' section
+	{ name: "Demo", target: "app-anatomy" }, // New link for App Anatomy
 	{ name: "Launch", target: "launch-playbook" }, // Assuming 'Launch' links to 'LaunchPlaybook' section
 	{ name: "FAQ", target: "faq" },
 	{ name: "Contact", target: "contact" },
