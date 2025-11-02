@@ -40,7 +40,7 @@ export const UseCases = () => {
   ];
 
   return (
-    <section id="hospitality" className="py-12 bg-background">
+    <section id="hospitality" className="py-24 bg-background">
       
 
       <div className="container mx-auto px-6">

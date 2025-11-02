@@ -41,7 +41,7 @@ export const LaunchPlaybook = () => {
   ];
 
   return (
-    <section id="launch-playbook" className="py-12 bg-surface">
+    <section id="launch-playbook" className="py-24 bg-surface">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

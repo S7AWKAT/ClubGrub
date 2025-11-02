@@ -13,7 +13,7 @@ export const SocialProof = () => {
   ];
 
   return (
-    <section id="trusted" className="py-12 bg-background">
+    <section id="trusted" className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-4">
           <Badge className="bg-club-gold/10 text-club-gold border-club-gold/20 mb-6">
