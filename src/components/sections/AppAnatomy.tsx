@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -18,6 +18,13 @@ const features = [
 export const AppAnatomy = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const isMobile = useIsMobile();
+
+    useEffect(() => {
+        features.forEach((feature) => {
+            const img = new Image();
+            img.src = feature.image;
+        });
+    }, []);
 
 
     return (
