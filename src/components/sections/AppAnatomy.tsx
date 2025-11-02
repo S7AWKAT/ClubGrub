@@ -3,15 +3,15 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const features = [
-    { title: "Your Mobile Order", description: "Stunning images that drive orders!", image: "/assets/DemoApp/Your mobile order app.png" },
-    { title: "Your Menu", description: "Showcase your culinary offerings.", image: "/assets/DemoApp/your menu.png" },
-    { title: "Saves Favorites", description: "Your app saves favorites items with their modifications for fast re-ordering.", image: "/assets/DemoApp/saves favorites.png" },
-    { title: "Schedule Pickup", description: "When available, you can allow members to schedule their pickup.", image: "/assets/DemoApp/schedule pickup.png" },
-    { title: "Chat Messaging", description: "Communicate with members in real-time without picking up the phone.", image: "/assets/DemoApp/chat messaging.png" },
-    { title: "Order Tracking", description: "Real-time order tracking for members.", image: "/assets/DemoApp/order tracking.png" },
-    { title: "Multiple Outlets", description: "When needed, create more than 1 restaurant in your app with different menus.", image: "/assets/DemoApp/multiple outlets.png" },
-    { title: "Map-based Delivery", description: "Pinpoint delivery locations on a map.", image: "/assets/DemoApp/Map Delivery Screen.jpg" },
-    { title: "Use ClubGrub anywhere", description: "Members can order from anywhere.", image: "/assets/DemoApp/use clubgrub anywhere.png" },
+    { title: "Your Mobile Ordering App", description: "White-label banner and user-friendly design that members love.", image: "/assets/DemoApp/Your mobile order app.png" },
+    { title: "Your menu crafted by our team", description: "Stunning images that drive orders! (or add your own)", image: "/assets/DemoApp/your menu.png" },
+    { title: "Saves Member Favorites", description: "Your app saves favorites items with their modifications for fast re-orders.", image: "/assets/DemoApp/saves favorites.png" },
+    { title: "Schedule Pickup or Dine-in time", description: "When available, you can allow members to schedule their pickup or dine-in times.", image: "/assets/DemoApp/schedule pickup.png" },
+    { title: "Chat messaging", description: "Communicate with members in real-time without picking up the phone", image: "/assets/DemoApp/chat messaging.png" },
+    { title: "Order tracking", description: "Push notifications notify member when order is out for delivery or ready for pickup", image: "/assets/DemoApp/order tracking.png" },
+    { title: "Offer multiple outlets", description: "When needed, create more than 1 restaurant in your app with different menus.", image: "/assets/DemoApp/multiple outlets.png" },
+    { title: "GPS Delivery", description: "Real-time location identification to delivery anywhere.", image: "/assets/DemoApp/Map Delivery Screen.jpg" },
+    { title: "Use ClubGrub anywhere", description: "Golf Course, Poolside, Courts, ToGo or Home Delivery", image: "/assets/DemoApp/use clubgrub anywhere.png" },
     { title: "Popular Menu Items", description: "Feature club favorites or weekly specials.", image: "/assets/DemoApp/Popular Menu Items.png" },
 ];
 
