@@ -5,6 +5,7 @@ import { scrollToSection } from "@/lib/utils"; // Corrected import path
 const navLinks = [
 	{ name: "Home", target: "hero" },
 	{ name: "How It Works", target: "how-it-works" },
+	{ name: "Demo", target: "app-anatomy" },
 	{ name: "Deliver", target: "hospitality" },
 	{ name: "Trusted", target: "trusted" },
 	{ name: "FAQ", target: "faq" },

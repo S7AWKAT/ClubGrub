@@ -28,7 +28,7 @@ export const AppAnatomy = () => {
 
 
     return (
-        <section className="relative h-screen bg-background text-text-primary flex flex-col items-center justify-center">
+        <section id="app-anatomy" className="relative h-screen bg-background text-text-primary flex flex-col items-center justify-center">
             <div className="pt-8 md:pt-0">
                 <h2 className="heading-section text-text-primary mb-6 text-center">
                     <span className="text-gradient">#1 Mobile Ordering</span> <br />
