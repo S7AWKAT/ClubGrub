@@ -24,7 +24,7 @@ const Index = () => {
             const headerHeight = headerElement.offsetHeight;
             let targetPosition = targetElement.offsetTop - headerHeight;
             if (id === 'app-anatomy') {
-                targetPosition += 50;
+                targetPosition += 15;
             }
 
             window.scrollTo({
