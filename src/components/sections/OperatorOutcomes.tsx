@@ -50,7 +50,7 @@ export const OperatorOutcomes = () => {
   if (loading) return null;
 
   return (
-    <section id="outcomes" className="py-24 bg-surface">
+    <section id="outcomes" className="py-12 bg-surface">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
