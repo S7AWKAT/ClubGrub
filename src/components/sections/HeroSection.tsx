@@ -55,7 +55,7 @@ export const HeroSection = () => {
                 const headerEl = document.querySelector("header");
                 const headerHeight = headerEl ? headerEl.clientHeight : 0;
                 // scroll 30px higher than the computed position
-                const target = el.offsetTop - headerHeight - 30;
+                const target = el.offsetTop - headerHeight - 15;
                 window.scrollTo({ top: target, behavior: "smooth" });
               }
             }}
