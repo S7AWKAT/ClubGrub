@@ -48,7 +48,7 @@ export const HeroSection = () => {
             {data.ctaPrimary}
             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button onClick={() => scrollToSection("contact")} variant="outline" className="btn-outline text-lg px-8 py-4 w-48 justify-center">
+          <Button onClick={() => scrollToSection("app-anatomy")} variant="outline" className="btn-outline text-lg px-8 py-4 w-48 justify-center">
             {data.ctaSecondary}
           </Button>
         </div>
