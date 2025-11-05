@@ -10,12 +10,20 @@ import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import useSmartlookPageViews from "@/hooks/useSmartlookPageViews";
 import { Routes, Route } from "react-router-dom";
+import { useScrollDepthTracking, useTimeSpentTracking, useMouseTrackingHook } from "@/hooks/useAnalyticsTracking";
+import { useExitIntentTracking } from "@/hooks/useExitIntent";
 
 const queryClient = new QueryClient();
 
 function RouterWithTracking() {
   // This hook will no-op if Smartlook isn't loaded; it requires Router context
   useSmartlookPageViews();
+  
+  // Add engagement tracking
+  useScrollDepthTracking();
+  useTimeSpentTracking();
+  useMouseTrackingHook();
+  useExitIntentTracking();
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
