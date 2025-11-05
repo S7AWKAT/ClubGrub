@@ -80,6 +80,8 @@ export const AppAnatomy = () => {
 const FeatureButton = ({ title, description, isActive, onClick }) => (
     <button
         onClick={onClick}
+        onMouseEnter={onClick}
+        onFocus={onClick}
         className={`text-left p-4 rounded-lg transition-all duration-300 w-full ${isActive ? "bg-primary text-primary-foreground shadow-lg" : "bg-muted hover:bg-muted/80"}`}>
         <h3 className="font-bold text-lg">{title}</h3>
         <p className="text-sm text-muted-foreground">{description}</p>
