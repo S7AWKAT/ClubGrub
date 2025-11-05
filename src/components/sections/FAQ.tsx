@@ -93,7 +93,7 @@ export const FAQ = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
+            <button onClick={() => window.open("https://calendly.com/clubgrub", "_blank")} className="btn-hero px-8 py-4">
               Schedule a Call
             </button>
             <button onClick={() => scrollToSection("contact")} className="btn-outline px-8 py-4">
