@@ -48,7 +48,20 @@ export const HeroSection = () => {
             {data.ctaPrimary}
             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button onClick={() => scrollToSection("app-anatomy")} variant="outline" className="btn-outline text-lg px-8 py-4 w-48 justify-center">
+          <Button
+            onClick={() => {
+              const el = document.getElementById("app-anatomy");
+              if (el) {
+                const headerEl = document.querySelector("header");
+                const headerHeight = headerEl ? headerEl.clientHeight : 0;
+                // scroll 30px higher than the computed position
+                const target = el.offsetTop - headerHeight - 30;
+                window.scrollTo({ top: target, behavior: "smooth" });
+              }
+            }}
+            variant="outline"
+            className="btn-outline text-lg px-8 py-4 w-48 justify-center"
+          >
             {data.ctaSecondary}
           </Button>
         </div>
