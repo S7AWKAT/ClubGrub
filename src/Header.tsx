@@ -35,14 +35,19 @@ interface HeaderProps {
 const Header = ({ onScrollToSection }: HeaderProps) => {
 	const handleScrollWithOffset = (id: string) => {
 		const element = document.getElementById(id);
-		if (element) {
-			const headerHeight = 80; // Approximate height of the sticky header
-			const additionalOffset = -80; // The extra space below the header
-			const elementPosition = element.getBoundingClientRect().top;
-			const offsetPosition = elementPosition + window.pageYOffset - headerHeight - additionalOffset;
+		if (!element) return;
 
-			window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+		// Compute base offset so the element sits below the header
+		const headerHeight = 30; // approximate sticky header height
+		const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+		let targetPosition = elementTop - headerHeight;
+
+		// Special-case: when jumping to the demo anatomy, move the final position 25px higher
+		if (id === "app-anatomy") {
+			targetPosition -= 25;
 		}
+
+		window.scrollTo({ top: targetPosition, behavior: "smooth" });
 	};
        // Transparency logic based on page position
        const [isAtTop, setIsAtTop] = useState(true);
