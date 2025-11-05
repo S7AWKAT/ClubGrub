@@ -1,13 +1,42 @@
+import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { MapPin, Home, Waves, Utensils, ArrowRight } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 import golfImage from "@/assets/golf-course-orderingnew.jpg";
 import halfwayHouseImage from "@/assets/halfway-houses.webp";
 import poolImage from "@/assets/pool-dining.webp";
 import togoImage from "@/assets/togo.webp";
 
 export const UseCases = () => {
+  // Track section and use case visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('data-use-case');
+        if (entry.isIntersecting) {
+          if (id) {
+            analytics.track('use_case_viewed', { useCase: id });
+          } else {
+            analytics.sectionVisible('hospitality');
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    // Observe main section
+    const section = document.getElementById('hospitality');
+    if (section) observer.observe(section);
+
+    // Observe each use case card
+    document.querySelectorAll('[data-use-case]').forEach(el => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const useCases = [
     {
       icon: MapPin,
@@ -62,6 +91,7 @@ export const UseCases = () => {
           {useCases.map((useCase, index) => (
             <Card
               key={useCase.title}
+              data-use-case={useCase.title.toLowerCase().replace(/\s+/g, '-')}
               className="card-feature overflow-hidden group animate-fade-up"
               style={{ animationDelay: `${index * 150}ms` }}
             >

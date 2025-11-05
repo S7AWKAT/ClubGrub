@@ -1,13 +1,42 @@
+import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { Smartphone, Tablet, Truck, CheckCircle, Settings } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 import step1Image from "@/assets/how-it-works-step-1new.jpg";
 import step2Image from "@/assets/how-it-works-step-2new.jpg";
 import step3Image from "@/assets/how-it-works-step-3new.jpg";
 
 export const HowItWorks = () => {
+  // Track section and step visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('data-step');
+        if (entry.isIntersecting) {
+          if (id) {
+            analytics.stepViewed(id);
+          } else {
+            analytics.sectionVisible('how-it-works');
+          }
+        }
+      });
+    }, { threshold: 0.5 }); // 50% visibility threshold
+
+    // Observe main section
+    const section = document.getElementById('how-it-works');
+    if (section) observer.observe(section);
+
+    // Observe each step
+    document.querySelectorAll('[data-step]').forEach(el => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const steps = [
     {
       number: "01",
@@ -56,6 +85,7 @@ export const HowItWorks = () => {
           {steps.map((step, index) => (
             <div
               key={step.number}
+              data-step={`step-${step.number}`}
               className={`flex flex-col lg:flex-row items-center gap-12 ${
                 index % 2 === 1 ? "lg:flex-row-reverse" : ""
               }`}

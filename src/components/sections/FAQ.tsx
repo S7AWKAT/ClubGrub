@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
+import { analytics } from "@/lib/analytics";
 
 export const FAQ = () => {
   const faqs = [
@@ -61,7 +62,17 @@ export const FAQ = () => {
 
         {/* FAQ Accordion */}
         <div className="animate-fade-up">
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion 
+            type="single" 
+            collapsible 
+            className="space-y-4"
+            onValueChange={(value) => {
+              const idx = value ? parseInt(value.split('-')[1]) : -1;
+              if (idx >= 0) {
+                analytics.faqItemOpened(faqs[idx].question);
+              }
+            }}
+          >
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
@@ -93,10 +104,22 @@ export const FAQ = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => window.open("https://calendly.com/clubgrub", "_blank")} className="btn-hero px-8 py-4">
+            <button 
+              onClick={() => {
+                analytics.ctaClicked('Schedule a Call', 'calendly');
+                window.open("https://calendly.com/clubgrub", "_blank");
+              }} 
+              className="btn-hero px-8 py-4"
+            >
               Schedule a Call
             </button>
-            <button onClick={() => scrollToSection("contact")} className="btn-outline px-8 py-4">
+            <button 
+              onClick={() => {
+                analytics.ctaClicked('Email Our Team', 'contact');
+                scrollToSection("contact");
+              }} 
+              className="btn-outline px-8 py-4"
+            >
               Email Our Team
             </button>
           </div>

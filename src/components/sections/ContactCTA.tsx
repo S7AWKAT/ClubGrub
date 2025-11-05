@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, CheckCircle, ArrowRight, Loader2, MailCheck } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 export const ContactCTA = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +13,35 @@ export const ContactCTA = () => {
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
+  // Track when contact section becomes visible
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          analytics.sectionVisible('contact');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const element = document.getElementById('contact');
+    if (element) observer.observe(element);
+    
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const field = e.target.name;
+    setFormData({ ...formData, [field]: e.target.value });
+    
+    // Track first interaction with form
+    if (!formData.firstName && !formData.lastName && !formData.email) {
+      analytics.contactFormStarted();
+    }
+    
+    // Track field interactions
+    analytics.formInteraction('contact', field);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,11 +58,15 @@ export const ContactCTA = () => {
       if (response.ok) {
         setStatus("success");
         setFormData({ firstName: "", lastName: "", email: "", clubName: "", role: "", phone: "", message: "" });
+        analytics.contactFormSubmitted();
+        analytics.demoRequested();
       } else {
         setStatus("error");
+        analytics.contactFormError('network_error');
       }
     } catch (error) {
       setStatus("error");
+      analytics.contactFormError('submit_error');
     }
   };
 
