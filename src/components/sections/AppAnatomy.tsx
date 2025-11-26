@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import useSectionVisible from "@/hooks/useSectionVisible";
 
 const features = [
     { title: "Your Mobile Ordering App", description: "White-label banner and user-friendly design that members love.", image: "/assets/DemoApp/Your mobile order app.png" },
@@ -18,6 +19,8 @@ const features = [
 export const AppAnatomy = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const isMobile = useIsMobile();
+
+    useSectionVisible('app-anatomy');
 
     useEffect(() => {
         features.forEach((feature) => {

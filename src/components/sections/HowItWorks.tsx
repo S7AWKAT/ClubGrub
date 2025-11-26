@@ -185,7 +185,7 @@ export const HowItWorks = () => {
           <p className="body-large text-text-secondary mb-8 max-w-2xl mx-auto">
             Keep your existing setup and accept member billing or card payments.
           </p>
-          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
+          <button onClick={() => { try { (window as any).analytics?.ctaClicked?.('Start Elevating Your Operation','contact','how-it-works'); } catch(e){}; try { analytics.ctaClicked('Start Elevating Your Operation','contact','how-it-works'); } catch(e){}; scrollToSection("contact"); }} className="btn-hero px-8 py-4">
             Start Elevating Your Operation
           </button>
         </div>

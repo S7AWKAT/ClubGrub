@@ -7,8 +7,10 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { analytics } from "@/lib/analytics";
+import useSectionVisible from "@/hooks/useSectionVisible";
 
 export const FAQ = () => {
+  useSectionVisible('faq');
   const faqs = [
     {
       question: "How quickly can we implement ClubGrub?",
@@ -106,7 +108,7 @@ export const FAQ = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               onClick={() => {
-                analytics.ctaClicked('Schedule a Call', 'calendly');
+                analytics.ctaClicked('Schedule a Call', 'calendly', 'faq');
                 window.open("https://calendly.com/clubgrub", "_blank");
               }} 
               className="btn-hero px-8 py-4"
@@ -115,7 +117,7 @@ export const FAQ = () => {
             </button>
             <button 
               onClick={() => {
-                analytics.ctaClicked('Email Our Team', 'contact');
+                analytics.ctaClicked('Email Our Team', 'contact', 'faq');
                 scrollToSection("contact");
               }} 
               className="btn-outline px-8 py-4"

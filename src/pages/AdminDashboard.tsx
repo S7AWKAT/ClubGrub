@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { LogOut, FileEdit, Search } from "lucide-react";
 import { ContentEditor } from "@/components/admin/ContentEditor";
 import { SEOEditor } from "@/components/admin/SEOEditor";
+import AnalyticsPanel from "@/components/admin/AnalyticsPanel";
+import { Activity } from "lucide-react";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ export default function AdminDashboard() {
       const { data: { session } } = await supabase.auth.getSession();
 
       if (!session) {
-        navigate("/admin");
+        navigate("/admin-dev");
         return;
       }
 
@@ -37,14 +39,14 @@ export default function AdminDashboard() {
       if (roleError || !roleData) {
         toast.error("Access denied. Admin privileges required.");
         await supabase.auth.signOut();
-        navigate("/admin");
+        navigate("/admin-dev");
         return;
       }
 
       setUser(session.user);
     } catch (error) {
       console.error("Auth check failed:", error);
-      navigate("/admin");
+      navigate("/admin-dev");
     } finally {
       setLoading(false);
     }
@@ -86,7 +88,7 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <main className="container py-8">
         <Tabs defaultValue="content" className="space-y-6">
-          <TabsList className="grid w-full max-w-md grid-cols-2">
+          <TabsList className="grid w-full max-w-md grid-cols-3">
             <TabsTrigger value="content" className="flex items-center gap-2">
               <FileEdit className="w-4 h-4" />
               Content Editor
@@ -94,6 +96,10 @@ export default function AdminDashboard() {
             <TabsTrigger value="seo" className="flex items-center gap-2">
               <Search className="w-4 h-4" />
               SEO Settings
+            </TabsTrigger>
+            <TabsTrigger value="analytics" className="flex items-center gap-2">
+              <Activity className="w-4 h-4" />
+              Analytics
             </TabsTrigger>
           </TabsList>
 
@@ -103,6 +109,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="seo">
             <SEOEditor />
+          </TabsContent>
+
+          <TabsContent value="analytics">
+            <AnalyticsPanel />
           </TabsContent>
         </Tabs>
       </main>

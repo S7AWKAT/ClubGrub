@@ -57,6 +57,14 @@ export const ContactCTA = () => {
 
       if (response.ok) {
         setStatus("success");
+        const submitted = { ...formData };
+        // keep existing email flow (Formspree) but also persist submission to analytics
+        try {
+          analytics.track('form_submission', { ...submitted, section: 'contact' });
+        } catch (e) {
+          // swallow - analytics should not block UI
+        }
+
         setFormData({ firstName: "", lastName: "", email: "", clubName: "", role: "", phone: "", message: "" });
         analytics.contactFormSubmitted();
         analytics.demoRequested();
@@ -278,7 +286,7 @@ export const ContactCTA = () => {
                 Blog
               </a>
               {false && (
-                <a href="/admin" className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">
+                <a href="/admin-dev" className="text-base font-medium text-white/80 hover:text-club-gold transition-colors">
                   Admin
                 </a>
               )}

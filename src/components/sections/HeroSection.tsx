@@ -3,9 +3,29 @@ import { scrollToSection } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-clubhouse.webp";
 import { usePageContent } from "@/hooks/usePageContent";
+import { analytics } from "@/lib/analytics";
+import useSectionVisible from "@/hooks/useSectionVisible";
 
 export const HeroSection = () => {
   const { content, loading } = usePageContent("hero");
+
+  useSectionVisible('hero');
+
+  // While we're loading remote content, avoid flashing the hardcoded fallback.
+  // Show a lightweight skeleton instead so the page doesn't briefly show old copy.
+  if (loading && !content) {
+    return (
+      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="relative z-10 container mx-auto px-6 text-center text-white">
+          <div className="w-full max-w-3xl mx-auto">
+            <div className="h-12 mb-4 bg-white/10 rounded animate-pulse" />
+            <div className="h-6 mb-2 bg-white/8 rounded animate-pulse" />
+            <div className="h-6 mb-2 bg-white/8 rounded animate-pulse w-3/4" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   // Fallback to default content
   const data = content || {
@@ -44,17 +64,17 @@ export const HeroSection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up [animation-delay:600ms]">
-          <Button onClick={() => scrollToSection("contact")} className="btn-hero group text-lg px-8 py-4 text-white hover:text-white w-48 justify-center">
+          <Button onClick={() => { analytics.ctaClicked(data.ctaPrimary || 'Book a Demo', 'contact', 'hero'); scrollToSection("contact") }} className="btn-hero group text-lg px-8 py-4 text-white hover:text-white w-48 justify-center">
             {data.ctaPrimary}
             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button
             onClick={() => {
+              try { analytics.ctaClicked(data.ctaSecondary || 'See it in action', 'app-anatomy', 'hero'); } catch (e) {}
               const el = document.getElementById("app-anatomy");
               if (el) {
                 const headerEl = document.querySelector("header");
                 const headerHeight = headerEl ? headerEl.clientHeight : 0;
-                // scroll 30px higher than the computed position
                 const target = el.offsetTop - headerHeight - 15;
                 window.scrollTo({ top: target, behavior: "smooth" });
               }

@@ -10,6 +10,7 @@ import {
 	Mail,
 	Calendar,
 } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -72,23 +73,31 @@ const Header = ({ onScrollToSection }: HeaderProps) => {
 
 		       {/* روابط الأقسام */}
 		       <nav className="hidden md:flex gap-6">
-					{navLinks.map((link) => (
-						<button 
-							key={link.name} onClick={() => handleScrollWithOffset(link.target)}
-							className={`text-base font-medium transition-colors ${isAtTop ? 'text-white hover:text-club-gold' : 'text-text-secondary hover:text-club-gold'}`}
-						>
-							{link.name}
-						</button>
-					))}
+									{navLinks.map((link) => (
+										<button 
+											key={link.name}
+											onClick={() => {
+												// Track nav clicks with label + destination
+												try { analytics.ctaClicked(link.name, link.target, 'header'); } catch (e) {}
+												handleScrollWithOffset(link.target);
+											}}
+											className={`text-base font-medium transition-colors ${isAtTop ? 'text-white hover:text-club-gold' : 'text-text-secondary hover:text-club-gold'}`}
+										>
+											{link.name}
+										</button>
+									))}
 		       </nav>
 
 		       {/* CTA Button */}
-		       <button
-					onClick={() => handleScrollWithOffset("contact")}
+			   <button
+					onClick={() => {
+						try { analytics.ctaClicked('Book a Demo', 'contact', 'header'); } catch (e) {}
+						handleScrollWithOffset("contact");
+					}}
 					className={`hidden md:block ${isAtTop ? 'btn-secondary' : 'btn-primary'} px-5 py-2`}
-		       >
-			       Book a Demo
-		       </button>
+			   >
+				   Book a Demo
+			   </button>
 
 				{/* Mobile Dropdown Menu */}
 				<div className="md:hidden">

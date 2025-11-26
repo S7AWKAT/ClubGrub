@@ -34,7 +34,7 @@ export default function AdminAuth() {
       .single();
 
     if (data && !error) {
-      navigate("/admin/dashboard");
+      navigate("/admin-dev/dashboard");
     }
   };
 
@@ -66,7 +66,7 @@ export default function AdminAuth() {
         }
 
         toast.success("Welcome back, admin!");
-        navigate("/admin/dashboard");
+        navigate("/admin-dev/dashboard");
       }
     } catch (error: any) {
       toast.error(error.message || "Login failed");
@@ -80,7 +80,7 @@ export default function AdminAuth() {
     setLoading(true);
 
     try {
-      const redirectUrl = `${window.location.origin}/admin/dashboard`;
+      const redirectUrl = `${window.location.origin}/admin-dev/dashboard`;
       
       const { data, error } = await supabase.auth.signUp({
         email,

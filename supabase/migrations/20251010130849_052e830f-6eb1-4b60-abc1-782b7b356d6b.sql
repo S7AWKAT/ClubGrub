@@ -57,7 +57,7 @@ INSERT INTO public.page_content (section_id, content_type, content, display_orde
       "title": "Members order on mobile device",
       "description": "Members browse your menu, select their favorite food or beverages and choose their desired location.",
       "features": ["GPS location targeting", "Real-time menu updates", "Member billing integration", "Order customization"],
-      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/how-it-works-step-1.jpg"
+      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/how-it-works-step-1new.jpg"
     },
     {
       "number": "02",
@@ -65,7 +65,7 @@ INSERT INTO public.page_content (section_id, content_type, content, display_orde
       "title": "Team manages tickets on ClubGrub iPad",
       "description": "Kitchen and beverage teams receive orders instantly. Prep, stage, and dispatch with seamless workflow management.",
       "features": ["Instant order notifications", "2-way text msg communication", "Prep time optimization", "Staff coordination tools"],
-      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/how-it-works-step-2.jpg"
+      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/how-it-works-step-2new.jpg"
     },
     {
       "number": "03",
@@ -73,7 +73,7 @@ INSERT INTO public.page_content (section_id, content_type, content, display_orde
       "title": "Deliver or stage for pickup",
       "description": "Real-time order tracking keeps members informed. Flexible delivery options match your operational preferences.",
       "features": ["Live order tracking", "No beverage cart required", "Pickup notifications", "Member communication"],
-      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/how-it-works-step-3.jpg"
+      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/how-it-works-step-3new.jpg"
     }
   ],
   "bottomCta": {
@@ -96,7 +96,7 @@ INSERT INTO public.page_content (section_id, content_type, content, display_orde
       "icon": "MapPin",
       "title": "On-Course Delivery",
       "description": "GPS-enabled ordering ensures food and beverages reach golfers exactly where they are on the course.",
-      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/golf-course-ordering.jpg",
+      "image": "https://utvkbpdqcrtvlcdmviss.supabase.co/storage/v1/object/public/content-images/golf-course-orderingnew.jpg",
       "benefits": ["GPS precision targeting", "Cart-side delivery", "No interruption to play", "Deliver anywhere."]
     },
     {

@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card";
 import { TrendingUp, Users, Zap, Clock } from "lucide-react";
 import { scrollToSection } from "@/lib/utils";
 import { usePageContent } from "@/hooks/usePageContent";
+import useSectionVisible from "@/hooks/useSectionVisible";
+import { analytics } from "@/lib/analytics";
 
 const iconMap: Record<string, any> = {
   TrendingUp,
@@ -11,6 +13,7 @@ const iconMap: Record<string, any> = {
 };
 
 export const OperatorOutcomes = () => {
+  useSectionVisible('outcomes');
   const { content, loading } = usePageContent("outcomes");
 
   const defaultOutcomes = [
@@ -108,7 +111,7 @@ export const OperatorOutcomes = () => {
           <p className="body-medium text-text-secondary mb-6">
             Ready to see these results at your club?
           </p>
-          <button onClick={() => scrollToSection("contact")} className="btn-hero inline-flex items-center px-8 py-4">
+          <button onClick={() => { try { analytics.ctaClicked('Schedule Your Demo','contact','outcomes'); } catch(e){}; scrollToSection("contact"); }} className="btn-hero inline-flex items-center px-8 py-4">
             Schedule Your Demo
           </button>
         </div>

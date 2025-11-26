@@ -4,6 +4,8 @@ import { scrollToSection } from "@/lib/utils";
 import {
   Design4,
 } from "./SocialProofDesigns";
+import useSectionVisible from "@/hooks/useSectionVisible";
+import { analytics } from "@/lib/analytics";
 
 export const SocialProof = () => {
   const stats = [
@@ -11,10 +13,11 @@ export const SocialProof = () => {
     { number: "35%", label: "Avg Revenue Increase" },
     { number: "24hrs", label: "Implementation Time" },
   ];
-
+  useSectionVisible('trusted');
   return (
     <section id="trusted" className="py-24 bg-background">
       <div className="container mx-auto px-6">
+        {useSectionVisible('trusted')}
         <div className="text-center mb-4">
           <Badge className="bg-club-gold/10 text-club-gold border-club-gold/20 mb-6">
             Trusted by Elite Clubs
@@ -46,7 +49,7 @@ export const SocialProof = () => {
           <p className="body-large text-text-secondary mb-6">
             Join the clubs setting the standard for premium hospitality
           </p>
-          <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
+          <button onClick={() => { try { analytics.ctaClicked('Schedule Your Demo','contact','trusted'); } catch(e){}; scrollToSection("contact"); }} className="btn-hero px-8 py-4">
             Schedule Your Demo
           </button>
         </div>

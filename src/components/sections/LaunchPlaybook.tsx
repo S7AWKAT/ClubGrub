@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { scrollToSection } from "@/lib/utils";
 import { CheckCircle, Clock, Users, MessageCircle, Tablet, Rocket, Megaphone } from "lucide-react";
+import useSectionVisible from "@/hooks/useSectionVisible";
+import { analytics } from "@/lib/analytics";
 
 export const LaunchPlaybook = () => {
   const services = [
@@ -39,6 +41,7 @@ export const LaunchPlaybook = () => {
     "Performance analytics and optimization recommendations",
     "Prep printer available"
   ];
+  useSectionVisible('launch-playbook');
 
   return (
     <section id="launch-playbook" className="py-24 bg-surface">
@@ -115,7 +118,7 @@ export const LaunchPlaybook = () => {
           </div>
 
           <div className="text-center">
-            <button onClick={() => scrollToSection("contact")} className="btn-hero px-8 py-4">
+            <button onClick={() => { try { analytics.ctaClicked('Start Your Launch Process','contact','launch-playbook'); } catch(e){}; scrollToSection("contact"); }} className="btn-hero px-8 py-4">
               Start Your Launch Process
             </button>
           </div>

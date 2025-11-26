@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Save, Plus, X } from "lucide-react";
+import { Card as UiCard } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface SEOSettings {
   id: string;
@@ -142,6 +144,27 @@ export function SEOEditor() {
     return <div className="text-center py-12">Loading...</div>;
   }
 
+  const titleLen = (currentSettings.meta_title ?? '').length;
+  const descLen = (currentSettings.meta_description ?? '').length;
+  const titleStatus = titleLen === 0 ? 'empty' : titleLen <= 60 ? 'ok' : 'long';
+  const descStatus = descLen === 0 ? 'empty' : descLen <= 160 ? 'ok' : 'long';
+
+  const titleBadgeClass = (status: string) => cn('text-xs px-2 py-0.5 rounded', {
+    'bg-green-100 text-green-800': status === 'ok',
+    'bg-yellow-100 text-yellow-800': status === 'empty',
+    'bg-red-100 text-red-800': status === 'long',
+  });
+
+  const validateCanonical = (url: string | undefined) => {
+    if (!url) return true;
+    try {
+      const u = new URL(url);
+      return u.protocol === 'http:' || u.protocol === 'https:';
+    } catch (e) {
+      return false;
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -201,6 +224,31 @@ export function SEOEditor() {
       {/* Editor Form */}
       {(editingId !== null || !editingId) && (
         <Card className="p-6">
+          {/* SERP Preview + validation */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
+                <h3 className="text-base font-semibold">Live SERP Preview</h3>
+                <span className={titleBadgeClass(titleStatus)}>{titleLen}/60</span>
+                <span className={titleBadgeClass(descStatus)}>{descLen}/160</span>
+              </div>
+              <div className="text-sm text-muted-foreground">Preview updates as you type</div>
+            </div>
+
+            <UiCard className="p-4 bg-white/90 border">
+              <div className="space-y-2">
+                <div className="text-blue-600 font-medium text-lg truncate">{currentSettings.meta_title || 'Page Title - ClubGrub'}</div>
+                <div className="text-sm text-green-700">{currentSettings.canonical_url || `https://clubgrubapp.com${currentSettings.page_path || '/'}`}</div>
+                <div className="text-sm text-muted-foreground">{currentSettings.meta_description || 'Meta description preview will appear here. Keep it clear and under 160 characters.'}</div>
+                {currentSettings.og_image ? (
+                  <img src={currentSettings.og_image} alt="OG" className="w-40 h-20 object-cover rounded mt-2 border" />
+                ) : null}
+              </div>
+            </UiCard>
+            {!validateCanonical(currentSettings.canonical_url || '') && (
+              <div className="text-sm text-red-600 mt-2">Canonical URL looks invalid — must be a full http(s) URL.</div>
+            )}
+          </div>
           <h3 className="text-xl font-semibold text-text-primary mb-6">
             {editingId ? "Edit SEO Settings" : "New Page SEO"}
           </h3>
